@@ -1,12 +1,3 @@
-/********************************************************************************************
- * 		Nehe lesson 10 modification which uses the touch screen to control the camera and dpad
- *		to move the player.
-
- * 		Author: revo																		*
- *		Updated by revo (from 10b) - added camera moving by touching touch screen
- *
- ********************************************************************************************/
-
 #include <nds.h>
 #include <malloc.h>
 #include <stdio.h>
@@ -35,12 +26,12 @@ float lookupdown = 0;
 
 int	texture[1];			// Storage For 1 Textures (only going to use 1 on the DS for this demo)
 
-//SECTOR sector1;				// Our Model Goes Here:
-QSECTOR Rsector;
+SECTOR sector1;				// Our Model Goes Here:
+//QSECTOR Rsector;
 
 void GenerateLevel(){
-	Rsector.numQuads = 6;
-
+	//Rsector.numQuads = 6;
+	sector1.numTriangles = 4;
 	/*
 	Rsector.Quad[0].vertex[0] = {-2000,2000,0};
 	Rsector.Quad[0].vertex[1] = {2000,2000,0};
@@ -49,20 +40,27 @@ void GenerateLevel(){
 	*/
 
 	int i = 0;
-	for (i = 0; i < (Rsector.numQuads / 2); i++)
+	for (i = 0; i < (sector1.numTriangles / 4); i++)
 	{
 		int distance = i * 2;
-		float x = 0, y = i * 2, z = distance;
-		int Point = i * 2;
-		Rsector.Quad[Point].vertex[0] = {floattov16(-1 + x),floattov16(y),floattov16(0 + z)};
-		Rsector.Quad[Point].vertex[1] = {floattov16(-0.5f + x),floattov16(y),floattov16(0.75f + z)};
-		Rsector.Quad[Point].vertex[2] = {floattov16(0.5f + x),floattov16(y),floattov16(0.75f + z)};
-		Rsector.Quad[Point].vertex[3] = {floattov16(1 + x),floattov16(y),floattov16(0 + z)};
+		float x = 0, y = i * 0.5, z = distance;
+		int Point = i * 4;
+		sector1.Triangle[Point].vertex[0] = {floattov16(-1 + x),floattov16(y),floattov16(0 + z)};
+		sector1.Triangle[Point].vertex[1] = {floattov16(-0.5f + x),floattov16(y),floattov16(0.75f + z)};
+		sector1.Triangle[Point].vertex[2] = {floattov16(0.5f + x),floattov16(y),floattov16(0.75f + z)};
+		
+		sector1.Triangle[Point+1].vertex[0] = {floattov16(1 + x),floattov16(y),floattov16(0 + z)};
+		sector1.Triangle[Point+1].vertex[1] = {floattov16(-1 + x),floattov16(y),floattov16(0 + z)};
+		sector1.Triangle[Point+1].vertex[2] = {floattov16(0.5f + x),floattov16(y),floattov16(0.75f + z)};
 
-		Rsector.Quad[Point + 1].vertex[0] = {floattov16(-1 + x),floattov16(y),floattov16(0 + z)};
-		Rsector.Quad[Point + 1].vertex[1] = {floattov16(1 + x),floattov16(y),floattov16(0 + z)};
-		Rsector.Quad[Point + 1].vertex[2] = {floattov16(0.5f + x),floattov16(y),floattov16(-0.75f + z)};
-		Rsector.Quad[Point + 1].vertex[3] = {floattov16(-0.5f + x),floattov16(y),floattov16(-0.75f + z)};
+		sector1.Triangle[Point + 2].vertex[0] = {floattov16(-1 + x),floattov16(y),floattov16(0 + z)};
+		sector1.Triangle[Point + 2].vertex[1] = {floattov16(1 + x),floattov16(y),floattov16(0 + z)};
+		sector1.Triangle[Point + 2].vertex[2] = {floattov16(0.5f + x),floattov16(y),floattov16(-0.75f + z)};
+
+		sector1.Triangle[Point + 3].vertex[0] = {floattov16(-0.5f + x),floattov16(y),floattov16(-0.75f + z)};
+		sector1.Triangle[Point + 3].vertex[1] = {floattov16(-1 + x),floattov16(y),floattov16(0 + z)};
+		sector1.Triangle[Point + 3].vertex[2] = {floattov16(0.5f + x),floattov16(y),floattov16(-0.75f + z)};
+		//Rsector.Quad[Point + 1].vertex[3] = {floattov16(-0.5f + x),floattov16(y),floattov16(-0.75f + z)};
 	}
 }
 
@@ -73,7 +71,7 @@ int main() {
 	//DrawFileTextTemp();
 
 	videoSetMode(MODE_0_3D);
-	vramSetBankA(VRAM_A_TEXTURE);                        //NEW  must set up some memory for textures
+	//vramSetBankA(VRAM_A_TEXTURE);                        //NEW  must set up some memory for textures
 	
 	// initialize the 3D engine
 	glInit();
@@ -107,7 +105,7 @@ int main() {
 	glMatrixMode(GL_MODELVIEW);
 	
 	// Specify the Clear Color and Depth
-	glClearColor(0,0,0,31);
+	glClearColor(15, 20, 30,31);
 	glClearDepth(0x7FFF);
 	
 	// set the vertex color to white
@@ -118,9 +116,9 @@ int main() {
 	
 	GenerateLevel();
 	
-	printf("      Hello DS World\n");
-	printf("     www.devkitpro.org\n");
-	printf("   www.drunkencoders.com\n");
+	//printf("      Hello DS World\n");
+	//printf("     www.devkitpro.org\n");
+	//printf("   www.drunkencoders.com\n");
 
 	while (1)
 	{
@@ -131,12 +129,12 @@ int main() {
 
 		if (held & KEY_START) break;
 
-		if (held & (KEY_LEFT|KEY_Y))
+		if (held & (KEY_LEFT|KEY_A))
 		{
 			xpos -= cosLerp(heading)>>5;
 			zpos += sinLerp(heading)>>5;
 		}
-		if (held & (KEY_RIGHT|KEY_A))
+		if (held & (KEY_RIGHT|KEY_Y))
 		{
 			xpos += cosLerp(heading) >> 5;
 			zpos -= sinLerp(heading) >> 5;
@@ -219,50 +217,43 @@ int DrawGLScene()											// Here's Where We Do All The Drawing
 
 	glLoadIdentity();
 
-	int numQuads;
+	int numTris;
 
-	glRotatef32i((int)lookupdown,(1<<12),0,0);
+	int UDs = (int)lookupdown;
+	glRotatef32i(UDs,(1<<12),0,0);
 	glRotatef32i(sceneroty,0,(1<<12),0);
 
 	glTranslatef32(xtrans, ytrans, ztrans);
 	//glBindTexture(GL_TEXTURE_2D, texture[0]);
 
-	numQuads = Rsector.numQuads;
+	numTris = sector1.numTriangles;
 	// Process Each Triangle
-	for (int loop_m = 0; loop_m < numQuads; loop_m++)
+	for (int loop_m = 0; loop_m < numTris; loop_m++)
 	{
-		glBegin(GL_QUADS);
+		glBegin(GL_TRIANGLE);
 			glNormal(NORMAL_PACK( 0, 0, 1<<10));
 			glColor3f(0.1f,0.5f,0.1f);	
-			x_m = Rsector.Quad[loop_m].vertex[0].x;
-			y_m = Rsector.Quad[loop_m].vertex[0].y;
-			z_m = Rsector.Quad[loop_m].vertex[0].z;
+			x_m = sector1.Triangle[loop_m].vertex[0].x;
+			y_m = sector1.Triangle[loop_m].vertex[0].y;
+			z_m = sector1.Triangle[loop_m].vertex[0].z;
 			//u_m = sector1.triangle[loop_m].vertex[0].u;
 			//v_m = sector1.triangle[loop_m].vertex[0].v;
 			//glTexCoord2t16(u_m,v_m); 
 			glVertex3v16(x_m,y_m,z_m);
 
-			x_m = Rsector.Quad[loop_m].vertex[1].x;
-			y_m = Rsector.Quad[loop_m].vertex[1].y;
-			z_m = Rsector.Quad[loop_m].vertex[1].z;
+			x_m = sector1.Triangle[loop_m].vertex[1].x;
+			y_m = sector1.Triangle[loop_m].vertex[1].y;
+			z_m = sector1.Triangle[loop_m].vertex[1].z;
 			//u_m = sector1.triangle[loop_m].vertex[1].u;
 			//v_m = sector1.triangle[loop_m].vertex[1].v;
 			//glTexCoord2t16(u_m,v_m); 
 			glVertex3v16(x_m,y_m,z_m);
 
-			x_m = Rsector.Quad[loop_m].vertex[2].x;
-			y_m = Rsector.Quad[loop_m].vertex[2].y;
-			z_m = Rsector.Quad[loop_m].vertex[2].z;
+			x_m = sector1.Triangle[loop_m].vertex[2].x;
+			y_m = sector1.Triangle[loop_m].vertex[2].y;
+			z_m = sector1.Triangle[loop_m].vertex[2].z;
 			//u_m = sector1.triangle[loop_m].vertex[2].u;
 			//v_m = sector1.triangle[loop_m].vertex[2].v;
-			//glTexCoord2t16(u_m,v_m); 
-			glVertex3v16(x_m,y_m,z_m);
-
-			x_m = Rsector.Quad[loop_m].vertex[3].x;
-			y_m = Rsector.Quad[loop_m].vertex[3].y;
-			z_m = Rsector.Quad[loop_m].vertex[3].z;
-			//u_m = sector1.triangle[loop_m].vertex[3].u;
-			//v_m = sector1.triangle[loop_m].vertex[3].v;
 			//glTexCoord2t16(u_m,v_m); 
 			glVertex3v16(x_m,y_m,z_m);
 		glEnd();

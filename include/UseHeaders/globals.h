@@ -19,8 +19,8 @@ typedef struct tagTRIANGLE {
 } TRIANGLE;
 
 typedef struct tagSECTOR {
-	int numtriangles;
-	TRIANGLE* triangle;
+	int numTriangles;
+	TRIANGLE* Triangle;
 } SECTOR;
 
 typedef struct tagQUAD {
