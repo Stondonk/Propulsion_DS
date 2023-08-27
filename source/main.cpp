@@ -35,7 +35,7 @@ void GenerateLevel(){
 	//sector1.Triangle = (TRIANGLE*)malloc(NumOfTris*sizeof(TRIANGLE));
 	//sector1.numTriangles = NumOfTris;
 	
-	int NumOfQuads = 20;
+	int NumOfQuads = 40;
 	Rsector.Quad = (QUAD*)malloc(NumOfQuads*sizeof(QUAD));
 	Rsector.numQuads = NumOfQuads;
 
