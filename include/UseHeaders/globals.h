@@ -8,7 +8,22 @@
 #include <string.h>
 #include <dirent.h>
 #include<iostream>
+#include "gameObject.h"
 
+struct controller {
+	//Dpad
+	bool Up = false,Down = false,Left = false, Right = false;
+	//Face buttons
+	bool A = false,B = false,X = false,Y = false;
+	//bumpers
+	bool L = false,R = false;
+	//Start and select
+	bool Str = false, Slt = false;
+	//Direction
+	int x = 0, y = 0;
+	//touch position
+	int TpX = 0, Tpy = 0;
+};
 typedef struct tagVERTEX {
 	float x, y, z;
 	t16 u, v;
@@ -35,4 +50,6 @@ typedef struct tagQUADSECTOR {
 extern float clip(float n, float lower, float upper);
 extern float lerp (float start, float end, float amt);
 
+extern float worldScale;
+extern controller Controls;
 extern float rotateSpeed;

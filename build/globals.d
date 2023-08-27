@@ -60,7 +60,8 @@ globals.o: G:/Ds-rom-homebrew/TestGame/source/globals.cpp \
  G:/Ds-rom-homebrew/TestGame/include/nds/arm9/video.h \
  G:/Ds-rom-homebrew/TestGame/include/nds/arm9/videoGL.h \
  G:/Ds-rom-homebrew/TestGame/include/nds/arm9/nand.h \
- G:/Ds-rom-homebrew/TestGame/include/filesystem.h
+ G:/Ds-rom-homebrew/TestGame/include/filesystem.h \
+ G:/Ds-rom-homebrew/TestGame/include/UseHeaders/gameObject.h
 G:/Ds-rom-homebrew/TestGame/include/UseHeaders/globals.h:
 G:/Ds-rom-homebrew/TestGame/include/nds.h:
 G:/Ds-rom-homebrew/TestGame/include/nds/libversion.h:
@@ -123,3 +124,4 @@ G:/Ds-rom-homebrew/TestGame/include/nds/arm9/video.h:
 G:/Ds-rom-homebrew/TestGame/include/nds/arm9/videoGL.h:
 G:/Ds-rom-homebrew/TestGame/include/nds/arm9/nand.h:
 G:/Ds-rom-homebrew/TestGame/include/filesystem.h:
+G:/Ds-rom-homebrew/TestGame/include/UseHeaders/gameObject.h:

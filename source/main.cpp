@@ -18,7 +18,7 @@ int DrawFileTextTemp();
 float heading;
 float xpos;
 float zpos;
-float ypos = 0.75;
+float ypos = 0.1875;
 float yrot;				// Y Rotation
 int walkbiasangle = 0;
 float lookupdown = 0;
@@ -54,16 +54,58 @@ void GenerateLevel(){
 		float x = 0, y = i * 0.5, z = distance;
 		float Scale = 1;
 		int Point = ((i) * 2);
-		Rsector.Quad[Point].vertex[0] = {((-1 * Scale) + x),(y),(0 + z)};
-		Rsector.Quad[Point].vertex[1] = {((-0.5f * Scale) + x),(y),((0.75f * Scale) + z)};
-		Rsector.Quad[Point].vertex[2] = {((0.5f * Scale) + x),(y),((0.75f * Scale) + z)};
-		Rsector.Quad[Point].vertex[3] = {((1 * Scale) + x),(y),(0 + z)};
+		Rsector.Quad[Point].vertex[0] = {((-1 * Scale) + x) * worldScale,(y) * worldScale,(0 + z) * worldScale};
+		Rsector.Quad[Point].vertex[1] = {((-0.5f * Scale) + x) * worldScale,(y) * worldScale,((0.75f * Scale) + z) * worldScale};
+		Rsector.Quad[Point].vertex[2] = {((0.5f * Scale) + x) * worldScale,(y) * worldScale,((0.75f * Scale) + z) * worldScale};
+		Rsector.Quad[Point].vertex[3] = {((1 * Scale) + x) * worldScale,(y) * worldScale,(0 + z) * worldScale};
 
-		Rsector.Quad[Point + 1].vertex[0] = {((-1 * Scale) + x),(y),(0 + z)};
-		Rsector.Quad[Point + 1].vertex[3] = {((1 * Scale) + x),(y),(0 + z)};
-		Rsector.Quad[Point + 1].vertex[2] = {((0.5f * Scale) + x),(y),((-0.75f*Scale) + z)};
-		Rsector.Quad[Point + 1].vertex[1] = {((-0.5f * Scale) + x),(y),((-0.75f*Scale) + z)};
+		Rsector.Quad[Point + 1].vertex[0] = {((-1 * Scale) + x) * worldScale,(y) * worldScale,(0 + z) * worldScale};
+		Rsector.Quad[Point + 1].vertex[3] = {((1 * Scale) + x) * worldScale,(y) * worldScale,(0 + z) * worldScale};
+		Rsector.Quad[Point + 1].vertex[2] = {((0.5f * Scale) + x) * worldScale,(y) * worldScale,((-0.75f*Scale) + z) * worldScale};
+		Rsector.Quad[Point + 1].vertex[1] = {((-0.5f * Scale) + x) * worldScale,(y) * worldScale,((-0.75f*Scale) + z) * worldScale};
 	}
+}
+
+void KeyUp(int KeyUp){
+	//Keys Up
+		if(KeyUp & (KEY_UP))
+			Controls.Up = false;
+		if(KeyUp & (KEY_DOWN))
+			Controls.Down = false;
+		if(KeyUp & (KEY_LEFT))
+			Controls.Left = false;
+		if(KeyUp & (KEY_RIGHT))
+			Controls.Right = false;
+
+		if(KeyUp & (KEY_A))
+			Controls.A = false;
+		if(KeyUp & (KEY_B))
+			Controls.B = false;
+		if(KeyUp & (KEY_X))
+			Controls.X = false;
+		if(KeyUp & (KEY_Y))
+			Controls.Y = false;
+}
+
+void KeyDown(int KeyDown){
+	//Keys Down
+		if(KeyDown & (KEY_UP))
+			Controls.Up = true;
+		if(KeyDown & (KEY_DOWN))
+			Controls.Down = true;
+		if(KeyDown & (KEY_LEFT))
+			Controls.Left = true;
+		if(KeyDown & (KEY_RIGHT))
+			Controls.Right = true;
+
+		if(KeyDown & (KEY_A))
+			Controls.A = true;
+		if(KeyDown & (KEY_B))
+			Controls.B = true;
+		if(KeyDown & (KEY_X))
+			Controls.X = true;
+		if(KeyDown & (KEY_Y))
+			Controls.Y = true;
 }
 
 int main() {
@@ -128,31 +170,37 @@ int main() {
 		scanKeys();
 
 		int held = keysHeld();
+		int KeyCDown = keysDown();
+		int KeyCUp = keysUp();
+		if(KeyCUp)
+			KeyUp(KeyCUp);
+		if(KeyCDown)
+			KeyDown(KeyCDown);
 
 		if (held & KEY_START) break;
 
 		if (held & (KEY_LEFT|KEY_A))
 		{
-			xpos -= cos(heading) * 0.05;
-			zpos += sin(heading) * 0.05;
+			xpos -= cos(M_PI / 180.0 *(heading)) * 0.05 ;
+			zpos += sin(M_PI / 180.0 *(heading)) * 0.05 ;
 		}
 		if (held & (KEY_RIGHT|KEY_Y))
 		{
-			xpos += cos(heading) * 0.05;
-			zpos -= sin(heading) * 0.05;
+			xpos += cos(M_PI / 180.0 *(heading)) * 0.05 ;
+			zpos -= sin(M_PI / 180.0 *(heading)) * 0.05 ;
 		}
 		if (held & (KEY_DOWN|KEY_B))
 		{
 
-			xpos -= cos(heading + degreesToAngle(90)) * 0.05;
-			zpos += sin(heading + degreesToAngle(90)) * 0.05;
+			xpos -= cos(M_PI / 180.0 *(heading + 90)) * 0.05 ;
+			zpos += sin(M_PI / 180.0 *(heading + 90)) * 0.05 ;
 
 			walkbiasangle += degreesToAngle(5);
 		}
 		if (held & (KEY_UP|KEY_X))
 		{
-			xpos += cos(heading + degreesToAngle(90)) * 0.05;
-			zpos -= sin(heading + degreesToAngle(90)) * 0.05;
+			xpos += cos(M_PI / 180.0 * (heading + 90) ) * 0.05 ;
+			zpos -= sin(M_PI / 180.0 * (heading + 90) ) * 0.05 ;
 
 			if (walkbiasangle <= 0)
 			{
@@ -215,9 +263,9 @@ int DrawGLScene()											// Here's Where We Do All The Drawing
 
 	float x_m, y_m, z_m;
 	t16 u_m, v_m;
-	float xtrans = -xpos;
-	float ztrans = -zpos;
-	float ytrans = -ypos;
+	float xtrans = -xpos * worldScale;
+	float ztrans = -zpos * worldScale;
+	float ytrans = -ypos * worldScale;
 	int sceneroty = 360 - yrot;
 
 	glLoadIdentity();
