@@ -39,7 +39,7 @@ int	texture[1];			// Storage For 1 Textures (only going to use 1 on the DS for t
 QSECTOR Rsector;
 
 void GenerateLevel(){
-	Rsector.numQuads = 3;
+	Rsector.numQuads = 6;
 
 	/*
 	Rsector.Quad[0].vertex[0] = {-2000,2000,0};
@@ -48,15 +48,22 @@ void GenerateLevel(){
 	Rsector.Quad[0].vertex[3] = {-2000,-2000,0};
 	*/
 
-	Rsector.Quad[1].vertex[0] = {-2000,0,0};
-	Rsector.Quad[1].vertex[1] = {-1000,0,1500};
-	Rsector.Quad[1].vertex[2] = {1000,0,1500};
-	Rsector.Quad[1].vertex[3] = {2000,0,0};
+	int i = 0;
+	for (i = 0; i < (Rsector.numQuads / 2); i++)
+	{
+		int distance = i * 3048;
+		int x = 0, y = i * 128, z = distance;
+		int Point = i * 2;
+		Rsector.Quad[Point].vertex[0] = {(short)(-2000 + x),(short)y,(short)(0 + z)};
+		Rsector.Quad[Point].vertex[1] = {(short)(-1000 + x),(short)y,(short)(1500 + z)};
+		Rsector.Quad[Point].vertex[2] = {(short)(1000 + x),(short)y,(short)(1500 + z)};
+		Rsector.Quad[Point].vertex[3] = {(short)(2000 + x),(short)y,(short)(0 + z)};
 
-	Rsector.Quad[2].vertex[0] = {-2000,0,0};
-	Rsector.Quad[2].vertex[1] = {2000,0,0};
-	Rsector.Quad[2].vertex[2] = {1000,0,-1500};
-	Rsector.Quad[2].vertex[3] = {-1000,0,-1500};
+		Rsector.Quad[Point + 1].vertex[0] = {(short)(-2000 + x),(short)y,(short)(0 + z)};
+		Rsector.Quad[Point + 1].vertex[1] = {(short)(2000 + x),(short)y,(short)(0 + z)};
+		Rsector.Quad[Point + 1].vertex[2] = {(short)(1000 + x),(short)y,(short)(-1500 + z)};
+		Rsector.Quad[Point + 1].vertex[3] = {(short)(-1000 + x),(short)y,(short)(-1500 + z)};
+	}
 }
 
 int main() {
@@ -218,11 +225,9 @@ int DrawGLScene()											// Here's Where We Do All The Drawing
 	glRotatef32i(sceneroty,0,(1<<12),0);
 
 	glTranslatef32(xtrans, ytrans, ztrans);
-	glBindTexture(GL_TEXTURE_2D, texture[0]);
+	//glBindTexture(GL_TEXTURE_2D, texture[0]);
 
 	numQuads = Rsector.numQuads;
-
-
 	// Process Each Triangle
 	for (int loop_m = 0; loop_m < numQuads; loop_m++)
 	{
