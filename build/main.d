@@ -60,8 +60,7 @@ main.o: G:/Ds-rom-homebrew/TestGame/source/main.cpp \
  G:/Ds-rom-homebrew/TestGame/include/nds/arm9/videoGL.h \
  G:/Ds-rom-homebrew/TestGame/include/nds/arm9/nand.h \
  G:/Ds-rom-homebrew/TestGame/include/filesystem.h \
- G:/Ds-rom-homebrew/TestGame/include/UseHeaders/globals.h \
- G:/Ds-rom-homebrew/TestGame/build/Mud_pcx.h
+ G:/Ds-rom-homebrew/TestGame/include/UseHeaders/globals.h
 G:/Ds-rom-homebrew/TestGame/include/nds.h:
 G:/Ds-rom-homebrew/TestGame/include/nds/libversion.h:
 G:/Ds-rom-homebrew/TestGame/include/nds/ndstypes.h:
@@ -124,4 +123,3 @@ G:/Ds-rom-homebrew/TestGame/include/nds/arm9/videoGL.h:
 G:/Ds-rom-homebrew/TestGame/include/nds/arm9/nand.h:
 G:/Ds-rom-homebrew/TestGame/include/filesystem.h:
 G:/Ds-rom-homebrew/TestGame/include/UseHeaders/globals.h:
-G:/Ds-rom-homebrew/TestGame/build/Mud_pcx.h:
