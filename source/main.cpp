@@ -16,14 +16,6 @@
 int DrawGLScene();
 int DrawFileTextTemp();
 
-float heading;
-float xpos;
-float zpos;
-float ypos = 0.25;
-float yrot;				// Y Rotation
-int walkbiasangle = 0;
-float lookupdown = 0;
-
 
 int	texture[1];			// Storage For 1 Textures (only going to use 1 on the DS for this demo)
 
@@ -181,68 +173,14 @@ int main() {
 			KeyDown(KeyCDown);
 
 		if (held & KEY_START) break;
-
-		if (held & (KEY_LEFT|KEY_A))
-		{
-			xpos -= cos(M_PI / 180.0 *(heading)) * 0.05 ;
-			zpos += sin(M_PI / 180.0 *(heading)) * 0.05 ;
-		}
-		if (held & (KEY_RIGHT|KEY_Y))
-		{
-			xpos += cos(M_PI / 180.0 *(heading)) * 0.05 ;
-			zpos -= sin(M_PI / 180.0 *(heading)) * 0.05 ;
-		}
-		if (held & (KEY_DOWN|KEY_B))
-		{
-
-			xpos -= cos(M_PI / 180.0 *(heading + 90)) * 0.05 ;
-			zpos += sin(M_PI / 180.0 *(heading + 90)) * 0.05 ;
-
-			walkbiasangle += degreesToAngle(5);
-		}
-		if (held & (KEY_UP|KEY_X))
-		{
-			xpos += cos(M_PI / 180.0 * (heading + 90) ) * 0.05 ;
-			zpos -= sin(M_PI / 180.0 * (heading + 90) ) * 0.05 ;
-
-			if (walkbiasangle <= 0)
-			{
-				walkbiasangle = DEGREES_IN_CIRCLE;
-			}
-			else
-			{
-				walkbiasangle -= degreesToAngle(5);
-			}
-		}
-
 		// Camera rotation by touch screen
 
 		if (held & KEY_TOUCH)
 		{
 			touchRead(&thisXY);
+			Controls.TpX = thisXY.px;
+			Controls.TpY = thisXY.py;
 
-			float dx = thisXY.px - lastXY.px;
-			float dy = thisXY.py - lastXY.py;
-
-			// filtering measurement errors
-			if (dx<20 && dx>-20 && dy<20 && dy>-20)
-			{
-				if(dx>-3&&dx<3)
-					dx=0;
-
-				if(dy>-2&&dy<2) dy=0;
-
-					lookupdown = clip(lookupdown - dy, -90, 90);
-
-					heading += (dx);
-					if(heading < 0)
-						heading += 360;
-					else if(heading > 359.9)
-						heading -= 360;
-					yrot = heading;
-			}
-
-			lastXY = thisXY;
 		}
 
 		//Updates

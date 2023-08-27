@@ -10,6 +10,21 @@ float lerp (float start, float end, float amt){
     return (1-amt)*start+amt*end;
 }
 
+void SetCamera(float x, float y, float z, float pitch, float yaw){
+  xpos = x;
+  ypos = y;
+  zpos = z;
+  lookupdown = pitch;
+  yrot = yaw;
+}
+
+float heading;
+float xpos;
+float zpos;
+float ypos = 0.25;
+float yrot;
+float lookupdown = 0;
+
 
 std::vector<GameObject*> gameObjects;
 std::vector<GameObject*> RemoveObjects;
