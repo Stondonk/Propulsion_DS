@@ -62,7 +62,8 @@ Player.o: G:/Ds-rom-homebrew/TestGame/source/Player.cpp \
  G:/Ds-rom-homebrew/TestGame/include/nds/arm9/nand.h \
  G:/Ds-rom-homebrew/TestGame/include/filesystem.h \
  G:/Ds-rom-homebrew/TestGame/include/UseHeaders/gameObject.h \
- G:/Ds-rom-homebrew/TestGame/include/UseHeaders/Player.h
+ G:/Ds-rom-homebrew/TestGame/include/UseHeaders/Player.h \
+ G:/Ds-rom-homebrew/TestGame/include/UseHeaders/VectorFunctions.h
 G:/Ds-rom-homebrew/TestGame/include/UseHeaders/globals.h:
 G:/Ds-rom-homebrew/TestGame/include/nds.h:
 G:/Ds-rom-homebrew/TestGame/include/nds/libversion.h:
@@ -127,3 +128,4 @@ G:/Ds-rom-homebrew/TestGame/include/nds/arm9/nand.h:
 G:/Ds-rom-homebrew/TestGame/include/filesystem.h:
 G:/Ds-rom-homebrew/TestGame/include/UseHeaders/gameObject.h:
 G:/Ds-rom-homebrew/TestGame/include/UseHeaders/Player.h:
+G:/Ds-rom-homebrew/TestGame/include/UseHeaders/VectorFunctions.h:

@@ -25,7 +25,7 @@ float ypos = 0.25;
 float yrot;
 float lookupdown = 0;
 
-
+std::vector<HexTile*> Hexs;
 std::vector<GameObject*> gameObjects;
 std::vector<GameObject*> RemoveObjects;
 float worldScale = 0.25;

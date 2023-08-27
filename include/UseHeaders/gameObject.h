@@ -7,10 +7,11 @@ class GameObject
     public:
         GameObject() = default;
         virtual void Draw() =0;
-        virtual void Draw2D() =0;
+        virtual void Draw2DTop() =0;
+        virtual void Draw2DBottom() =0;
         virtual void Update() =0;
         virtual void Start() =0;
-        virtual void Damage(float Px, float Py) =0;
+        virtual void Damage(float Px, float Py, float Pz) =0;
         
         int TargetValue = 0;
         int health = 1;

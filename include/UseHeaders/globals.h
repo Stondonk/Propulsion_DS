@@ -24,6 +24,12 @@ struct controller {
 	//touch position
 	int TpX = 0, TpY = 0;
 };
+
+struct HexTile{
+	float x, y, z, Vx, Vy, Vz;
+	int r, g, b;
+	float scale = 1;
+};
 typedef struct tagVERTEX {
 	float x, y, z;
 	t16 u, v;
@@ -58,6 +64,7 @@ extern float clip(float n, float lower, float upper);
 extern float lerp (float start, float end, float amt);
 extern void SetCamera(float x, float y, float z, float pitch, float yaw);
 
+extern std::vector<HexTile*> Hexs;
 extern std::vector<GameObject*> gameObjects;
 extern std::vector<GameObject*> RemoveObjects;
 

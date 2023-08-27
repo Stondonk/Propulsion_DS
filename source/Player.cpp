@@ -1,5 +1,6 @@
 #include "UseHeaders/globals.h"
 #include "UseHeaders/Player.h"
+#include "UseHeaders/VectorFunctions.h"
 #include <cmath>
 #include <list>
 #include <iostream>
@@ -10,12 +11,36 @@ void Player::Start(){
     this->pHeight = 0.5;
 }
 void Player::ColCheck(){
+    float ClosestFloor = 0, ClosestCeil = 128;
+    for (HexTile* Tile : Hexs)
+    {
+        Vector2 Points[6] = {{(-1 * Tile->scale) + Tile->x, Tile->z}, {(-0.5 * Tile->scale) + Tile->x, (0.75 * Tile->scale) + Tile->z}, {(0.5 * Tile->scale) + Tile->x, (0.75 * Tile->scale) + Tile->z}, {(1 * Tile->scale) + Tile->x, Tile->z}, {(0.5 * Tile->scale) + Tile->x, (-0.75 * Tile->scale) + Tile->z}, {(-0.5 * Tile->scale) + Tile->x, (-0.75 * Tile->scale) + Tile->z}};
+        if(polyPoint(Points, this->plx, this->plz)){
+            ClosestFloor = Tile->y;
+            /*
+            if(this->ply > Tile->y){
+                floorPosition = Tile->y;
+                this->pvy = 0;
+            }else{
+                CeilingPosition = Tile->y;
+            }
+            */
+        }
+    }
 
+    this->floorPosition = ClosestFloor;
+    this->ply = clip(this->ply, this->floorPosition + this->pHeight / 2, this->CeilingPosition - this->pHeight / 2);
     
 }
 void Player::Update(){
     if(!this->started)
         this->Start();
+
+        //Gravity
+        if(this->ply - (this->pHeight / 2) > floorPosition)
+            this->pvy -= Gravity;
+        else
+            this->pvy = 0;
 
         //Movement
         this->fz = cos(M_PI / 180.0 *(this->RotY));
@@ -37,6 +62,13 @@ void Player::Update(){
             this->y = -1;
         else
             this->y = 0;
+
+        if((Controls.L || Controls.R) && !this->Jumped){
+            this->pvy = 0.1;
+            this->Jumped = true;
+        }else{
+            this->Jumped = false;
+        }
 
         this->pvx = (this->fx * Speed * y) + (this->rx * Speed * x);
         this->pvz = (this->fz * Speed * y) + (this->rz * Speed * x);
@@ -66,6 +98,7 @@ void Player::Update(){
 		this->LastTx = Controls.TpX;
         this->LastTy = Controls.TpY;
 
+        this->ColCheck();
         //Velocity
         this->plx += this->pvx;
         this->ply += this->pvy;
@@ -77,10 +110,12 @@ void Player::Update(){
 void Player::Draw(){
     
 }
-void Player::Draw2D(){
+void Player::Draw2DTop(){
+
+}void Player::Draw2DBottom(){
 
 }
-void Player::Damage(float Px, float Py){
+void Player::Damage(float Px, float Py, float Pz){
 
 }
 void Player::Animation(){

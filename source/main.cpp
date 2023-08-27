@@ -23,12 +23,25 @@ int	texture[1];			// Storage For 1 Textures (only going to use 1 on the DS for t
 QSECTOR Rsector;
 
 void GenerateLevel(){
+
+	int HexAmount = 16;
+	int h = 0;
+	for (int h = 0; h < HexAmount; h++)
+	{
+		HexTile* TempTile = new HexTile();
+		TempTile->x = 0;
+		TempTile->y = h*0.5;
+		TempTile->z = h*2;
+		TempTile->scale = 1;
+		Hexs.push_back(TempTile);
+	}
+	
 	//Rsector.numQuads = 6;
 	//int NumOfTris = 4;
 	//sector1.Triangle = (TRIANGLE*)malloc(NumOfTris*sizeof(TRIANGLE));
 	//sector1.numTriangles = NumOfTris;
 	
-	int NumOfQuads = 32;
+	int NumOfQuads = HexAmount * 2;
 	Rsector.Quad = (QUAD*)malloc((NumOfQuads)*sizeof(QUAD));
 	Rsector.numQuads = NumOfQuads;
 
@@ -40,12 +53,12 @@ void GenerateLevel(){
 	*/
 
 	int i = 0;
-	int lengthOfT = (Rsector.numQuads / 2);
-	for (i = 0; i < lengthOfT; i++)
+	//int lengthOfT = (Rsector.numQuads / 2);
+	for (i = 0; i < (int)Hexs.size(); i++)
 	{
 		int distance = i * 2;
-		float x = 0, y = i * 0.5, z = distance;
-		float Scale = 1;
+		float x = Hexs[i]->x, y = Hexs[i]->y, z = Hexs[i]->z;
+		float Scale = Hexs[i]->scale;
 		int Point = ((i) * 2);
 		Rsector.Quad[Point].vertex[0] = {((-1 * Scale) + x) * worldScale,(y) * worldScale,(0 + z) * worldScale};
 		Rsector.Quad[Point].vertex[1] = {((-0.5f * Scale) + x) * worldScale,(y) * worldScale,((0.75f * Scale) + z) * worldScale};
@@ -80,6 +93,11 @@ void KeyUp(int KeyUp){
 			Controls.X = false;
 		if(KeyUp & (KEY_Y))
 			Controls.Y = false;
+
+		if(KeyUp & (KEY_L))
+			Controls.L = false;
+		if(KeyUp & (KEY_R))
+			Controls.R = false;
 }
 
 void KeyDown(int KeyDown){
@@ -101,6 +119,11 @@ void KeyDown(int KeyDown){
 			Controls.X = true;
 		if(KeyDown & (KEY_Y))
 			Controls.Y = true;
+	
+		if(KeyDown & (KEY_L))
+			Controls.L = true;
+		if(KeyDown & (KEY_R))
+			Controls.R = true;
 }
 
 int main() {
