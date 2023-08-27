@@ -51,18 +51,18 @@ void GenerateLevel(){
 	int i = 0;
 	for (i = 0; i < (Rsector.numQuads / 2); i++)
 	{
-		int distance = i * 3048;
-		int x = 0, y = i * 128, z = distance;
+		int distance = i * 2;
+		float x = 0, y = i * 2, z = distance;
 		int Point = i * 2;
-		Rsector.Quad[Point].vertex[0] = {(short)(-2000 + x),(short)y,(short)(0 + z)};
-		Rsector.Quad[Point].vertex[1] = {(short)(-1000 + x),(short)y,(short)(1500 + z)};
-		Rsector.Quad[Point].vertex[2] = {(short)(1000 + x),(short)y,(short)(1500 + z)};
-		Rsector.Quad[Point].vertex[3] = {(short)(2000 + x),(short)y,(short)(0 + z)};
+		Rsector.Quad[Point].vertex[0] = {floattov16(-1 + x),floattov16(y),floattov16(0 + z)};
+		Rsector.Quad[Point].vertex[1] = {floattov16(-0.5f + x),floattov16(y),floattov16(0.75f + z)};
+		Rsector.Quad[Point].vertex[2] = {floattov16(0.5f + x),floattov16(y),floattov16(0.75f + z)};
+		Rsector.Quad[Point].vertex[3] = {floattov16(1 + x),floattov16(y),floattov16(0 + z)};
 
-		Rsector.Quad[Point + 1].vertex[0] = {(short)(-2000 + x),(short)y,(short)(0 + z)};
-		Rsector.Quad[Point + 1].vertex[1] = {(short)(2000 + x),(short)y,(short)(0 + z)};
-		Rsector.Quad[Point + 1].vertex[2] = {(short)(1000 + x),(short)y,(short)(-1500 + z)};
-		Rsector.Quad[Point + 1].vertex[3] = {(short)(-1000 + x),(short)y,(short)(-1500 + z)};
+		Rsector.Quad[Point + 1].vertex[0] = {floattov16(-1 + x),floattov16(y),floattov16(0 + z)};
+		Rsector.Quad[Point + 1].vertex[1] = {floattov16(1 + x),floattov16(y),floattov16(0 + z)};
+		Rsector.Quad[Point + 1].vertex[2] = {floattov16(0.5f + x),floattov16(y),floattov16(-0.75f + z)};
+		Rsector.Quad[Point + 1].vertex[3] = {floattov16(-0.5f + x),floattov16(y),floattov16(-0.75f + z)};
 	}
 }
 
