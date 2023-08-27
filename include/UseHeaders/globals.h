@@ -10,7 +10,7 @@
 #include<iostream>
 
 typedef struct tagVERTEX {
-	v16 x, y, z;
+	float x, y, z;
 	t16 u, v;
 } VERTEX;
 

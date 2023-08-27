@@ -1,7 +1,7 @@
 #include <nds.h>
 #include <malloc.h>
 #include <stdio.h>
-
+#include <cmath>
 #include <filesystem.h>
 #include <stdlib.h>
 #include <string.h>
@@ -16,9 +16,9 @@ int DrawGLScene();
 int DrawFileTextTemp();
 
 float heading;
-int32 xpos;
-int32 zpos;
-int32 ypos = 1024;
+float xpos;
+float zpos;
+float ypos = 0.75;
 float yrot;				// Y Rotation
 int walkbiasangle = 0;
 float lookupdown = 0;
@@ -35,8 +35,8 @@ void GenerateLevel(){
 	//sector1.Triangle = (TRIANGLE*)malloc(NumOfTris*sizeof(TRIANGLE));
 	//sector1.numTriangles = NumOfTris;
 	
-	int NumOfQuads = 40;
-	Rsector.Quad = (QUAD*)malloc(NumOfQuads*sizeof(QUAD));
+	int NumOfQuads = 32;
+	Rsector.Quad = (QUAD*)malloc((NumOfQuads)*sizeof(QUAD));
 	Rsector.numQuads = NumOfQuads;
 
 	/*
@@ -47,20 +47,22 @@ void GenerateLevel(){
 	*/
 
 	int i = 0;
-	for (i = 0; i < (Rsector.numQuads / 2); i++)
+	int lengthOfT = (Rsector.numQuads / 2);
+	for (i = 0; i < lengthOfT; i++)
 	{
 		int distance = i * 2;
 		float x = 0, y = i * 0.5, z = distance;
-		int Point = (i * 2);
-		Rsector.Quad[Point].vertex[0] = {floattov16(-1 + x),floattov16(y),floattov16(0 + z)};
-		Rsector.Quad[Point].vertex[1] = {floattov16(-0.5f + x),floattov16(y),floattov16(0.75f + z)};
-		Rsector.Quad[Point].vertex[2] = {floattov16(0.5f + x),floattov16(y),floattov16(0.75f + z)};
-		Rsector.Quad[Point].vertex[3] = {floattov16(1 + x),floattov16(y),floattov16(0 + z)};
+		float Scale = 1;
+		int Point = ((i) * 2);
+		Rsector.Quad[Point].vertex[0] = {((-1 * Scale) + x),(y),(0 + z)};
+		Rsector.Quad[Point].vertex[1] = {((-0.5f * Scale) + x),(y),((0.75f * Scale) + z)};
+		Rsector.Quad[Point].vertex[2] = {((0.5f * Scale) + x),(y),((0.75f * Scale) + z)};
+		Rsector.Quad[Point].vertex[3] = {((1 * Scale) + x),(y),(0 + z)};
 
-		Rsector.Quad[Point + 1].vertex[0] = {floattov16(-1 + x),floattov16(y),floattov16(0 + z)};
-		Rsector.Quad[Point + 1].vertex[1] = {floattov16(1 + x),floattov16(y),floattov16(0 + z)};
-		Rsector.Quad[Point + 1].vertex[2] = {floattov16(0.5f + x),floattov16(y),floattov16(-0.75f + z)};
-		Rsector.Quad[Point + 1].vertex[3] = {floattov16(-0.5f + x),floattov16(y),floattov16(-0.75f + z)};
+		Rsector.Quad[Point + 1].vertex[0] = {((-1 * Scale) + x),(y),(0 + z)};
+		Rsector.Quad[Point + 1].vertex[3] = {((1 * Scale) + x),(y),(0 + z)};
+		Rsector.Quad[Point + 1].vertex[2] = {((0.5f * Scale) + x),(y),((-0.75f*Scale) + z)};
+		Rsector.Quad[Point + 1].vertex[1] = {((-0.5f * Scale) + x),(y),((-0.75f*Scale) + z)};
 	}
 }
 
@@ -131,26 +133,26 @@ int main() {
 
 		if (held & (KEY_LEFT|KEY_A))
 		{
-			xpos -= cosLerp(heading)>>5;
-			zpos += sinLerp(heading)>>5;
+			xpos -= cos(heading) * 0.05;
+			zpos += sin(heading) * 0.05;
 		}
 		if (held & (KEY_RIGHT|KEY_Y))
 		{
-			xpos += cosLerp(heading) >> 5;
-			zpos -= sinLerp(heading) >> 5;
+			xpos += cos(heading) * 0.05;
+			zpos -= sin(heading) * 0.05;
 		}
 		if (held & (KEY_DOWN|KEY_B))
 		{
 
-			xpos -= cosLerp(heading + degreesToAngle(90)) >> 5;
-			zpos += sinLerp(heading + degreesToAngle(90)) >> 5;
+			xpos -= cos(heading + degreesToAngle(90)) * 0.05;
+			zpos += sin(heading + degreesToAngle(90)) * 0.05;
 
 			walkbiasangle += degreesToAngle(5);
 		}
 		if (held & (KEY_UP|KEY_X))
 		{
-			xpos += cosLerp(heading + degreesToAngle(90)) >> 5;
-			zpos -= sinLerp(heading + degreesToAngle(90)) >> 5;
+			xpos += cos(heading + degreesToAngle(90)) * 0.05;
+			zpos -= sin(heading + degreesToAngle(90)) * 0.05;
 
 			if (walkbiasangle <= 0)
 			{
@@ -168,8 +170,8 @@ int main() {
 		{
 			touchRead(&thisXY);
 
-			int16 dx = thisXY.px - lastXY.px;
-			int16 dy = thisXY.py - lastXY.py;
+			float dx = thisXY.px - lastXY.px;
+			float dy = thisXY.py - lastXY.py;
 
 			// filtering measurement errors
 			if (dx<20 && dx>-20 && dy<20 && dy>-20)
@@ -179,9 +181,13 @@ int main() {
 
 				if(dy>-2&&dy<2) dy=0;
 
-					lookupdown = clip(lookupdown - degreesToAngle(dy), -8000, 8000);
+					lookupdown = clip(lookupdown - dy, -90, 90);
 
-					heading += degreesToAngle(dx);
+					heading += (dx);
+					if(heading < 0)
+						heading += 360;
+					else if(heading > 359.9)
+						heading -= 360;
 					yrot = heading;
 			}
 
@@ -207,26 +213,26 @@ int DrawGLScene()											// Here's Where We Do All The Drawing
 {
 											// Reset The View
 
-	v16 x_m, y_m, z_m;
+	float x_m, y_m, z_m;
 	t16 u_m, v_m;
-	int32 xtrans = -xpos;
-	int32 ztrans = -zpos;
-	int32 ytrans = -ypos;
-	int sceneroty = DEGREES_IN_CIRCLE - (int)yrot;
+	float xtrans = -xpos;
+	float ztrans = -zpos;
+	float ytrans = -ypos;
+	int sceneroty = 360 - yrot;
 
 	glLoadIdentity();
 
 	int numQuads;
 
-	glRotatef32i((int)lookupdown,(1<<12),0,0);
-	glRotatef32i(sceneroty,0,(1<<12),0);
+	glRotatef(lookupdown,1,0,0);
+	glRotatef(sceneroty,0,1,0);
 
-	glTranslatef32(xtrans, ytrans, ztrans);
+	glTranslatef(xtrans, ytrans, ztrans);
 	//glBindTexture(GL_TEXTURE_2D, texture[0]);
 
 	numQuads = Rsector.numQuads;
 	// Process Each Triangle
-	glBegin(GL_QUADS);
+	glBegin(GL_QUAD);
 	for (int loop_m = 0; loop_m < numQuads; loop_m++)
 	{
 			//glNormal(NORMAL_PACK( 0, 0, 1<<10));
@@ -237,7 +243,7 @@ int DrawGLScene()											// Here's Where We Do All The Drawing
 			//u_m = sector1.triangle[loop_m].vertex[0].u;
 			//v_m = sector1.triangle[loop_m].vertex[0].v;
 			//glTexCoord2t16(u_m,v_m); 
-			glVertex3v16(x_m,y_m,z_m);
+			glVertex3f(x_m,y_m,z_m);
 
 			x_m = Rsector.Quad[loop_m].vertex[1].x;
 			y_m = Rsector.Quad[loop_m].vertex[1].y;
@@ -245,7 +251,7 @@ int DrawGLScene()											// Here's Where We Do All The Drawing
 			//u_m = sector1.triangle[loop_m].vertex[1].u;
 			//v_m = sector1.triangle[loop_m].vertex[1].v;
 			//glTexCoord2t16(u_m,v_m); 
-			glVertex3v16(x_m,y_m,z_m);
+			glVertex3f(x_m,y_m,z_m);
 
 			x_m = Rsector.Quad[loop_m].vertex[2].x;
 			y_m = Rsector.Quad[loop_m].vertex[2].y;
@@ -253,7 +259,7 @@ int DrawGLScene()											// Here's Where We Do All The Drawing
 			//u_m = sector1.triangle[loop_m].vertex[2].u;
 			//v_m = sector1.triangle[loop_m].vertex[2].v;
 			//glTexCoord2t16(u_m,v_m); 
-			glVertex3v16(x_m,y_m,z_m);
+			glVertex3f(x_m,y_m,z_m);
 
 			x_m = Rsector.Quad[loop_m].vertex[3].x;
 			y_m = Rsector.Quad[loop_m].vertex[3].y;
@@ -261,10 +267,10 @@ int DrawGLScene()											// Here's Where We Do All The Drawing
 			//u_m = sector1.triangle[loop_m].vertex[3].u;
 			//v_m = sector1.triangle[loop_m].vertex[3].v;
 			//glTexCoord2t16(u_m,v_m); 
-			glVertex3v16(x_m,y_m,z_m);
+			glVertex3f(x_m,y_m,z_m);
 	}
 	glEnd();
-	return TRUE;										// Everything Went OK
+	return TRUE;												// Everything Went OK
 
 }
 
