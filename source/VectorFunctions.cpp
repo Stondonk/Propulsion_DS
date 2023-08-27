@@ -144,7 +144,7 @@ bool polyPoint(Vector2 vertices[], float px, float py) {
 bool polyLine(Vector2 vertices[], float x1, float y1, float x2, float y2) {
 
   int next = 0;
-  for (int current=0; current<sizeof(vertices); current++) {
+  for (int current=0; current< (int)sizeof(vertices); current++) {
     next = current+1;
     if (next == (int)sizeof(vertices)) next = 0;
 
@@ -170,7 +170,7 @@ bool polyLine(Vector2 vertices[], float x1, float y1, float x2, float y2) {
 
 bool polyPoly(Vector2 p1[], Vector2 p2[]) {
   int next = 0;
-  for (int current=0; current< sizeof(p1); current++) {
+  for (int current=0; current< (int)sizeof(p1); current++) {
     next = current+1;
     if (next == (int)sizeof(p1)) next = 0;
 

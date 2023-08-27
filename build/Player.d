@@ -1,4 +1,4 @@
-globals.o: G:/Ds-rom-homebrew/TestGame/source/globals.cpp \
+Player.o: G:/Ds-rom-homebrew/TestGame/source/Player.cpp \
  G:/Ds-rom-homebrew/TestGame/include/UseHeaders/globals.h \
  G:/Ds-rom-homebrew/TestGame/include/nds.h \
  G:/Ds-rom-homebrew/TestGame/include/nds/libversion.h \

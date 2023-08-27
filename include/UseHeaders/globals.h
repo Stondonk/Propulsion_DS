@@ -8,7 +8,9 @@
 #include <string.h>
 #include <dirent.h>
 #include<iostream>
+#include <vector>
 #include "gameObject.h"
+#include "Player.h"
 
 struct controller {
 	//Dpad
@@ -19,8 +21,6 @@ struct controller {
 	bool L = false,R = false;
 	//Start and select
 	bool Str = false, Slt = false;
-	//Direction
-	int x = 0, y = 0;
 	//touch position
 	int TpX = 0, Tpy = 0;
 };
@@ -49,6 +49,9 @@ typedef struct tagQUADSECTOR {
 
 extern float clip(float n, float lower, float upper);
 extern float lerp (float start, float end, float amt);
+
+extern std::vector<GameObject*> gameObjects;
+extern std::vector<GameObject*> RemoveObjects;
 
 extern float worldScale;
 extern controller Controls;

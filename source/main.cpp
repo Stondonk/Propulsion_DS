@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <dirent.h>
+#include <algorithm>
 
 #include "UseHeaders/globals.h"
 //#include "Mud_pcx.h"
@@ -64,6 +65,8 @@ void GenerateLevel(){
 		Rsector.Quad[Point + 1].vertex[2] = {((0.5f * Scale) + x) * worldScale,(y) * worldScale,((-0.75f*Scale) + z) * worldScale};
 		Rsector.Quad[Point + 1].vertex[1] = {((-0.5f * Scale) + x) * worldScale,(y) * worldScale,((-0.75f*Scale) + z) * worldScale};
 	}
+
+	gameObjects.push_back(new Player());
 }
 
 void KeyUp(int KeyUp){
@@ -242,15 +245,35 @@ int main() {
 			lastXY = thisXY;
 		}
 
+		//Updates
+		for (GameObject* OBJ : gameObjects)
+		{
+			OBJ->Update();
+		}
+
+		//Drawing
 		//Push our original Matrix onto the stack (save state)
 		glPushMatrix();
 		DrawGLScene();
 
+		for (GameObject* OBJ : gameObjects)
+		{
+			OBJ->Draw();
+		}
+		
 		// Pop our Matrix from the stack (restore state)
 		glPopMatrix(1);
 
 		// flush to screen
 		glFlush(0);
+
+		for (GameObject* ROJ : RemoveObjects)
+		{
+			auto it = std::find(RemoveObjects.begin(), RemoveObjects.end(), ROJ);
+			gameObjects.erase(it);
+		}
+		RemoveObjects.clear();
+		
 
 	}
 
