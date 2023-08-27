@@ -18,7 +18,7 @@ int DrawFileTextTemp();
 float heading;
 float xpos;
 float zpos;
-float ypos = 0.1875;
+float ypos = 0.25;
 float yrot;				// Y Rotation
 int walkbiasangle = 0;
 float lookupdown = 0;
@@ -129,7 +129,7 @@ int main() {
 	// setup the projection matrix
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	gluPerspective(70, 256.0 / 192.0, 0.1, 100);
+	gluPerspective(70, 256.0 / 192.0, 0.01, 100);
 	
 	glLight(0, RGB15(31,31,31) , 0,	floattov10(-1.0), 0);
 	
