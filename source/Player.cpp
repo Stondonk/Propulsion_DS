@@ -51,6 +51,8 @@ void Player::Update(){
         this->fz = cos(M_PI / 180.0 *(this->RotY));
         this->fx = sin(M_PI / 180.0 *(this->RotY));
 
+        float forRot = sin(M_PI / 180.0 *(this->RotX));
+
         this->rz = cos(M_PI / 180.0 *(this->RotY + 90));
         this->rx = sin(M_PI / 180.0 *(this->RotY + 90));
 
@@ -73,6 +75,9 @@ void Player::Update(){
             TempRocket->plx = this->plx;
             TempRocket->ply = this->ply;
             TempRocket->plz = this->plz;
+
+            TempRocket->RotX = this->RotX;
+            TempRocket->RotY = this->RotY;
             PushObjects.push_back(TempRocket);
             /*
             //Jumping

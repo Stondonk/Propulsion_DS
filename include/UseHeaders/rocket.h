@@ -8,11 +8,11 @@
 class Rocket : public GameObject
 {
 private:
-    float RotY = 0;
-    float RotX = 0;
     //float Gravity = 0.002;
     float Speed = 0.05;
 public:
+    float RotY = 0;
+    float RotX = 0;
     bool isGrounded = false;
         virtual void Start();
         virtual void Update();

@@ -22,12 +22,7 @@ void Rocket::ColCheck(){
         Vector2 Points2[4] = {{(-1 * Tile->scale) + Tile->x, Tile->z}, {(-0.5 * Tile->scale) + Tile->x, (0.75 * Tile->scale) + Tile->z}, {(0.5 * Tile->scale) + Tile->x, (0.75 * Tile->scale) + Tile->z},{(1 * Tile->scale) + Tile->x, Tile->z}};
         if((polyPoint(Points1, this->plx, this->plz) || polyPoint(Points2, this->plx, this->plz)) && this->ply < Tile->y + (this->pHeight / 2) && this->ply > Tile->y - (this->pHeight / 2)){
             //ClosestFloor = Tile->y;
-            if(this->ply > Tile->y){
-                ClosestFloor = Tile->y;
-                this->isGrounded = true;
-            }else{
-                ClosestCeil = Tile->y;
-            }
+            this->Death();
             
         }
     }
@@ -49,9 +44,9 @@ void Rocket::Update(){
 
         //Velocity
         if(this->Enabled){
-            this->plx += this->pvx;
-            this->ply += this->pvy;
-            this->plz += this->pvz;
+            this->plx -= this->pvx;
+            this->ply -= this->pvy;
+            this->plz -= this->pvz;
         }
 
         //this->ColCheck();
@@ -60,10 +55,10 @@ void Rocket::Update(){
 void Rocket::Draw(){
     glBegin(GL_QUAD);
     glColor3f(0.5f,0.1f,0.1f);	
-    glVertex3f(this->plx - 0.2,this->ply + 0.2,this->plz);
-    glVertex3f(this->plx + 0.2,this->ply + 0.2,this->plz);
-    glVertex3f(this->plx + 0.2,this->ply - 0.2,this->plz);
-    glVertex3f(this->plx - 0.2,this->ply - 0.2,this->plz);
+    glVertex3f((this->plx - 0.02)* worldScale,(this->ply + 0.02)* worldScale,this->plz * worldScale);
+    glVertex3f((this->plx + 0.02)* worldScale,(this->ply + 0.02)* worldScale,this->plz * worldScale);
+    glVertex3f((this->plx + 0.02)* worldScale,(this->ply - 0.02)* worldScale,this->plz * worldScale);
+    glVertex3f((this->plx - 0.02)* worldScale,(this->ply - 0.02)* worldScale,this->plz * worldScale);
     glEnd();
 }
 void Rocket::Draw2DTop(){
@@ -81,5 +76,5 @@ void Rocket::Attack(){
 
 }
 void Rocket::Death(){
-
+    RemoveObjects.push_back(this);
 }
