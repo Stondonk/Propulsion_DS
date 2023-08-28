@@ -8,7 +8,9 @@
 
 void Player::Start(){
     this->started = true;
+    this->pLength = 0.15;
     this->pHeight = 0.5;
+    this->pWidth = 0.15;
 }
 void Player::ColCheck(){
     float ClosestFloor = -4, ClosestCeil = 128;
@@ -67,11 +69,20 @@ void Player::Update(){
             this->y = 0;
 
         if((Controls.L || Controls.R) && !this->Jumped){
+            Rocket* TempRocket = new Rocket();
+            TempRocket->plx = this->plx;
+            TempRocket->ply = this->ply;
+            TempRocket->plz = this->plz;
+            PushObjects.push_back(TempRocket);
+            /*
+            //Jumping
             if(this->isGrounded){
                 this->pvy = 0.1;
                 this->Jumped = true;
                 this->isGrounded = false;
             }
+            */
+           this->Jumped = true;
         }else{
             this->Jumped = false;
         }
@@ -105,9 +116,11 @@ void Player::Update(){
         this->LastTy = Controls.TpY;
 
         //Velocity
-        this->plx += this->pvx;
-        this->ply += this->pvy;
-        this->plz += this->pvz;
+        if(this->Enabled){
+            this->plx += this->pvx;
+            this->ply += this->pvy;
+            this->plz += this->pvz;
+        }
 
         this->ColCheck();
 

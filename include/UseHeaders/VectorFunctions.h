@@ -16,6 +16,12 @@ struct Vector2
     float y = 0;
 };
 
+struct Vector3
+{
+    float x = 0;
+    float y = 0;
+    float z = 0;
+};
 
 bool lineLine(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4);
 Vector2 VeclineLine(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4);

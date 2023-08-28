@@ -5,27 +5,13 @@
 #include <list>
 #include<iostream>
 
-class Player : public GameObject
+class Rocket : public GameObject
 {
 private:
     float RotY = 0;
     float RotX = 0;
-
-    float Gravity = 0.002;
-
-    int x = 0, y = 0;
-
+    //float Gravity = 0.002;
     float Speed = 0.05;
-
-    float LastTx = 0;
-    float LastTy = 0;
-
-    float floorPosition = 0;
-    float CeilingPosition = 128;
-
-    bool Jumped = false;
-
-    float DeathTime = 0;
 public:
     bool isGrounded = false;
         virtual void Start();

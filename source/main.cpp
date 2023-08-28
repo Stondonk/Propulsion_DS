@@ -234,6 +234,12 @@ int main() {
 			gameObjects.erase(it);
 		}
 		RemoveObjects.clear();
+
+		for (GameObject* ROJ : PushObjects)
+		{
+			gameObjects.push_back(ROJ);
+		}
+		PushObjects.clear();
 		
 
 	}

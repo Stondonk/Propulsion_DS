@@ -1,4 +1,4 @@
-Player.o: G:/Ds-rom-homebrew/TestGame/source/Player.cpp \
+rocket.o: G:/Ds-rom-homebrew/TestGame/source/rocket.cpp \
  G:/Ds-rom-homebrew/TestGame/include/UseHeaders/globals.h \
  G:/Ds-rom-homebrew/TestGame/include/nds.h \
  G:/Ds-rom-homebrew/TestGame/include/nds/libversion.h \

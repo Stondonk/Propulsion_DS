@@ -17,7 +17,7 @@ class GameObject
         int health = 1;
         std::string Type = "entity";
         //std::list<std::string> Items;
-        bool started = false, OnScreen = false;
+        bool started = false, OnScreen = false, Enabled = true;
         float TimeBtwHit = 0;
         float TimeForHit = 0.5;
         float Angle = 0;

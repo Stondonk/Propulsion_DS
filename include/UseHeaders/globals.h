@@ -11,6 +11,7 @@
 #include <vector>
 #include "gameObject.h"
 #include "Player.h"
+#include "rocket.h"
 
 struct controller {
 	//Dpad
@@ -29,6 +30,10 @@ struct HexTile{
 	float x, y, z, Vx, Vy, Vz;
 	int r, g, b;
 	float scale = 1;
+};
+struct WallTile{
+	float x1, y1, z1, x2, y2, z2, h;
+	int r, g, b;
 };
 typedef struct tagVERTEX {
 	float x, y, z;
@@ -66,6 +71,7 @@ extern void SetCamera(float x, float y, float z, float pitch, float yaw);
 
 extern std::vector<HexTile*> Hexs;
 extern std::vector<GameObject*> gameObjects;
+extern std::vector<GameObject*> PushObjects;
 extern std::vector<GameObject*> RemoveObjects;
 
 extern float worldScale;
