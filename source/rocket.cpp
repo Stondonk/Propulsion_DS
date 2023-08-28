@@ -49,6 +49,9 @@ void Rocket::Update(){
             this->plz += this->pvz;
         }
 
+    if(this->ply > CeilCap || this->ply < FloorCap)
+        this->Death();
+
         //this->ColCheck();
     //this->fx
 }

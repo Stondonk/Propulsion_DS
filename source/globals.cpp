@@ -18,6 +18,9 @@ void SetCamera(float x, float y, float z, float pitch, float yaw){
   yrot = yaw;
 }
 
+float CeilCap = 128;
+float FloorCap = -64;
+
 float heading;
 float xpos;
 float zpos;
@@ -29,6 +32,7 @@ std::vector<HexTile*> Hexs;
 std::vector<GameObject*> gameObjects;
 std::vector<GameObject*> PushObjects;
 std::vector<GameObject*> RemoveObjects;
+//Use to allow for more polygons in playable region
 float worldScale = 0.25;
 controller Controls;
 float rotateSpeed = 2;
