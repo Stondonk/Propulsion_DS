@@ -35,8 +35,8 @@ void Rocket::Update(){
 
         //Movement
         this->fy = sin(M_PI / 180.0 *(this->RotX));
-        this->fz = cos(M_PI / 180.0 *(this->RotY));
-        this->fx = sin(M_PI / 180.0 *(this->RotY));
+        this->fz = -cos(M_PI / 180.0 * this->RotX) * cos(M_PI / 180.0 *(this->RotY));
+        this->fx = -cos(M_PI / 180.0 * this->RotX) * sin(M_PI / 180.0 *(this->RotY));
 
         this->pvx = (this->fx * Speed );
         this->pvy = (this->fy * Speed );

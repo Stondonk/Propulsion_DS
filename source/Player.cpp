@@ -88,7 +88,7 @@ void Player::Update(){
             }
             */
            this->Jumped = true;
-        }else{
+        }else if(!Controls.L && !Controls.R && this->Jumped){
             this->Jumped = false;
         }
 
