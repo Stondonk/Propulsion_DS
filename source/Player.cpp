@@ -11,25 +11,28 @@ void Player::Start(){
     this->pHeight = 0.5;
 }
 void Player::ColCheck(){
-    float ClosestFloor = 0, ClosestCeil = 128;
+    float ClosestFloor = -4, ClosestCeil = 128;
+    this->isGrounded = false;
     for (HexTile* Tile : Hexs)
     {
-        Vector2 Points[6] = {{(-1 * Tile->scale) + Tile->x, Tile->z}, {(-0.5 * Tile->scale) + Tile->x, (0.75 * Tile->scale) + Tile->z}, {(0.5 * Tile->scale) + Tile->x, (0.75 * Tile->scale) + Tile->z}, {(1 * Tile->scale) + Tile->x, Tile->z}, {(0.5 * Tile->scale) + Tile->x, (-0.75 * Tile->scale) + Tile->z}, {(-0.5 * Tile->scale) + Tile->x, (-0.75 * Tile->scale) + Tile->z}};
-        if(polyPoint(Points, this->plx, this->plz)){
-            ClosestFloor = Tile->y;
-            /*
+        //Vector2 Points[6] = {{(1 * Tile->scale) + Tile->x, Tile->z}, {(0.5 * Tile->scale) + Tile->x, (-0.75 * Tile->scale) + Tile->z}, {(-0.5 * Tile->scale) + Tile->x, (-0.75 * Tile->scale) + Tile->z}, {(-1 * Tile->scale) + Tile->x, Tile->z}, {(-0.5 * Tile->scale) + Tile->x, (0.75 * Tile->scale) + Tile->z}, {(0.5 * Tile->scale) + Tile->x, (0.75 * Tile->scale) + Tile->z}};
+        Vector2 Points1[4] = {{(1 * Tile->scale) + Tile->x, Tile->z}, {(0.5 * Tile->scale) + Tile->x, (-0.75 * Tile->scale) + Tile->z}, {(-0.5 * Tile->scale) + Tile->x, (-0.75 * Tile->scale) + Tile->z}, {(-1 * Tile->scale) + Tile->x, Tile->z}};
+        Vector2 Points2[4] = {{(-1 * Tile->scale) + Tile->x, Tile->z}, {(-0.5 * Tile->scale) + Tile->x, (0.75 * Tile->scale) + Tile->z}, {(0.5 * Tile->scale) + Tile->x, (0.75 * Tile->scale) + Tile->z},{(1 * Tile->scale) + Tile->x, Tile->z}};
+        if((polyPoint(Points1, this->plx, this->plz) || polyPoint(Points2, this->plx, this->plz)) && this->ply < Tile->y + (this->pHeight / 2) && this->ply > Tile->y - (this->pHeight / 2)){
+            //ClosestFloor = Tile->y;
             if(this->ply > Tile->y){
-                floorPosition = Tile->y;
-                this->pvy = 0;
+                ClosestFloor = Tile->y;
+                this->isGrounded = true;
             }else{
-                CeilingPosition = Tile->y;
+                ClosestCeil = Tile->y;
             }
-            */
+            
         }
     }
 
     this->floorPosition = ClosestFloor;
-    this->ply = clip(this->ply, this->floorPosition + this->pHeight / 2, this->CeilingPosition - this->pHeight / 2);
+    this->CeilingPosition = ClosestCeil;
+    this->ply = clip(this->ply, this->floorPosition + (this->pHeight / 2) + 0.0001, this->CeilingPosition - (this->pHeight / 2) - 0.0001);
     
 }
 void Player::Update(){
@@ -37,7 +40,7 @@ void Player::Update(){
         this->Start();
 
         //Gravity
-        if(this->ply - (this->pHeight / 2) > floorPosition)
+        if(!this->isGrounded)
             this->pvy -= Gravity;
         else
             this->pvy = 0;
@@ -64,8 +67,11 @@ void Player::Update(){
             this->y = 0;
 
         if((Controls.L || Controls.R) && !this->Jumped){
-            this->pvy = 0.1;
-            this->Jumped = true;
+            if(this->isGrounded){
+                this->pvy = 0.1;
+                this->Jumped = true;
+                this->isGrounded = false;
+            }
         }else{
             this->Jumped = false;
         }
@@ -98,17 +104,18 @@ void Player::Update(){
 		this->LastTx = Controls.TpX;
         this->LastTy = Controls.TpY;
 
-        this->ColCheck();
         //Velocity
         this->plx += this->pvx;
         this->ply += this->pvy;
         this->plz += this->pvz;
 
+        this->ColCheck();
+
     SetCamera(this->plx, this->ply, this->plz, this->RotX, this->RotY);
     //this->fx
 }
 void Player::Draw(){
-    
+
 }
 void Player::Draw2DTop(){
 

@@ -25,7 +25,7 @@ private:
 
     bool Jumped = false;
 public:
-
+    bool isGrounded = false;
         virtual void Start();
         virtual void Update();
         virtual void Damage(float Px, float Py, float Pz);
