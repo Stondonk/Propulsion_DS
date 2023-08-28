@@ -76,8 +76,8 @@ void Player::Update(){
             TempRocket->ply = this->ply;
             TempRocket->plz = this->plz;
 
-            TempRocket->RotX = this->RotX;
-            TempRocket->RotY = this->RotY;
+            TempRocket->RotX = this->RotX + 180;
+            TempRocket->RotY = this->RotY + 180;
             PushObjects.push_back(TempRocket);
             /*
             //Jumping

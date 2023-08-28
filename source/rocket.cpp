@@ -44,9 +44,9 @@ void Rocket::Update(){
 
         //Velocity
         if(this->Enabled){
-            this->plx -= this->pvx;
-            this->ply -= this->pvy;
-            this->plz -= this->pvz;
+            this->plx += this->pvx;
+            this->ply += this->pvy;
+            this->plz += this->pvz;
         }
 
         //this->ColCheck();
