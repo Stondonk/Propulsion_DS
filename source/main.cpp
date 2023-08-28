@@ -98,6 +98,11 @@ void KeyUp(int KeyUp){
 			Controls.L = false;
 		if(KeyUp & (KEY_R))
 			Controls.R = false;
+
+		if(KeyUp & (KEY_START))
+			Controls.Str = false;
+		if(KeyUp & (KEY_SELECT))
+			Controls.Slt = false;
 }
 
 void KeyDown(int KeyDown){
@@ -124,6 +129,11 @@ void KeyDown(int KeyDown){
 			Controls.L = true;
 		if(KeyDown & (KEY_R))
 			Controls.R = true;
+
+		if(KeyDown & (KEY_START))
+			Controls.Str = true;
+		if(KeyDown & (KEY_SELECT))
+			Controls.Slt = true;
 }
 
 int main() {

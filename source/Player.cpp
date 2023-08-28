@@ -91,6 +91,8 @@ void Player::Update(){
         }else if(!Controls.L && !Controls.R && this->Jumped){
             this->Jumped = false;
         }
+        //if(Controls.Slt)
+        //this->Death();
 
         this->pvx = (this->fx * Speed * y) + (this->rx * Speed * x);
         this->pvz = (this->fz * Speed * y) + (this->rz * Speed * x);
@@ -102,10 +104,10 @@ void Player::Update(){
 			// filtering measurement errors
 			if (dx<20 && dx>-20 && dy<20 && dy>-20)
 			{
-				if(dx>-3&&dx<3)
+				if(dx>-0.3&&dx<0.3)
 					dx=0;
 
-				if(dy>-2&&dy<2) dy=0;
+				if(dy>-0.2&&dy<0.2) dy=0;
 
 					this->RotX = clip(lookupdown - dy, -90, 90);
 
@@ -150,5 +152,5 @@ void Player::Attack(){
 
 }
 void Player::Death(){
-
+    RemoveObjects.push_back(this);
 }

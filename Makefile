@@ -21,6 +21,7 @@ SOURCES		:=	source
 DATA		:= data
 INCLUDES	:=	include
 NITRODATA	:=	nitrodata
+GRAPHICS 	:=	graphics
 
 #---------------------------------------------------------------------------------
 # options for code generation
@@ -61,7 +62,8 @@ export TOPDIR	:=	$(CURDIR)
 export OUTPUT	:=	$(CURDIR)/$(TARGET)
 
 export VPATH	:=	$(foreach dir,$(SOURCES),$(CURDIR)/$(dir)) \
-					$(foreach dir,$(DATA),$(CURDIR)/$(dir))
+					$(foreach dir,$(DATA),$(CURDIR)/$(dir)) \
+					$(foreach dir,$(GRAPHICS),$(CURDIR)/$(dir))
 
 export DEPSDIR	:=	$(CURDIR)/$(BUILD)
 
@@ -73,6 +75,7 @@ CFILES		:=	$(foreach dir,$(SOURCES),$(notdir $(wildcard $(dir)/*.c)))
 CPPFILES	:=	$(foreach dir,$(SOURCES),$(notdir $(wildcard $(dir)/*.cpp)))
 SFILES		:=	$(foreach dir,$(SOURCES),$(notdir $(wildcard $(dir)/*.s)))
 BINFILES	:=	$(foreach dir,$(DATA),$(notdir $(wildcard $(dir)/*.*)))
+PNGFILES	:=	$(foreach dir,$(GRAPHICS),$(notdir $(wildcard $(dir)/*.png)))
  
 #---------------------------------------------------------------------------------
 # use CXX for linking C++ projects, CC for standard C
@@ -89,7 +92,8 @@ endif
 #---------------------------------------------------------------------------------
 
 export OFILES	:=	$(addsuffix .o,$(BINFILES)) \
-			$(CPPFILES:.cpp=.o) $(CFILES:.c=.o) $(SFILES:.s=.o)
+					$(PNGFILES:.png=.o) \
+					$(CPPFILES:.cpp=.o) $(CFILES:.c=.o) $(SFILES:.s=.o)
  
 export INCLUDE	:=	$(foreach dir,$(INCLUDES),-I$(CURDIR)/$(dir)) \
 			$(foreach dir,$(LIBDIRS),-I$(dir)/include) \
@@ -113,6 +117,7 @@ clean:
 #---------------------------------------------------------------------------------
 else
  
+DEPENDS	:=	$(OFILES:.o=.d)
 #---------------------------------------------------------------------------------
 # main targets
 #---------------------------------------------------------------------------------
@@ -125,9 +130,15 @@ $(OUTPUT).elf	:	$(OFILES)
 #---------------------------------------------------------------------------------
 	@echo $(notdir $<)
 	$(bin2o)
+
+#---------------------------------------------------------------------------------
+%.s %.h	: %.png %.grit
+#---------------------------------------------------------------------------------
+	grit $< -fts -o$*
  
 -include $(DEPSDIR)/*.d
  
+-include $(DEPENDS)
 #---------------------------------------------------------------------------------------
 endif
 #---------------------------------------------------------------------------------------

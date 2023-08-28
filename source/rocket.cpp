@@ -79,5 +79,6 @@ void Rocket::Attack(){
 
 }
 void Rocket::Death(){
+    this->Speed = 0;
     RemoveObjects.push_back(this);
 }
