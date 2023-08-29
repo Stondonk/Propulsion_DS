@@ -29,9 +29,9 @@ float yrot;
 float lookupdown = 0;
 
 std::vector<HexTile*> Hexs;
-std::vector<GameObject*> gameObjects;
-std::vector<GameObject*> PushObjects;
-std::vector<GameObject*> RemoveObjects;
+std::list<GameObject*> gameObjects;
+std::list<GameObject*> PushObjects;
+std::list<GameObject*> RemoveObjects;
 //Use to allow for more polygons in playable region
 float worldScale = 0.25;
 controller Controls;

@@ -7,6 +7,7 @@
 #include <string.h>
 #include <dirent.h>
 #include <algorithm>
+#include <gl2d.h>
 
 #include "UseHeaders/globals.h"
 //#include "Mud_pcx.h"
@@ -142,11 +143,14 @@ int main() {
 	//consoleDemoInit();
 	//DrawFileTextTemp();
 
-	videoSetMode(MODE_0_3D);
-	//vramSetBankA(VRAM_A_TEXTURE);                        //NEW  must set up some memory for textures
+	videoSetMode(MODE_5_3D);
+	vramSetBankA(VRAM_A_TEXTURE);                        //NEW  must set up some memory for textures
 	
 	// initialize the 3D engine
 	glInit();
+
+	// initialize gl2d
+	glScreen2D();
 	
 	// enable textures
 	//glEnable(GL_TEXTURE_2D);
@@ -187,6 +191,8 @@ int main() {
 	touchPosition	lastXY = { 0,0,0,0 };	
 	
 	GenerateLevel();
+
+	printf("\x1b[1;1HEasy GL2D + 3D");
 	
 	//printf("      Hello DS World\n");
 	//printf("     www.devkitpro.org\n");
@@ -235,13 +241,22 @@ int main() {
 		// Pop our Matrix from the stack (restore state)
 		glPopMatrix(1);
 
+		glBegin2D();
+			for (GameObject* OBJ : gameObjects)
+			{
+				OBJ->Draw2DTop();
+			}
+		glEnd2D();
+
 		// flush to screen
 		glFlush(0);
 
 		for (GameObject* ROJ : RemoveObjects)
 		{
-			auto it = std::find(RemoveObjects.begin(), RemoveObjects.end(), ROJ);
-			gameObjects.erase(it);
+			//RemoveObjects.swap(RemoveObjects.back(), ROJ);
+			//auto it = std::find(RemoveObjects.begin(), RemoveObjects.end(), ROJ);
+			//gameObjects.erase(it);
+			gameObjects.remove(ROJ);
 		}
 		RemoveObjects.clear();
 

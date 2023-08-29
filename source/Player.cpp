@@ -11,24 +11,27 @@ void Player::Start(){
     this->pLength = 0.15;
     this->pHeight = 0.5;
     this->pWidth = 0.15;
+    this->TimeForHit = 0.05;
 }
 void Player::ColCheck(){
     float ClosestFloor = -4, ClosestCeil = 128;
     this->isGrounded = false;
     for (HexTile* Tile : Hexs)
     {
-        //Vector2 Points[6] = {{(1 * Tile->scale) + Tile->x, Tile->z}, {(0.5 * Tile->scale) + Tile->x, (-0.75 * Tile->scale) + Tile->z}, {(-0.5 * Tile->scale) + Tile->x, (-0.75 * Tile->scale) + Tile->z}, {(-1 * Tile->scale) + Tile->x, Tile->z}, {(-0.5 * Tile->scale) + Tile->x, (0.75 * Tile->scale) + Tile->z}, {(0.5 * Tile->scale) + Tile->x, (0.75 * Tile->scale) + Tile->z}};
-        Vector2 Points1[4] = {{(1 * Tile->scale) + Tile->x, Tile->z}, {(0.5 * Tile->scale) + Tile->x, (-0.75 * Tile->scale) + Tile->z}, {(-0.5 * Tile->scale) + Tile->x, (-0.75 * Tile->scale) + Tile->z}, {(-1 * Tile->scale) + Tile->x, Tile->z}};
-        Vector2 Points2[4] = {{(-1 * Tile->scale) + Tile->x, Tile->z}, {(-0.5 * Tile->scale) + Tile->x, (0.75 * Tile->scale) + Tile->z}, {(0.5 * Tile->scale) + Tile->x, (0.75 * Tile->scale) + Tile->z},{(1 * Tile->scale) + Tile->x, Tile->z}};
-        if((polyPoint(Points1, this->plx, this->plz) || polyPoint(Points2, this->plx, this->plz)) && this->ply < Tile->y + (this->pHeight / 2) && this->ply > Tile->y - (this->pHeight / 2)){
-            //ClosestFloor = Tile->y;
-            if(this->ply > Tile->y){
-                ClosestFloor = Tile->y;
-                this->isGrounded = true;
-            }else{
-                ClosestCeil = Tile->y;
+        if(Tile->State >= 0){
+            //Vector2 Points[6] = {{(1 * Tile->scale) + Tile->x, Tile->z}, {(0.5 * Tile->scale) + Tile->x, (-0.75 * Tile->scale) + Tile->z}, {(-0.5 * Tile->scale) + Tile->x, (-0.75 * Tile->scale) + Tile->z}, {(-1 * Tile->scale) + Tile->x, Tile->z}, {(-0.5 * Tile->scale) + Tile->x, (0.75 * Tile->scale) + Tile->z}, {(0.5 * Tile->scale) + Tile->x, (0.75 * Tile->scale) + Tile->z}};
+            Vector2 Points1[4] = {{(1 * Tile->scale) + Tile->x, Tile->z}, {(0.5 * Tile->scale) + Tile->x, (-0.75 * Tile->scale) + Tile->z}, {(-0.5 * Tile->scale) + Tile->x, (-0.75 * Tile->scale) + Tile->z}, {(-1 * Tile->scale) + Tile->x, Tile->z}};
+            Vector2 Points2[4] = {{(-1 * Tile->scale) + Tile->x, Tile->z}, {(-0.5 * Tile->scale) + Tile->x, (0.75 * Tile->scale) + Tile->z}, {(0.5 * Tile->scale) + Tile->x, (0.75 * Tile->scale) + Tile->z},{(1 * Tile->scale) + Tile->x, Tile->z}};
+            if((polyPoint(Points1, this->plx, this->plz) || polyPoint(Points2, this->plx, this->plz)) && this->ply < Tile->y + (this->pHeight / 2) && this->ply > Tile->y - (this->pHeight / 2)){
+                //ClosestFloor = Tile->y;
+                if(this->ply > Tile->y){
+                    ClosestFloor = Tile->y;
+                    this->isGrounded = true;
+                }else{
+                    ClosestCeil = Tile->y;
+                }
+                
             }
-            
         }
     }
 
@@ -40,6 +43,9 @@ void Player::ColCheck(){
 void Player::Update(){
     if(!this->started)
         this->Start();
+
+        if(this->TimeBtwHit > 0)
+            this->TimeBtwHit -= 0.013;
 
         //Gravity
         if(!this->isGrounded)
@@ -73,7 +79,7 @@ void Player::Update(){
         if((Controls.L || Controls.R) && !this->Jumped){
             Rocket* TempRocket = new Rocket();
             TempRocket->plx = this->plx;
-            TempRocket->ply = this->ply;
+            TempRocket->ply = this->ply - 0.1;
             TempRocket->plz = this->plz;
 
             TempRocket->RotX = this->RotX + 180;
@@ -143,7 +149,21 @@ void Player::Draw2DTop(){
 
 }
 void Player::Damage(float Px, float Py, float Pz){
-
+    if(this->TimeBtwHit <= 0){
+        this->health -= 1;
+        Vector2 newTargetLoc = {Px - (this->plx), Pz - (this->plz) };
+        float BaseAngle = (atan2(newTargetLoc.x , -newTargetLoc.y) * 180 / M_PI);
+        float DifX = -(sin(M_PI / 180.0 * (BaseAngle))) * 0.5;
+        //float DifY = -(sin(M_PI / 180.0 * (BaseAngle))) * 0.5;
+        //Better than angle cal for more height - 0.5 is radius
+        float UpForce = ((0.5 - distance3(this->plx, this->ply, this->plz, Px, Py, Pz)) * 0.35);
+        if(this->ply < Py)
+            UpForce *= -1;
+        float DifZ = (cos(M_PI / 180.0 * (BaseAngle))) * 0.5;
+        this->pvy = UpForce;
+        this->isGrounded = false;
+        this->TimeBtwHit = this->TimeForHit;
+    }
 }
 void Player::Animation(){
 

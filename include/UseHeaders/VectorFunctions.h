@@ -29,6 +29,7 @@ Vector2 linePoint(float x1, float y1, float x2, float y2, float px, float py);
 bool PointBox(float x1, float y1, float x2, float y2, float Px, float Py);
 bool BoxBox(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4);
 float distance(float x1, float y1, float x2, float y2);
+float distance3(float x1, float y1, float z1, float x2, float y2, float z2);
 float Magnitude(float x, float y);
 float VectLerpAngle(float A, float B, float T);
 Vector2 PointOnLine(float x, float y, float Lx1, float Ly1, float Lx2, float Ly2);

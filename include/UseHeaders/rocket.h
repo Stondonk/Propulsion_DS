@@ -11,6 +11,7 @@ private:
     //float Gravity = 0.002;
     float Speed = 0.05;
 public:
+    float LifeTime = 1;
     float RotY = 0;
     float RotX = 0;
     bool isGrounded = false;

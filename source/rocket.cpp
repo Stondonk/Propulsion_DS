@@ -8,22 +8,24 @@
 
 void Rocket::Start(){
     this->started = true;
-    this->pLength = 0.15;
-    this->pHeight = 0.15;
-    this->pWidth = 0.15;
+    this->pLength = 0.05;
+    this->pHeight = 0.05;
+    this->pWidth = 0.05;
 }
 void Rocket::ColCheck(){
     float ClosestFloor = -4, ClosestCeil = 128;
     this->isGrounded = false;
     for (HexTile* Tile : Hexs)
     {
-        //Vector2 Points[6] = {{(1 * Tile->scale) + Tile->x, Tile->z}, {(0.5 * Tile->scale) + Tile->x, (-0.75 * Tile->scale) + Tile->z}, {(-0.5 * Tile->scale) + Tile->x, (-0.75 * Tile->scale) + Tile->z}, {(-1 * Tile->scale) + Tile->x, Tile->z}, {(-0.5 * Tile->scale) + Tile->x, (0.75 * Tile->scale) + Tile->z}, {(0.5 * Tile->scale) + Tile->x, (0.75 * Tile->scale) + Tile->z}};
-        Vector2 Points1[4] = {{(1 * Tile->scale) + Tile->x, Tile->z}, {(0.5 * Tile->scale) + Tile->x, (-0.75 * Tile->scale) + Tile->z}, {(-0.5 * Tile->scale) + Tile->x, (-0.75 * Tile->scale) + Tile->z}, {(-1 * Tile->scale) + Tile->x, Tile->z}};
-        Vector2 Points2[4] = {{(-1 * Tile->scale) + Tile->x, Tile->z}, {(-0.5 * Tile->scale) + Tile->x, (0.75 * Tile->scale) + Tile->z}, {(0.5 * Tile->scale) + Tile->x, (0.75 * Tile->scale) + Tile->z},{(1 * Tile->scale) + Tile->x, Tile->z}};
-        if((polyPoint(Points1, this->plx, this->plz) || polyPoint(Points2, this->plx, this->plz)) && this->ply < Tile->y + (this->pHeight / 2) && this->ply > Tile->y - (this->pHeight / 2)){
-            //ClosestFloor = Tile->y;
-            this->Death();
-            
+        if(Tile->State >= 0){
+            //Vector2 Points[6] = {{(1 * Tile->scale) + Tile->x, Tile->z}, {(0.5 * Tile->scale) + Tile->x, (-0.75 * Tile->scale) + Tile->z}, {(-0.5 * Tile->scale) + Tile->x, (-0.75 * Tile->scale) + Tile->z}, {(-1 * Tile->scale) + Tile->x, Tile->z}, {(-0.5 * Tile->scale) + Tile->x, (0.75 * Tile->scale) + Tile->z}, {(0.5 * Tile->scale) + Tile->x, (0.75 * Tile->scale) + Tile->z}};
+            Vector2 Points1[4] = {{(1 * Tile->scale) + Tile->x, Tile->z}, {(0.5 * Tile->scale) + Tile->x, (-0.75 * Tile->scale) + Tile->z}, {(-0.5 * Tile->scale) + Tile->x, (-0.75 * Tile->scale) + Tile->z}, {(-1 * Tile->scale) + Tile->x, Tile->z}};
+            Vector2 Points2[4] = {{(-1 * Tile->scale) + Tile->x, Tile->z}, {(-0.5 * Tile->scale) + Tile->x, (0.75 * Tile->scale) + Tile->z}, {(0.5 * Tile->scale) + Tile->x, (0.75 * Tile->scale) + Tile->z},{(1 * Tile->scale) + Tile->x, Tile->z}};
+            if((polyPoint(Points1, this->plx, this->plz) || polyPoint(Points2, this->plx, this->plz)) && this->ply < Tile->y + (this->pHeight / 2) && this->ply > Tile->y - (this->pHeight / 2)){
+                //ClosestFloor = Tile->y;
+                this->Death();
+                
+            }
         }
     }
     //this->ply = clip(this->ply, this->floorPosition + (this->pHeight / 2) + 0.0001, this->CeilingPosition - (this->pHeight / 2) - 0.0001);
@@ -48,6 +50,12 @@ void Rocket::Update(){
             this->ply += this->pvy;
             this->plz += this->pvz;
         }
+        this->ColCheck();
+
+    if(this->LifeTime > 0)
+        this->LifeTime -= 0.013;
+    else if(this->LifeTime <= 0)
+        this->Death();
 
     if(this->ply > CeilCap || this->ply < FloorCap)
         this->Death();
@@ -57,11 +65,14 @@ void Rocket::Update(){
 }
 void Rocket::Draw(){
     glBegin(GL_QUAD);
-    glColor3f(0.5f,0.1f,0.1f);	
+    glColor3f(0.5f,0.1f,0.1f);
+    int alpha = (int)((this->LifeTime) * 31);
+    //glPolyFmt(POLY_ALPHA(alpha) | POLY_CULL_NONE | POLY_ID(2));
     glVertex3f((this->plx - 0.02)* worldScale,(this->ply + 0.02)* worldScale,this->plz * worldScale);
     glVertex3f((this->plx + 0.02)* worldScale,(this->ply + 0.02)* worldScale,this->plz * worldScale);
     glVertex3f((this->plx + 0.02)* worldScale,(this->ply - 0.02)* worldScale,this->plz * worldScale);
     glVertex3f((this->plx - 0.02)* worldScale,(this->ply - 0.02)* worldScale,this->plz * worldScale);
+    //glPolyFmt(POLY_ALPHA(31) | POLY_CULL_NONE | POLY_FORMAT_LIGHT0);
     glEnd();
 }
 void Rocket::Draw2DTop(){
@@ -79,6 +90,13 @@ void Rocket::Attack(){
 
 }
 void Rocket::Death(){
+    for (GameObject* OBJ : gameObjects)
+    {
+        if(distance3(this->plx, this->ply, this->plz, OBJ->plx, OBJ->ply, OBJ->plz) < 0.5){
+            OBJ->Damage(this->plx, this->ply, this->plz);
+        }
+    }
+    
     this->Speed = 0;
     RemoveObjects.push_back(this);
 }

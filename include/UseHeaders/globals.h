@@ -9,6 +9,7 @@
 #include <dirent.h>
 #include<iostream>
 #include <vector>
+#include <list>
 #include "gameObject.h"
 #include "Player.h"
 #include "rocket.h"
@@ -30,6 +31,7 @@ struct HexTile{
 	float x, y, z, Vx, Vy, Vz;
 	int r, g, b;
 	float scale = 1;
+	int State = 0;
 };
 struct WallTile{
 	float x1, y1, z1, x2, y2, z2, h;
@@ -73,9 +75,9 @@ extern float lerp (float start, float end, float amt);
 extern void SetCamera(float x, float y, float z, float pitch, float yaw);
 
 extern std::vector<HexTile*> Hexs;
-extern std::vector<GameObject*> gameObjects;
-extern std::vector<GameObject*> PushObjects;
-extern std::vector<GameObject*> RemoveObjects;
+extern std::list<GameObject*> gameObjects;
+extern std::list<GameObject*> PushObjects;
+extern std::list<GameObject*> RemoveObjects;
 
 extern float worldScale;
 extern controller Controls;
