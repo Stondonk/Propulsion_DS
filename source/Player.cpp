@@ -99,9 +99,18 @@ void Player::Update(){
         }
         //if(Controls.Slt)
         //this->Death();
+            float TargetSpeed = 0.075;
 
-        this->pvx = lerp(this->pvx, (this->fx * Speed * y) + (this->rx * Speed * x), 0.078);
-        this->pvz = lerp(this->pvz, (this->fz * Speed * y) + (this->rz * Speed * x), 0.078);
+            float TempZ = this->pvz;
+            TempZ -= ((this->fz * this->Speed * -y) + (this->rz * this->Speed * -x)) * 0.013;
+            TempZ *= pow(1.0 - (0.65), TargetSpeed);
+
+            float TempX = this->pvx;
+            TempX -= ((this->fx * this->Speed * -y) + (this->rx * this->Speed * -x)) * 0.013;
+            TempX *= pow(1.0 - (0.65), TargetSpeed);
+
+        this->pvx = TempX;
+        this->pvz = TempZ;
 
         //Camera
             float dx = Controls.TpX - this->LastTx;

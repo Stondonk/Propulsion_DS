@@ -15,7 +15,7 @@ private:
 
     int x = 0, y = 0;
 
-    float Speed = 0.05;
+    float Speed = 0.1;
 
     float LastTx = 0;
     float LastTy = 0;
