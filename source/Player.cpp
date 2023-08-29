@@ -100,8 +100,8 @@ void Player::Update(){
         //if(Controls.Slt)
         //this->Death();
 
-        this->pvx = (this->fx * Speed * y) + (this->rx * Speed * x);
-        this->pvz = (this->fz * Speed * y) + (this->rz * Speed * x);
+        this->pvx = lerp(this->pvx, (this->fx * Speed * y) + (this->rx * Speed * x), 0.078);
+        this->pvz = lerp(this->pvz, (this->fz * Speed * y) + (this->rz * Speed * x), 0.078);
 
         //Camera
             float dx = Controls.TpX - this->LastTx;
@@ -115,7 +115,7 @@ void Player::Update(){
 
 				if(dy>-0.2&&dy<0.2) dy=0;
 
-					this->RotX = clip(lookupdown - dy, -90, 90);
+					this->RotX = clip(lookupdown - dy, -89, 89);
 
 					this->RotY += (dx);
 					if(this->RotY < 0)
@@ -151,16 +151,20 @@ void Player::Draw2DTop(){
 void Player::Damage(float Px, float Py, float Pz){
     if(this->TimeBtwHit <= 0){
         this->health -= 1;
+        float ForceXZ = 0.15, ForceY = 0.35;
+        
         Vector2 newTargetLoc = {Px - (this->plx), Pz - (this->plz) };
         float BaseAngle = (atan2(newTargetLoc.x , -newTargetLoc.y) * 180 / M_PI);
-        float DifX = -(sin(M_PI / 180.0 * (BaseAngle))) * 0.5;
+        float DifX = -(sin(M_PI / 180.0 * (BaseAngle))) * ForceXZ;
+         float DifZ = (cos(M_PI / 180.0 * (BaseAngle))) * ForceXZ;
         //float DifY = -(sin(M_PI / 180.0 * (BaseAngle))) * 0.5;
         //Better than angle cal for more height - 0.5 is radius
-        float UpForce = ((0.5 - distance3(this->plx, this->ply, this->plz, Px, Py, Pz)) * 0.35);
+        float UpForce = ((0.5 - distance3(this->plx, this->ply, this->plz, Px, Py, Pz)) * ForceY);
         if(this->ply < Py)
             UpForce *= -1;
-        float DifZ = (cos(M_PI / 180.0 * (BaseAngle))) * 0.5;
         this->pvy = UpForce;
+        this->pvx = DifX;
+        this->pvz = DifZ;
         this->isGrounded = false;
         this->TimeBtwHit = this->TimeForHit;
     }
