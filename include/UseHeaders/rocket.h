@@ -14,6 +14,7 @@ public:
     float LifeTime = 1;
     float RotY = 0;
     float RotX = 0;
+    float Gravity = 0;
     bool isGrounded = false;
         virtual void Start();
         virtual void Update();

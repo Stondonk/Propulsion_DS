@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <cmath>
 #include <filesystem.h>
+#include <malloc.h>
 #include <stdlib.h>
 #include <string.h>
 #include <dirent.h>
@@ -61,6 +62,8 @@ void GenerateLevel(){
 		float x = Hexs[i]->x, y = Hexs[i]->y, z = Hexs[i]->z;
 		float Scale = Hexs[i]->scale;
 		int Point = ((i) * 2);
+		Color color = HexColors[rand()%4];
+
 		Rsector.Quad[Point].vertex[0] = {((-1 * Scale) + x) * worldScale,(y) * worldScale,(0 + z) * worldScale};
 		Rsector.Quad[Point].vertex[1] = {((-0.5f * Scale) + x) * worldScale,(y) * worldScale,((0.75f * Scale) + z) * worldScale};
 		Rsector.Quad[Point].vertex[2] = {((0.5f * Scale) + x) * worldScale,(y) * worldScale,((0.75f * Scale) + z) * worldScale};
@@ -70,6 +73,9 @@ void GenerateLevel(){
 		Rsector.Quad[Point + 1].vertex[3] = {((1 * Scale) + x) * worldScale,(y) * worldScale,(0 + z) * worldScale};
 		Rsector.Quad[Point + 1].vertex[2] = {((0.5f * Scale) + x) * worldScale,(y) * worldScale,((-0.75f*Scale) + z) * worldScale};
 		Rsector.Quad[Point + 1].vertex[1] = {((-0.5f * Scale) + x) * worldScale,(y) * worldScale,((-0.75f*Scale) + z) * worldScale};
+
+		Rsector.Quad[Point].color = color;
+		Rsector.Quad[Point+1].color = color;
 	}
 
 	gameObjects.push_back(new Player());
@@ -151,6 +157,9 @@ int main() {
 
 	// initialize gl2d
 	glScreen2D();
+
+	// enable antialiasing
+	glEnable(GL_ANTIALIAS);
 	
 	// enable textures
 	//glEnable(GL_TEXTURE_2D);
@@ -181,7 +190,9 @@ int main() {
 	glMatrixMode(GL_MODELVIEW);
 	
 	// Specify the Clear Color and Depth
-	glClearColor(15, 20, 30,31);
+	//glClearColor(15, 20, 30,31);
+	glClearColor(15,20,30,31); // BG must be opaque for AA to work
+	glClearPolyID(63); // BG must have a unique polygon ID for AA to work
 	glClearDepth(0x7FFF);
 	
 	// set the vertex color to white
@@ -192,6 +203,8 @@ int main() {
 	
 	GenerateLevel();
 
+	consoleDemoInit();
+	//DrawFileTextTemp();
 	printf("\x1b[1;1HEasy GL2D + 3D");
 	
 	//printf("      Hello DS World\n");
@@ -299,7 +312,7 @@ int DrawGLScene()											// Here's Where We Do All The Drawing
 	for (int loop_m = 0; loop_m < numQuads; loop_m++)
 	{
 			//glNormal(NORMAL_PACK( 0, 0, 1<<10));
-			glColor3f(0.1f,0.5f,0.1f);	
+			glColor3f((float)Rsector.Quad[loop_m].color.r/255.0f,(float)Rsector.Quad[loop_m].color.g/255.0f,(float)Rsector.Quad[loop_m].color.b/255.0f);	
 			x_m = Rsector.Quad[loop_m].vertex[0].x;
 			y_m = Rsector.Quad[loop_m].vertex[0].y;
 			z_m = Rsector.Quad[loop_m].vertex[0].z;
@@ -332,14 +345,13 @@ int DrawGLScene()											// Here's Where We Do All The Drawing
 			//glTexCoord2t16(u_m,v_m); 
 			glVertex3f(x_m,y_m,z_m);
 	}
+	glTranslatef(-xtrans, -ytrans, -ztrans);
 	glEnd();
 	return TRUE;												// Everything Went OK
 
 }
 
 int DrawFileTextTemp(){
-		consoleDemoInit();
-	
 	if (nitroFSInit(NULL)) {
 
 		//dirlist("/");

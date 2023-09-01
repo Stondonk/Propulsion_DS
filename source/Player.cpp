@@ -16,6 +16,7 @@ void Player::Start(){
 void Player::ColCheck(){
     float ClosestFloor = -4, ClosestCeil = 128;
     this->isGrounded = false;
+    this->CurrentTile = -1;
     for (HexTile* Tile : Hexs)
     {
         if(Tile->State >= 0){
@@ -30,6 +31,7 @@ void Player::ColCheck(){
                 }else{
                     ClosestCeil = Tile->y;
                 }
+                this->CurrentTile = Tile->Type;
                 
             }
         }
@@ -81,6 +83,9 @@ void Player::Update(){
             TempRocket->plx = this->plx;
             TempRocket->ply = this->ply - 0.1;
             TempRocket->plz = this->plz;
+
+            if(this->ProjectileType == 1)
+                TempRocket->Gravity = this->Gravity;
 
             TempRocket->RotX = this->RotX + 180;
             TempRocket->RotY = this->RotY + 180;
@@ -150,7 +155,7 @@ void Player::Update(){
     //this->fx
 }
 void Player::Draw(){
-
+    
 }
 void Player::Draw2DTop(){
 

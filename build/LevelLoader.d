@@ -1,4 +1,5 @@
-VectorFunctions.o: G:/Ds-rom-Homebrew/TestGame/source/VectorFunctions.cpp \
+LevelLoader.o: G:/Ds-rom-Homebrew/TestGame/source/LevelLoader.cpp \
+ G:/Ds-rom-Homebrew/TestGame/include/UseHeaders/LevelLoader.h \
  G:/Ds-rom-Homebrew/TestGame/include/UseHeaders/globals.h \
  G:/Ds-rom-Homebrew/TestGame/include/nds.h \
  G:/Ds-rom-Homebrew/TestGame/include/nds/libversion.h \
@@ -63,8 +64,8 @@ VectorFunctions.o: G:/Ds-rom-Homebrew/TestGame/source/VectorFunctions.cpp \
  G:/Ds-rom-Homebrew/TestGame/include/filesystem.h \
  G:/Ds-rom-Homebrew/TestGame/include/UseHeaders/gameObject.h \
  G:/Ds-rom-Homebrew/TestGame/include/UseHeaders/Player.h \
- G:/Ds-rom-Homebrew/TestGame/include/UseHeaders/rocket.h \
- G:/Ds-rom-Homebrew/TestGame/include/UseHeaders/VectorFunctions.h
+ G:/Ds-rom-Homebrew/TestGame/include/UseHeaders/rocket.h
+G:/Ds-rom-Homebrew/TestGame/include/UseHeaders/LevelLoader.h:
 G:/Ds-rom-Homebrew/TestGame/include/UseHeaders/globals.h:
 G:/Ds-rom-Homebrew/TestGame/include/nds.h:
 G:/Ds-rom-Homebrew/TestGame/include/nds/libversion.h:
@@ -130,4 +131,3 @@ G:/Ds-rom-Homebrew/TestGame/include/filesystem.h:
 G:/Ds-rom-Homebrew/TestGame/include/UseHeaders/gameObject.h:
 G:/Ds-rom-Homebrew/TestGame/include/UseHeaders/Player.h:
 G:/Ds-rom-Homebrew/TestGame/include/UseHeaders/rocket.h:
-G:/Ds-rom-Homebrew/TestGame/include/UseHeaders/VectorFunctions.h:

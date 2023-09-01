@@ -26,6 +26,9 @@ private:
     bool Jumped = false;
 
     float DeathTime = 0;
+
+    int CurrentTile = 0;
+    int ProjectileType = 0;
 public:
     bool isGrounded = false;
         virtual void Start();

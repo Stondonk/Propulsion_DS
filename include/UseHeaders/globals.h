@@ -32,11 +32,19 @@ struct HexTile{
 	int r, g, b;
 	float scale = 1;
 	int State = 0;
+	int Type = 0;
 };
 struct WallTile{
 	float x1, y1, z1, x2, y2, z2, h;
 	int r, g, b;
 };
+struct Color
+{
+	int r,g,b,a;
+};
+
+extern Color HexColors[];
+
 typedef struct tagVERTEX {
 	float x, y, z;
 	t16 u, v;
@@ -44,6 +52,7 @@ typedef struct tagVERTEX {
 
 typedef struct tagTRIANGLE {
 	VERTEX vertex[3];
+	int r, g, b;
 } TRIANGLE;
 
 typedef struct tagSECTOR {
@@ -53,6 +62,7 @@ typedef struct tagSECTOR {
 
 typedef struct tagQUAD {
 	VERTEX vertex[4];
+	Color color;
 } QUAD;
 
 typedef struct tagQUADSECTOR {

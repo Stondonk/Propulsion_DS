@@ -11,6 +11,15 @@ void Rocket::Start(){
     this->pLength = 0.05;
     this->pHeight = 0.05;
     this->pWidth = 0.05;
+
+    //Movement
+    this->fy = sin(M_PI / 180.0 *(this->RotX));
+    this->fz = -cos(M_PI / 180.0 * this->RotX) * cos(M_PI / 180.0 *(this->RotY));
+    this->fx = -cos(M_PI / 180.0 * this->RotX) * sin(M_PI / 180.0 *(this->RotY));
+
+    this->pvx = (this->fx * Speed );
+    this->pvy = (this->fy * Speed );
+    this->pvz = (this->fz * Speed );
 }
 void Rocket::ColCheck(){
     float ClosestFloor = -4, ClosestCeil = 128;
@@ -34,15 +43,8 @@ void Rocket::ColCheck(){
 void Rocket::Update(){
     if(!this->started)
         this->Start();
-
-        //Movement
-        this->fy = sin(M_PI / 180.0 *(this->RotX));
-        this->fz = -cos(M_PI / 180.0 * this->RotX) * cos(M_PI / 180.0 *(this->RotY));
-        this->fx = -cos(M_PI / 180.0 * this->RotX) * sin(M_PI / 180.0 *(this->RotY));
-
-        this->pvx = (this->fx * Speed );
-        this->pvy = (this->fy * Speed );
-        this->pvz = (this->fz * Speed );
+        
+        this->pvy -= Gravity;
 
         //Velocity
         if(this->Enabled){
@@ -64,16 +66,23 @@ void Rocket::Update(){
     //this->fx
 }
 void Rocket::Draw(){
-    glBegin(GL_QUAD);
-    glColor3f(0.5f,0.1f,0.1f);
+    glPushMatrix();
     int alpha = (int)((this->LifeTime) * 31);
     //glPolyFmt(POLY_ALPHA(alpha) | POLY_CULL_NONE | POLY_ID(2));
-    glVertex3f((this->plx - 0.02)* worldScale,(this->ply + 0.02)* worldScale,this->plz * worldScale);
-    glVertex3f((this->plx + 0.02)* worldScale,(this->ply + 0.02)* worldScale,this->plz * worldScale);
-    glVertex3f((this->plx + 0.02)* worldScale,(this->ply - 0.02)* worldScale,this->plz * worldScale);
-    glVertex3f((this->plx - 0.02)* worldScale,(this->ply - 0.02)* worldScale,this->plz * worldScale);
+    //glRotatef(this->RotX, 1, 0, 0);
+    //glRotatef(360.0f - this->RotY, 0, 1, 0);
+    glRotatef(this->RotX, 1, 0, 0);
+    glRotatef(360 - this->RotY, 0, 1, 0);
+    glBegin(GL_QUAD);
+        glColor3f(0.5f,0.1f,0.1f);
+        glVertex3f((this->plx - 0.02)* worldScale,(this->ply + 0.02)* worldScale,this->plz * worldScale);
+        glVertex3f((this->plx + 0.02)* worldScale,(this->ply + 0.02)* worldScale,this->plz * worldScale);
+        glVertex3f((this->plx + 0.02)* worldScale,(this->ply - 0.02)* worldScale,this->plz * worldScale);
+        glVertex3f((this->plx - 0.02)* worldScale,(this->ply - 0.02)* worldScale,this->plz * worldScale);
+    //glTranslatef(-this->plx * worldScale, -this->ply * worldScale, -this->plz * worldScale);
     //glPolyFmt(POLY_ALPHA(31) | POLY_CULL_NONE | POLY_FORMAT_LIGHT0);
     glEnd();
+    glPopMatrix(1);
 }
 void Rocket::Draw2DTop(){
 
