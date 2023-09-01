@@ -66,13 +66,15 @@ void Rocket::Update(){
     //this->fx
 }
 void Rocket::Draw(){
-    glPushMatrix();
     int alpha = (int)((this->LifeTime) * 31);
     //glPolyFmt(POLY_ALPHA(alpha) | POLY_CULL_NONE | POLY_ID(2));
     //glRotatef(this->RotX, 1, 0, 0);
     //glRotatef(360.0f - this->RotY, 0, 1, 0);
-    glRotatef(this->RotX, 1, 0, 0);
-    glRotatef(360 - this->RotY, 0, 1, 0);
+    //glLoadIdentity();
+
+    //glRotatef(this->RotX, 1, 0, 0);
+    //glRotatef(360.0f - this->RotY, 0, 1, 0);
+
     glBegin(GL_QUAD);
         glColor3f(0.5f,0.1f,0.1f);
         glVertex3f((this->plx - 0.02)* worldScale,(this->ply + 0.02)* worldScale,this->plz * worldScale);
@@ -82,7 +84,6 @@ void Rocket::Draw(){
     //glTranslatef(-this->plx * worldScale, -this->ply * worldScale, -this->plz * worldScale);
     //glPolyFmt(POLY_ALPHA(31) | POLY_CULL_NONE | POLY_FORMAT_LIGHT0);
     glEnd();
-    glPopMatrix(1);
 }
 void Rocket::Draw2DTop(){
 

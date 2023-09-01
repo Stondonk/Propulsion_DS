@@ -205,7 +205,7 @@ int main() {
 
 	consoleDemoInit();
 	//DrawFileTextTemp();
-	printf("\x1b[1;1HEasy GL2D + 3D");
+	printf("\x1b[1;1HPropulsion Demo");
 	
 	//printf("      Hello DS World\n");
 	//printf("     www.devkitpro.org\n");
@@ -245,13 +245,13 @@ int main() {
 		//Push our original Matrix onto the stack (save state)
 		glPushMatrix();
 		DrawGLScene();
+		// Pop our Matrix from the stack (restore state)
 
 		for (GameObject* OBJ : gameObjects)
 		{
 			OBJ->Draw();
 		}
-		
-		// Pop our Matrix from the stack (restore state)
+
 		glPopMatrix(1);
 
 		glBegin2D();
@@ -345,7 +345,7 @@ int DrawGLScene()											// Here's Where We Do All The Drawing
 			//glTexCoord2t16(u_m,v_m); 
 			glVertex3f(x_m,y_m,z_m);
 	}
-	glTranslatef(-xtrans, -ytrans, -ztrans);
+	//glTranslatef(-xtrans, -ytrans, -ztrans);
 	glEnd();
 	return TRUE;												// Everything Went OK
 
