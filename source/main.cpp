@@ -24,6 +24,8 @@ int	texture[1];			// Storage For 1 Textures (only going to use 1 on the DS for t
 //SECTOR sector1;				// Our Model Goes Here:
 QSECTOR Rsector;
 
+bool TempPausePress = false;
+
 void GenerateLevel(){
 
 	int HexAmount = 16;
@@ -235,12 +237,21 @@ int main() {
 
 		}
 
-		//Updates
-		for (GameObject* OBJ : gameObjects)
-		{
-			OBJ->Update();
+		//Pausing
+		if(Controls.Slt && !TempPausePress){
+			PauseGame = !PauseGame;
+			TempPausePress = true;
+		}else if (!Controls.Slt){
+			TempPausePress = false;
 		}
 
+		//Updates
+		if(PauseGame == false || CanPause == false){
+			for (GameObject* OBJ : gameObjects)
+			{
+				OBJ->Update();
+			}
+		}
 		//Drawing
 		//Push our original Matrix onto the stack (save state)
 		glPushMatrix();
@@ -311,7 +322,7 @@ int DrawGLScene()											// Here's Where We Do All The Drawing
 	glBegin(GL_QUAD);
 	for (int loop_m = 0; loop_m < numQuads; loop_m++)
 	{
-			//glNormal(NORMAL_PACK( 0, 0, 1<<10));
+			//glNormal3f(0,1,0);
 			glColor3f((float)Rsector.Quad[loop_m].color.r/255.0f,(float)Rsector.Quad[loop_m].color.g/255.0f,(float)Rsector.Quad[loop_m].color.b/255.0f);	
 			x_m = Rsector.Quad[loop_m].vertex[0].x;
 			y_m = Rsector.Quad[loop_m].vertex[0].y;

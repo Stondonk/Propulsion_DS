@@ -70,6 +70,9 @@ typedef struct tagQUADSECTOR {
 	QUAD* Quad;
 } QSECTOR;
 
+extern bool PauseGame;
+extern bool CanPause;
+
 extern float heading;
 extern float xpos;
 extern float zpos;

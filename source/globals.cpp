@@ -18,6 +18,9 @@ void SetCamera(float x, float y, float z, float pitch, float yaw){
   yrot = yaw;
 }
 
+bool PauseGame = false;
+bool CanPause = true;
+
 Color HexColors[] = {{56,183,100,255}, {65,166,246,255}, {177,62,83,255}, {244,244,244,255}};
 
 float CeilCap = 128;
