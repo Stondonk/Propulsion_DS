@@ -145,6 +145,17 @@ void KeyDown(int KeyDown){
 			Controls.Slt = true;
 }
 
+void InitTextAssets(){
+	int i;
+	u8* gfx = (u8*)AtlasTiles;
+	for(i = 0; i < 11; i++)
+	{
+		Text_sprite_mem[i] = oamAllocateGfx(&oamSub, SpriteSize_8x16, SpriteColorFormat_256Color);
+		dmaCopy(gfx, Text_sprite_mem[i], 32*32);
+		gfx += 32*32;
+	}
+}
+
 int main() {
 
 	// Setup the Main screen for 3D
@@ -152,14 +163,20 @@ int main() {
 	//DrawFileTextTemp();
 
 	videoSetMode(MODE_5_3D);
+	videoSetModeSub(MODE_0_2D);
 	vramSetBankA(VRAM_A_TEXTURE);                        //NEW  must set up some memory for textures
+	vramSetBankD(VRAM_D_SUB_SPRITE);
 	
 	// initialize the 3D engine
 	glInit();
 
 	// initialize gl2d
-	glScreen2D();
+	//glScreen2D();
 
+	oamInit(&oamMain, SpriteMapping_1D_128, false);
+	oamInit(&oamSub, SpriteMapping_1D_128, false);
+
+	dmaCopy(AtlasPal,SPRITE_PALETTE_SUB,512);
 	// enable antialiasing
 	glEnable(GL_ANTIALIAS);
 	
@@ -205,7 +222,9 @@ int main() {
 	
 	GenerateLevel();
 
-	consoleDemoInit();
+	InitTextAssets();
+	//consoleDemoInit();
+
 	//DrawFileTextTemp();
 	printf("\x1b[1;1HPropulsion Demo");
 	
@@ -291,6 +310,10 @@ int main() {
 		PushObjects.clear();
 		
 
+		DrawChar(2, 2, 2);
+		swiWaitForVBlank();
+
+		oamUpdate(&oamSub);
 	}
 
 	return 0;

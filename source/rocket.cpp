@@ -80,12 +80,10 @@ void Rocket::Draw(){
 
     glBegin(GL_QUAD);
         glColor3f(0.5f,0.1f,0.1f);
-        glVertex3f((-0.05 )* worldScale,(0.05)* worldScale,0);
-        glVertex3f((0.05 )* worldScale,(0.05)* worldScale,0);
-        glVertex3f((0.05 )* worldScale,(-0.05)* worldScale,0);
-        glVertex3f((-0.05 )* worldScale,(-0.05)* worldScale,0);
-        //glTranslatef(-(this->plx) * worldScale,-(this->ply) * worldScale,-(this->plz) * worldScale);
-    //glTranslatef(-this->plx * worldScale, -this->ply * worldScale, -this->plz * worldScale);
+        glVertex3f((-0.02 )* worldScale,(0.02)* worldScale,0);
+        glVertex3f((0.02 )* worldScale,(0.02)* worldScale,0);
+        glVertex3f((0.02 )* worldScale,(-0.02)* worldScale,0);
+        glVertex3f((-0.02 )* worldScale,(-0.02)* worldScale,0);
     //glPolyFmt(POLY_ALPHA(31) | POLY_CULL_NONE | POLY_FORMAT_LIGHT0);
     glEnd();
 

@@ -13,6 +13,7 @@
 #include "gameObject.h"
 #include "Player.h"
 #include "rocket.h"
+#include "Atlas.h"
 
 struct controller {
 	//Dpad
@@ -70,6 +71,8 @@ typedef struct tagQUADSECTOR {
 	QUAD* Quad;
 } QSECTOR;
 
+extern u16* Text_sprite_mem[];
+
 extern bool PauseGame;
 extern bool CanPause;
 
@@ -86,6 +89,8 @@ extern float FloorCap;
 extern float clip(float n, float lower, float upper);
 extern float lerp (float start, float end, float amt);
 extern void SetCamera(float x, float y, float z, float pitch, float yaw);
+extern void DrawText(std::string Text, int x, int y);
+extern void DrawChar(int Car, int x, int y);
 
 extern std::vector<HexTile*> Hexs;
 extern std::list<GameObject*> gameObjects;
