@@ -150,9 +150,9 @@ void InitTextAssets(){
 	u8* gfx = (u8*)AtlasTiles;
 	for(i = 0; i < 11; i++)
 	{
-		Text_sprite_mem[i] = oamAllocateGfx(&oamSub, SpriteSize_8x16, SpriteColorFormat_256Color);
-		dmaCopy(gfx, Text_sprite_mem[i], 32*32);
-		gfx += 32*32;
+		Text_sprite_mem[i] = oamAllocateGfx(&oamSub, SpriteSize_16x16, SpriteColorFormat_256Color);
+		dmaCopy(gfx, Text_sprite_mem[i], 16*16);
+		gfx += 16*16;
 	}
 }
 
@@ -309,8 +309,8 @@ int main() {
 		}
 		PushObjects.clear();
 		
-
-		DrawChar(2, 2, 2);
+		//DrawText
+		DrawChar(7, 2, 2);
 		swiWaitForVBlank();
 
 		oamUpdate(&oamSub);
