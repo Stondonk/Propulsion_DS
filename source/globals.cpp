@@ -24,8 +24,11 @@ void DrawText(std::string Text, int x, int y){
 
 void DrawChar(int Car, int x, int y){
   int Value = (int)Car - 48;
-  oamSet(&oamSub, 0, x, y, 0, 0, SpriteSize_16x16, SpriteColorFormat_256Color,Text_sprite_mem[Car], -1, false, false, false, false, false);
+  oamSet(&oamSub, SpriteAssetIndex, x, y, 0, 0, SpriteSize_16x16, SpriteColorFormat_256Color,Text_sprite_mem[Car], -1, false, false, false, false, false);
+  SpriteAssetIndex++;
 }
+
+int SpriteAssetIndex = 0;
 
 u16* Text_sprite_mem[11];
 

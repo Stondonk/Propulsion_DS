@@ -310,10 +310,14 @@ int main() {
 		PushObjects.clear();
 		
 		//DrawText
-		DrawChar(7, 2, 2);
+		DrawChar(1, 2, 2);
+		DrawChar(10, 18, 2);
+		DrawChar(1, 34, 2);
+		DrawChar(4, 56, 2);
 		swiWaitForVBlank();
 
 		oamUpdate(&oamSub);
+		SpriteAssetIndex = 0;
 	}
 
 	return 0;
