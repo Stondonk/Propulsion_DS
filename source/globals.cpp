@@ -19,11 +19,15 @@ void SetCamera(float x, float y, float z, float pitch, float yaw){
 }
 
 void DrawText(std::string Text, int x, int y){
+  int i = 0;
+  for (i = 0; i < Text.size(); i++)
+  {
+    DrawSprite16(((int)Text[i]-46),x + (i * 16),y);
+  }
   
 }
 
-void DrawChar(int Car, int x, int y){
-  int Value = (int)Car - 48;
+void DrawSprite16(int Car, int x, int y){
   oamSet(&oamSub, SpriteAssetIndex, x, y, 0, 0, SpriteSize_16x16, SpriteColorFormat_256Color,Text_sprite_mem[Car], -1, false, false, false, false, false);
   SpriteAssetIndex++;
 }

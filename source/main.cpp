@@ -9,6 +9,7 @@
 #include <dirent.h>
 #include <algorithm>
 #include <gl2d.h>
+#include "drunkenlogo.h"
 
 #include "UseHeaders/globals.h"
 //#include "Mud_pcx.h"
@@ -310,10 +311,7 @@ int main() {
 		PushObjects.clear();
 		
 		//DrawText
-		DrawChar(1, 2, 2);
-		DrawChar(10, 18, 2);
-		DrawChar(1, 34, 2);
-		DrawChar(4, 56, 2);
+		DrawText("1245.3", 2,2);
 		swiWaitForVBlank();
 
 		oamUpdate(&oamSub);
@@ -323,9 +321,9 @@ int main() {
 	return 0;
 }
 
-int DrawGLScene()											// Here's Where We Do All The Drawing
+int DrawGLScene()
 {
-											// Reset The View
+	// Reset The View
 
 	float x_m, y_m, z_m;
 	t16 u_m, v_m;
