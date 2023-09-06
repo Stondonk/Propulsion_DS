@@ -18,11 +18,12 @@ void SetCamera(float x, float y, float z, float pitch, float yaw){
   yrot = yaw;
 }
 
-void DrawText(std::string Text, int x, int y){
+void DrawText(std::string Text, int side, int x, int y){
   int i = 0;
+  int offsetX = side * ((Text.size() * 16) / 2);
   for (i = 0; i < Text.size(); i++)
   {
-    DrawSprite16(((int)Text[i]-46),x + (i * 16),y);
+    DrawSprite16(((int)Text[i]-46),x + (i * 16) - (((Text.size() * 16) / 2) + offsetX),y);
   }
   
 }

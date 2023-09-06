@@ -311,7 +311,7 @@ int main() {
 		PushObjects.clear();
 		
 		//DrawText
-		DrawText("1245.3", 2,2);
+		DrawText("1245.3", 0, 128,88);
 		swiWaitForVBlank();
 
 		oamUpdate(&oamSub);
