@@ -52,7 +52,7 @@ float ypos = 0.25;
 float yrot;
 float lookupdown = 0;
 
-std::vector<HexTile*> Hexs;
+std::list<HexTile*> Hexs;
 std::list<GameObject*> gameObjects;
 std::list<GameObject*> PushObjects;
 std::list<GameObject*> RemoveObjects;

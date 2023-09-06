@@ -28,25 +28,13 @@ QSECTOR Rsector;
 bool TempPausePress = false;
 
 void GenerateLevel(){
-
-	int HexAmount = 16;
-	int h = 0;
-	for (int h = 0; h < HexAmount; h++)
-	{
-		HexTile* TempTile = new HexTile();
-		TempTile->x = 0;
-		TempTile->y = h*0.5;
-		TempTile->z = h*2;
-		TempTile->scale = 1;
-		Hexs.push_back(TempTile);
-	}
 	
 	//Rsector.numQuads = 6;
 	//int NumOfTris = 4;
 	//sector1.Triangle = (TRIANGLE*)malloc(NumOfTris*sizeof(TRIANGLE));
 	//sector1.numTriangles = NumOfTris;
-	
-	int NumOfQuads = HexAmount * 2;
+
+	int NumOfQuads = (int)sizeof(Hexs);
 	Rsector.Quad = (QUAD*)malloc((NumOfQuads)*sizeof(QUAD));
 	Rsector.numQuads = NumOfQuads;
 
@@ -59,11 +47,11 @@ void GenerateLevel(){
 
 	int i = 0;
 	//int lengthOfT = (Rsector.numQuads / 2);
-	for (i = 0; i < (int)Hexs.size(); i++)
+	for (HexTile* Hex : Hexs)
 	{
 		int distance = i * 2;
-		float x = Hexs[i]->x, y = Hexs[i]->y, z = Hexs[i]->z;
-		float Scale = Hexs[i]->scale;
+		float x = Hex->x, y = Hex->y, z = Hex->z;
+		float Scale = Hex->scale;
 		int Point = ((i) * 2);
 		Color color = HexColors[rand()%4];
 
@@ -221,6 +209,8 @@ int main() {
 	touchPosition	thisXY;
 	touchPosition	lastXY = { 0,0,0,0 };	
 	
+		
+	LoadLevel("World.txt");
 	GenerateLevel();
 
 	InitTextAssets();
@@ -271,8 +261,8 @@ int main() {
 			{
 				OBJ->Update();
 			}
+			GameMasterUpdate();
 		}
-		GameMasterUpdate();
 		//Drawing
 		//Push our original Matrix onto the stack (save state)
 		glPushMatrix();

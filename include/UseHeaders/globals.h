@@ -15,6 +15,7 @@
 #include "rocket.h"
 #include "Atlas.h"
 #include "gameMaster.h"
+#include "LevelLoader.h"
 
 struct controller {
 	//Dpad
@@ -95,7 +96,7 @@ extern void SetCamera(float x, float y, float z, float pitch, float yaw);
 extern void DrawText(std::string Text, int side, int x, int y);
 extern void DrawSprite16(int Car, int x, int y);
 
-extern std::vector<HexTile*> Hexs;
+extern std::list<HexTile*> Hexs;
 extern std::list<GameObject*> gameObjects;
 extern std::list<GameObject*> PushObjects;
 extern std::list<GameObject*> RemoveObjects;
