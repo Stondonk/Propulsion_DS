@@ -35,7 +35,7 @@ void DrawSprite16(int Car, int x, int y){
 
 int SpriteAssetIndex = 0;
 
-u16* Text_sprite_mem[11];
+u16* Text_sprite_mem[12];
 
 bool PauseGame = false;
 bool CanPause = true;

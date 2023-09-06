@@ -14,6 +14,7 @@
 #include "Player.h"
 #include "rocket.h"
 #include "Atlas.h"
+#include "gameMaster.h"
 
 struct controller {
 	//Dpad

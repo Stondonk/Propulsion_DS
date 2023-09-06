@@ -3,12 +3,12 @@
 
 //======================================================================
 //
-//	Atlas, 192x32@8, 
+//	Atlas, 208x32@8, 
 //	+ palette 256 entries, not compressed
-//	+ 96 tiles Metatiled by 2x2 not compressed
-//	Total size: 512 + 6144 = 6656
+//	+ 104 tiles Metatiled by 2x2 not compressed
+//	Total size: 512 + 6656 = 7168
 //
-//	Time-stamp: 2023-09-05, 20:49:03
+//	Time-stamp: 2023-09-06, 16:13:42
 //	Exported by Cearn's GBA Image Transmogrifier, v0.9.2
 //	( http://www.coranac.com/projects/#grit )
 //
@@ -17,8 +17,8 @@
 #ifndef GRIT_ATLAS_H
 #define GRIT_ATLAS_H
 
-#define AtlasTilesLen 6144
-extern const unsigned int AtlasTiles[1536];
+#define AtlasTilesLen 6656
+extern const unsigned int AtlasTiles[1664];
 
 #define AtlasPalLen 512
 extern const unsigned short AtlasPal[256];
