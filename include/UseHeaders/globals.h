@@ -36,6 +36,7 @@ struct HexTile{
 	float scale = 1;
 	int State = 0;
 	int Type = 0;
+	int ID = 0;
 };
 struct WallTile{
 	float x1, y1, z1, x2, y2, z2, h;
