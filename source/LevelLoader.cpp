@@ -83,17 +83,17 @@ void LoadLevel(std::string file){
 					
 					switch (string2int(SequenceString[0].c_str()))
 					{
-					//All spawnable entities
-					//Player
-					case string2int("Player") : {
-						Player* TempPL = new Player();
-						TempPL->plx = stof(SequenceString[1]);
-						TempPL->ply = stof(SequenceString[2]);
-						TempPL->plz = stof(SequenceString[3]);
-						TempPL->RotY = stof(SequenceString[4]);
-						gameObjects.push_back(TempPL);
-					} break;
-					//extra
+						//All spawnable entities
+						//Player
+						case string2int("Player") : {
+							Player* TempPL = new Player();
+							TempPL->plx = stof(SequenceString[1]);
+							TempPL->ply = stof(SequenceString[2]);
+							TempPL->plz = stof(SequenceString[3]);
+							TempPL->RotY = stof(SequenceString[4]);
+							gameObjects.push_back(TempPL);
+						} break;
+						//extra
 					};
 							
 				}
@@ -127,7 +127,7 @@ void GenerateLevel(){
 	//sector1.Triangle = (TRIANGLE*)malloc(NumOfTris*sizeof(TRIANGLE));
 	//sector1.numTriangles = NumOfTris;
 
-	int NumOfQuads = (int)(Hexs.size());
+	int NumOfQuads = (int)sizeof(Hexs);
 	Rsector.Quad = (QUAD*)malloc((NumOfQuads)*sizeof(QUAD));
 	Rsector.numQuads = NumOfQuads;
 
@@ -160,6 +160,7 @@ void GenerateLevel(){
 
 		Rsector.Quad[Point].color = color;
 		Rsector.Quad[Point+1].color = color;
+		i++;
 	}
 
 	//gameObjects.push_back(new Player());

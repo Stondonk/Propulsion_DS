@@ -164,10 +164,10 @@ int main() {
 	touchPosition	lastXY = { 0,0,0,0 };	
 	
 	//consoleEnable
-	consoleDemoInit();
+	//consoleDemoInit();
 	LoadLevel("World.txt");
 
-	//InitTextAssets();
+	InitTextAssets();
 
 	//DrawFileTextTemp();
 	printf("\x1b[1;1HPropulsion Demo");
