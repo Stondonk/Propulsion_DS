@@ -3,6 +3,13 @@
 #include "nds.h"
 #include <malloc.h>
 
+constexpr unsigned int string2int(const char* str, int h = 0)
+{
+    // DJB Hash function
+    // not my code but can't remember where I got it from
+    return !str[h] ? 5381 : (string2int(str, h+1)*33) ^ str[h];
+}
+
 void LoadLevel(std::string file){
 	/*
 	int HexAmount = 16;
@@ -21,9 +28,10 @@ void LoadLevel(std::string file){
     if (nitroFSInit(NULL)) {
 		//dirlist("/");
 		
-		{
+		
 			// now, try reading a file to make sure things are working OK.
 			FILE* inf = fopen(file.c_str(),"rb");
+			std::list<std::string> AssetList;
 			if(inf)
 			{
 				int len;
@@ -32,7 +40,6 @@ void LoadLevel(std::string file){
 				fseek(inf,0,SEEK_SET);
 				
 				char *entireFile = (char*)malloc(len+1);
-				std::list<std::string> AssetList;
 				if(fread(entireFile,1,len,inf) == len){
 					int i = 0;
 					std::string TempLine = "";
@@ -48,46 +55,60 @@ void LoadLevel(std::string file){
 						
 					}
 				}
-
-				std::string Nums;
-				std::vector<float> NumSd;
-				std::list<std::string> SequenceString;
-				for (std::string CurrentLine : AssetList)
-				{
-					if(CurrentLine[0] == 'H'){
-						HexTile* TempHex = new HexTile();
-						TempHex->scale = 1;
-						NumSd.clear();
-						SequenceString.clear();
-						Nums.clear();
-					
-						int LC = 1;
-						for (LC = 1; LC < CurrentLine.size(); LC++)
-						{
-							if(CurrentLine[LC] != ',')
-								Nums+=(CurrentLine[LC]);
-							else{
-								NumSd.push_back(stof(Nums));
-								SequenceString.push_back(Nums);
-								Nums.clear();
-							}
-						}
-						TempHex->x = NumSd[0];
-						TempHex->y = NumSd[1];
-						TempHex->z = NumSd[2];
-						NumSd.clear();
-						SequenceString.clear();
-						Nums.clear();
-						Hexs.push_back(TempHex);
-					}
-					
-				}
 				
 				
 
 				fclose(inf);
+				}
+
+
+			for (std::string CurrentLine : AssetList)
+			{
+				std::string Nums;
+				std::vector<float> NumSd;
+				std::vector<std::string> SequenceString;
+				int LC = 1;
+				for (LC = 1; LC < CurrentLine.size(); LC++)
+				{
+					if(CurrentLine[LC] != ',')
+						Nums+=(CurrentLine[LC]);
+					else{
+						//NumSd.push_back(stof(Nums));
+						SequenceString.push_back(Nums);
+						Nums.clear();
+					}
+				}
+
+				if(CurrentLine[0] == 'O'){
+					
+					switch (string2int(SequenceString[0].c_str()))
+					{
+					//All spawnable entities
+					//Player
+					case string2int("Player") : {
+						Player* TempPL = new Player();
+						TempPL->plx = stof(SequenceString[1]);
+						TempPL->ply = stof(SequenceString[2]);
+						TempPL->plz = stof(SequenceString[3]);
+						TempPL->RotY = stof(SequenceString[4]);
+						gameObjects.push_back(TempPL);
+					} break;
+					//extra
+					};
+							
+				}
+				else if(CurrentLine[0] == 'H'){
+					
+					HexTile* TempHex = new HexTile();
+					TempHex->scale = 1;
+					TempHex->x = stof(SequenceString[0]);
+					TempHex->y = stof(SequenceString[1]);
+					TempHex->z = stof(SequenceString[2]);
+					Hexs.push_back(TempHex);
+				}
+					
 			}
-		}
+		
 
 		printf("here is the dirlist once more:\n");
 		//dirlist("/");
@@ -106,7 +127,7 @@ void GenerateLevel(){
 	//sector1.Triangle = (TRIANGLE*)malloc(NumOfTris*sizeof(TRIANGLE));
 	//sector1.numTriangles = NumOfTris;
 
-	int NumOfQuads = (int)sizeof(Hexs);
+	int NumOfQuads = (int)(Hexs.size());
 	Rsector.Quad = (QUAD*)malloc((NumOfQuads)*sizeof(QUAD));
 	Rsector.numQuads = NumOfQuads;
 
@@ -125,7 +146,7 @@ void GenerateLevel(){
 		float x = Hex->x, y = Hex->y, z = Hex->z;
 		float Scale = Hex->scale;
 		int Point = ((i) * 2);
-		Color color = HexColors[rand()%4];
+		Color color = HexColors[0];
 
 		Rsector.Quad[Point].vertex[0] = {((-1 * Scale) + x) * worldScale,(y) * worldScale,(0 + z) * worldScale};
 		Rsector.Quad[Point].vertex[1] = {((-0.5f * Scale) + x) * worldScale,(y) * worldScale,((0.75f * Scale) + z) * worldScale};
@@ -141,5 +162,5 @@ void GenerateLevel(){
 		Rsector.Quad[Point+1].color = color;
 	}
 
-	gameObjects.push_back(new Player());
+	//gameObjects.push_back(new Player());
 }

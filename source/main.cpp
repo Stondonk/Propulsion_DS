@@ -167,7 +167,7 @@ int main() {
 	consoleDemoInit();
 	LoadLevel("World.txt");
 
-	InitTextAssets();
+	//InitTextAssets();
 
 	//DrawFileTextTemp();
 	printf("\x1b[1;1HPropulsion Demo");

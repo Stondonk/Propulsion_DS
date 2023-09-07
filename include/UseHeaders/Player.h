@@ -8,8 +8,6 @@
 class Player : public GameObject
 {
 private:
-    float RotY = 0;
-    float RotX = 0;
 
     float Gravity = 0.002;
 
@@ -30,6 +28,8 @@ private:
     int CurrentTile = 0;
     int ProjectileType = 0;
 public:
+    float RotY = 0;
+    float RotX = 0;
     bool isGrounded = false;
         virtual void Start();
         virtual void Update();
