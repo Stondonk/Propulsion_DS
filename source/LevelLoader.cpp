@@ -36,60 +36,48 @@ void LoadLevel(std::string file){
 				if(fread(entireFile,1,len,inf) == len){
 					int i = 0;
 					std::string TempLine = "";
-					for ( i = 0; i < sizeof(entireFile); i++)
+					for ( i = 0; i < strlen(entireFile); i++)
 					{
-						if(entireFile[i] != ' '){
+						if(entireFile[i] != '\n'){
 							TempLine += entireFile[i];}
-						else if(entireFile[i] == ' '){
+						else if(entireFile[i] == '\n'){
 							AssetList.push_back(TempLine);
-							printf(("BALSS"));
-							TempLine = "";
+							//printf(("Enter"));
+							TempLine.clear();
 						}
+						
 					}
 				}
 
 				std::string Nums;
-				std::list<float> NumSd;
+				std::vector<float> NumSd;
 				std::list<std::string> SequenceString;
 				for (std::string CurrentLine : AssetList)
 				{
 					if(CurrentLine[0] == 'H'){
 						HexTile* TempHex = new HexTile();
 						TempHex->scale = 1;
+						NumSd.clear();
+						SequenceString.clear();
+						Nums.clear();
+					
 						int LC = 1;
 						for (LC = 1; LC < CurrentLine.size(); LC++)
 						{
 							if(CurrentLine[LC] != ',')
 								Nums+=(CurrentLine[LC]);
 							else{
-								printf(("\x1b[1;" + Nums).c_str());
 								NumSd.push_back(stof(Nums));
 								SequenceString.push_back(Nums);
 								Nums.clear();
 							}
 						}
-						int Idx = 0;
-						for (float r: NumSd)
-						{
-							//Bad implmentation fixes variable Override Problem
-							switch (Idx)
-							{
-								case 0:
-								TempHex->x = r;break;
-								case 1:
-								TempHex->y = r;break;
-								case 2:
-								TempHex->z = r; break;
-								case 3:
-								TempHex->scale = r;break;
-								case 4:
-								TempHex->Type = r;break;
-								case 5:
-								TempHex->ID = r;break;
-							}
-							Idx++;
-							
-						}
+						TempHex->x = NumSd[0];
+						TempHex->y = NumSd[1];
+						TempHex->z = NumSd[2];
+						NumSd.clear();
+						SequenceString.clear();
+						Nums.clear();
 						Hexs.push_back(TempHex);
 					}
 					
@@ -107,4 +95,51 @@ void LoadLevel(std::string file){
 	} else {
 		printf("nitroFSInit failure: terminating\n");
 	}
+
+	GenerateLevel();
+}
+
+void GenerateLevel(){
+	
+	//Rsector.numQuads = 6;
+	//int NumOfTris = 4;
+	//sector1.Triangle = (TRIANGLE*)malloc(NumOfTris*sizeof(TRIANGLE));
+	//sector1.numTriangles = NumOfTris;
+
+	int NumOfQuads = (int)sizeof(Hexs);
+	Rsector.Quad = (QUAD*)malloc((NumOfQuads)*sizeof(QUAD));
+	Rsector.numQuads = NumOfQuads;
+
+	/*
+	Rsector.Quad[0].vertex[0] = {-2000,2000,0};
+	Rsector.Quad[0].vertex[1] = {2000,2000,0};
+	Rsector.Quad[0].vertex[2] = {2000,-2000,0};
+	Rsector.Quad[0].vertex[3] = {-2000,-2000,0};
+	*/
+
+	int i = 0;
+	//int lengthOfT = (Rsector.numQuads / 2);
+	for (HexTile* Hex : Hexs)
+	{
+		int distance = i * 2;
+		float x = Hex->x, y = Hex->y, z = Hex->z;
+		float Scale = Hex->scale;
+		int Point = ((i) * 2);
+		Color color = HexColors[rand()%4];
+
+		Rsector.Quad[Point].vertex[0] = {((-1 * Scale) + x) * worldScale,(y) * worldScale,(0 + z) * worldScale};
+		Rsector.Quad[Point].vertex[1] = {((-0.5f * Scale) + x) * worldScale,(y) * worldScale,((0.75f * Scale) + z) * worldScale};
+		Rsector.Quad[Point].vertex[2] = {((0.5f * Scale) + x) * worldScale,(y) * worldScale,((0.75f * Scale) + z) * worldScale};
+		Rsector.Quad[Point].vertex[3] = {((1 * Scale) + x) * worldScale,(y) * worldScale,(0 + z) * worldScale};
+
+		Rsector.Quad[Point + 1].vertex[0] = {((-1 * Scale) + x) * worldScale,(y) * worldScale,(0 + z) * worldScale};
+		Rsector.Quad[Point + 1].vertex[3] = {((1 * Scale) + x) * worldScale,(y) * worldScale,(0 + z) * worldScale};
+		Rsector.Quad[Point + 1].vertex[2] = {((0.5f * Scale) + x) * worldScale,(y) * worldScale,((-0.75f*Scale) + z) * worldScale};
+		Rsector.Quad[Point + 1].vertex[1] = {((-0.5f * Scale) + x) * worldScale,(y) * worldScale,((-0.75f*Scale) + z) * worldScale};
+
+		Rsector.Quad[Point].color = color;
+		Rsector.Quad[Point+1].color = color;
+	}
+
+	gameObjects.push_back(new Player());
 }

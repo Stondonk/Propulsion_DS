@@ -33,6 +33,8 @@ void DrawSprite16(int Car, int x, int y){
   SpriteAssetIndex++;
 }
 
+QSECTOR Rsector;
+
 int SpriteAssetIndex = 0;
 
 u16* Text_sprite_mem[12];

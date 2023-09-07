@@ -23,54 +23,8 @@ int DrawFileTextTemp();
 int	texture[1];			// Storage For 1 Textures (only going to use 1 on the DS for this demo)
 
 //SECTOR sector1;				// Our Model Goes Here:
-QSECTOR Rsector;
 
 bool TempPausePress = false;
-
-void GenerateLevel(){
-	
-	//Rsector.numQuads = 6;
-	//int NumOfTris = 4;
-	//sector1.Triangle = (TRIANGLE*)malloc(NumOfTris*sizeof(TRIANGLE));
-	//sector1.numTriangles = NumOfTris;
-
-	int NumOfQuads = (int)sizeof(Hexs);
-	Rsector.Quad = (QUAD*)malloc((NumOfQuads)*sizeof(QUAD));
-	Rsector.numQuads = NumOfQuads;
-
-	/*
-	Rsector.Quad[0].vertex[0] = {-2000,2000,0};
-	Rsector.Quad[0].vertex[1] = {2000,2000,0};
-	Rsector.Quad[0].vertex[2] = {2000,-2000,0};
-	Rsector.Quad[0].vertex[3] = {-2000,-2000,0};
-	*/
-
-	int i = 0;
-	//int lengthOfT = (Rsector.numQuads / 2);
-	for (HexTile* Hex : Hexs)
-	{
-		int distance = i * 2;
-		float x = Hex->x, y = Hex->y, z = Hex->z;
-		float Scale = Hex->scale;
-		int Point = ((i) * 2);
-		Color color = HexColors[rand()%4];
-
-		Rsector.Quad[Point].vertex[0] = {((-1 * Scale) + x) * worldScale,(y) * worldScale,(0 + z) * worldScale};
-		Rsector.Quad[Point].vertex[1] = {((-0.5f * Scale) + x) * worldScale,(y) * worldScale,((0.75f * Scale) + z) * worldScale};
-		Rsector.Quad[Point].vertex[2] = {((0.5f * Scale) + x) * worldScale,(y) * worldScale,((0.75f * Scale) + z) * worldScale};
-		Rsector.Quad[Point].vertex[3] = {((1 * Scale) + x) * worldScale,(y) * worldScale,(0 + z) * worldScale};
-
-		Rsector.Quad[Point + 1].vertex[0] = {((-1 * Scale) + x) * worldScale,(y) * worldScale,(0 + z) * worldScale};
-		Rsector.Quad[Point + 1].vertex[3] = {((1 * Scale) + x) * worldScale,(y) * worldScale,(0 + z) * worldScale};
-		Rsector.Quad[Point + 1].vertex[2] = {((0.5f * Scale) + x) * worldScale,(y) * worldScale,((-0.75f*Scale) + z) * worldScale};
-		Rsector.Quad[Point + 1].vertex[1] = {((-0.5f * Scale) + x) * worldScale,(y) * worldScale,((-0.75f*Scale) + z) * worldScale};
-
-		Rsector.Quad[Point].color = color;
-		Rsector.Quad[Point+1].color = color;
-	}
-
-	gameObjects.push_back(new Player());
-}
 
 void KeyUp(int KeyUp){
 	//Keys Up
@@ -211,9 +165,7 @@ int main() {
 	
 	//consoleEnable
 	consoleDemoInit();
-		
 	LoadLevel("World.txt");
-	GenerateLevel();
 
 	InitTextAssets();
 

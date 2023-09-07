@@ -74,6 +74,8 @@ typedef struct tagQUADSECTOR {
 	QUAD* Quad;
 } QSECTOR;
 
+extern QSECTOR Rsector;
+
 extern int SpriteAssetIndex;
 
 extern u16* Text_sprite_mem[];
