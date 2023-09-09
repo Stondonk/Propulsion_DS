@@ -83,6 +83,8 @@ extern bool GameMasterEnable;
 
 extern int SpriteAssetIndex;
 
+extern std::string CurrentStage;
+
 extern u16* Text_sprite_mem[];
 
 extern bool PauseGame;

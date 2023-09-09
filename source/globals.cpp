@@ -41,6 +41,8 @@ int SpriteAssetIndex = 0;
 
 u16* Text_sprite_mem[24];
 
+std::string CurrentStage = "MenuWorld.txt";
+
 bool PauseGame = false;
 bool CanPause = true;
 

@@ -28,8 +28,9 @@ void LoadLevel(std::string file){
 	CanPause = false;
 	GameMasterEnable = false;
 	Hexs.clear();
-	gameObjects.clear();
+	//gameObjects.clear();
 	RemoveObjects.clear();
+	RemoveObjects = gameObjects;
 
     if (nitroFSInit(NULL)) {
 		//dirlist("/");
@@ -37,9 +38,11 @@ void LoadLevel(std::string file){
 		
 			// now, try reading a file to make sure things are working OK.
 			FILE* inf = fopen(file.c_str(),"rb");
+			CurrentStage = file;
 			std::list<std::string> AssetList;
 			if(inf)
 			{
+
 				int len;
 				fseek(inf,0,SEEK_END);
 				len = ftell(inf);
@@ -63,10 +66,10 @@ void LoadLevel(std::string file){
 				}
 				
 				
-
+				//free(entireFile);
 				fclose(inf);
+				//free(inf);
 				}
-
 
 			for (std::string CurrentLine : AssetList)
 			{
@@ -127,9 +130,9 @@ void LoadLevel(std::string file){
 					TempHex->z = stof(SequenceString[2]);
 					Hexs.push_back(TempHex);
 				}
-					
+				//delete CurrentLine.c_str();
 			}
-		
+			
 
 		printf("here is the dirlist once more:\n");
 		//dirlist("/");

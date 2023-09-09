@@ -189,7 +189,7 @@ int main() {
 		if(KeyCDown)
 			KeyDown(KeyCDown);
 
-		if (held & KEY_START) break;
+		//if (held & KEY_START) break;
 		// Camera rotation by touch screen
 		Controls.Touching = false;
 		if (held & KEY_TOUCH)
