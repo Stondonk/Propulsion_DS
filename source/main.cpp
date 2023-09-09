@@ -91,7 +91,7 @@ void KeyDown(int KeyDown){
 void InitTextAssets(){
 	int i;
 	u8* gfx = (u8*)AtlasTiles;
-	for(i = 0; i < 22; i++)
+	for(i = 0; i < 24; i++)
 	{
 		Text_sprite_mem[i] = oamAllocateGfx(&oamSub, SpriteSize_16x16, SpriteColorFormat_256Color);
 		dmaCopy(gfx, Text_sprite_mem[i], 16*16);
@@ -215,9 +215,9 @@ int main() {
 			{
 				OBJ->Update();
 			}
-			if(GameMasterEnable)
-				GameMasterUpdate();
 		}
+		if(GameMasterEnable)
+			GameMasterUpdate();
 		//Drawing
 		//Push our original Matrix onto the stack (save state)
 		glPushMatrix();

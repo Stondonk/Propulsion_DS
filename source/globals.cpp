@@ -39,7 +39,7 @@ bool GameMasterEnable = false;
 
 int SpriteAssetIndex = 0;
 
-u16* Text_sprite_mem[22];
+u16* Text_sprite_mem[24];
 
 bool PauseGame = false;
 bool CanPause = true;
