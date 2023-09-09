@@ -201,12 +201,13 @@ int main() {
 		}
 
 		//Pausing
-		if(Controls.Slt && !TempPausePress){
+		if(Controls.Slt && !TempPausePress && GameMasterEnable){
 			PauseGame = !PauseGame;
 			TempPausePress = true;
 		}else if (!Controls.Slt){
 			TempPausePress = false;
-		}
+		}if(!GameMasterEnable && PauseGame)
+			PauseGame = false;
 
 		//Updates
 		if(PauseGame == false || CanPause == false){

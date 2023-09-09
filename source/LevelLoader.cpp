@@ -112,6 +112,9 @@ void LoadLevel(std::string file){
 							CanPause = true;
 							GameMasterEnable = true;
 						} break;
+						case string2int("BGC") : {
+							glClearColor(stoi(SequenceString[1]),stoi(SequenceString[2]),stoi(SequenceString[3]),31);
+						}break;
 					};
 							
 				}
