@@ -71,14 +71,25 @@ void MainMenu::Draw2DTop(){
     switch (this->Screen)
     {
         case 0:{
-            float Xset = 72;
-            DrawSprite16(13,0+Xset,88);
-            DrawSprite16(14,16+Xset,88);
-            DrawSprite16(15,32+Xset,88);
-            DrawSprite16(16,48+Xset,88);
-            DrawSprite16(17,64+Xset,88);
-            DrawSprite16(18,80+Xset,88);
-            DrawSprite16(19,96+Xset,88);
+            if(this->DsSlideDDist <= 1){
+                this->LogoSlide = lerp(this->LogoSlide, 72, 0.1);
+                DrawSprite16(13,0+this->LogoSlide,88);
+                DrawSprite16(14,16+this->LogoSlide,88);
+                DrawSprite16(15,32+this->LogoSlide,88);
+                DrawSprite16(16,48+this->LogoSlide,88);
+                DrawSprite16(17,64+this->LogoSlide,88);
+            }
+            //DS logo
+            //DrawSprite16(18,80+Xset,((1 - this->DsSlideS) * 88));
+            DrawSprite16(18,80+72 + (sin(M_PI / 180.0 *(this->DsSlideDA)) * this->DsSlideDDist),88 - (cos(M_PI / 180.0 *(this->DsSlideDA)) * this->DsSlideDDist));
+            DrawSprite16(19,96+72 + (sin(M_PI / 180.0 *(-this->DsSlideSA)) * this->DsSlideSDist),88 + (cos(M_PI / 180.0 *(this->DsSlideSA)) * this->DsSlideSDist));
+            if(this->DsSlideDA > 0)
+                this->DsSlideDA -= 2;
+            this->DsSlideDDist= clip(this->DsSlideDDist - 0.5, 0, 255);
+            if(this->DsSlideSA > 0)
+                this->DsSlideSA -= 2;
+            this->DsSlideSDist= clip(this->DsSlideSDist - 0.5, 0, 255);
+                
         }break;
         case 1:{
             DrawSprite16(3,2,2);

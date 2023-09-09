@@ -34,6 +34,10 @@ private:
     int Screen = 0;
 
     bool Tapped = false;
+
+    //LOGO stuff
+    float DsSlideDA = 720, DsSlideDDist = 128, DsSlideSA = 720, DsSlideSDist = 128;
+    float LogoSlide = -80;
 public:
     float RotY = 0;
     float RotX = 0;
