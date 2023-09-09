@@ -29,9 +29,13 @@ void GameMasterUpdate(){
     else{
         if(Controls.Touching){
             if(Controls.TpX < 32 && Controls.TpY > 160) //exit
-                LoadLevel("MenuWorld.txt");
+                LoadLevelTransition("MenuWorld.txt",0);
             else //resume
                 PauseGame = false;
         }
     }
+}
+
+void GameMasterReset(){
+    Time = 0;
 }

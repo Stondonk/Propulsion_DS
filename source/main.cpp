@@ -20,6 +20,8 @@ int DrawGLScene();
 int DrawFileTextTemp();
 
 
+float ScreenTime = 1, TransitionForTime = 0.5;
+
 int	texture[1];			// Storage For 1 Textures (only going to use 1 on the DS for this demo)
 
 //SECTOR sector1;				// Our Model Goes Here:
@@ -256,7 +258,29 @@ int main() {
 			gameObjects.push_back(ROJ);
 		}
 		PushObjects.clear();
-		
+		//Transition
+                if(TransitionTime > 0){
+                    TransitionTime -= 0.013;
+                    if(TransitionTime < 1){
+                        OpenTransition = false;
+                    }
+                } if(TransitionTime <= 0 && Trasnitionlocation != ""){
+                    LoadLevel(Trasnitionlocation.c_str());
+                    Trasnitionlocation = "";
+                    OpenTransition = true;
+					TransitionVal = 1;
+                }
+                //Transition
+                TransitionVal = ScreenTime;
+                if(OpenTransition)
+                    ScreenTime = clip(ScreenTime - (1 / TransitionForTime) * 0.013, 0 ,1);
+                else
+                    ScreenTime = clip(ScreenTime + (1 / TransitionForTime) * 0.013, 0 ,1);
+				//POLY_ALPHA(u32(255*ScreenTime));
+				//glAlphaFunc((15*ScreenTime));
+				//glPolyFmt(POLY_ALPHA((31 * (1 - TransitionVal))) | POLY_CULL_NONE | POLY_ID(2));
+				setBrightness(3,(-16 * (TransitionVal)));
+
 		//DrawText
 		if(GameMasterEnable)
 			GameMasterDraw();

@@ -30,6 +30,7 @@ void DrawText(std::string Text, int side, int x, int y){
 
 void DrawSprite16(int Car, int x, int y){
   oamSet(&oamSub, SpriteAssetIndex, x, y, 0, 0, SpriteSize_16x16, SpriteColorFormat_256Color,Text_sprite_mem[Car], -1, false, false, false, false, false);
+  //oamSetAlpha(&oamSub,SpriteAssetIndex,(15 * TransitionVal));
   SpriteAssetIndex++;
 }
 
@@ -42,6 +43,10 @@ int SpriteAssetIndex = 0;
 u16* Text_sprite_mem[24];
 
 std::string CurrentStage = "MenuWorld.txt";
+
+float TransitionTime, TransitionVal = 1;
+bool OpenTransition = true;
+std::string Trasnitionlocation;
 
 bool PauseGame = false;
 bool CanPause = true;

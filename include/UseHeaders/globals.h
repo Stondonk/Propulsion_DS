@@ -85,6 +85,10 @@ extern int SpriteAssetIndex;
 
 extern std::string CurrentStage;
 
+extern float TransitionTime,TransitionVal;
+extern bool OpenTransition;
+extern std::string Trasnitionlocation;
+
 extern u16* Text_sprite_mem[];
 
 extern bool PauseGame;

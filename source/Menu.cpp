@@ -16,7 +16,7 @@ void MainMenu::ColCheck(){
     if(Controls.TpY > 0 && this->Screen == 0)
         this->Screen = 1;
     else if(Controls.TpY > 0 && this->Screen == 1)
-        LoadLevel("World.txt");
+        LoadLevelTransition("World.txt", 0);
 }
 void MainMenu::Update(){
     if(!this->started)

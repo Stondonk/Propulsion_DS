@@ -10,6 +10,13 @@ constexpr unsigned int string2int(const char* str, int h = 0)
     return !str[h] ? 5381 : (string2int(str, h+1)*33) ^ str[h];
 }
 
+void LoadLevelTransition(std::string file, float Start){
+	 if(Trasnitionlocation == ""){
+        TransitionTime = Start + 1;
+        Trasnitionlocation = file;
+    }
+}
+
 void LoadLevel(std::string file){
 	/*
 	int HexAmount = 16;
@@ -31,6 +38,7 @@ void LoadLevel(std::string file){
 	//gameObjects.clear();
 	RemoveObjects.clear();
 	RemoveObjects = gameObjects;
+	GameMasterReset();
 
     if (nitroFSInit(NULL)) {
 		//dirlist("/");
