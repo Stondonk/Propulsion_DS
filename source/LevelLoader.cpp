@@ -26,6 +26,7 @@ void LoadLevel(std::string file){
 	*/
 	//resetVariables
 	CanPause = false;
+	GameMasterEnable = false;
 	Hexs.clear();
 	gameObjects.clear();
 	RemoveObjects.clear();
@@ -106,6 +107,10 @@ void LoadLevel(std::string file){
 							TempMen->plz = 0;
 							TempMen->RotY = 0;
 							gameObjects.push_back(TempMen);
+						} break;
+						case string2int("Gamemaster") : {
+							CanPause = true;
+							GameMasterEnable = true;
 						} break;
 					};
 							

@@ -214,7 +214,8 @@ int main() {
 			{
 				OBJ->Update();
 			}
-			GameMasterUpdate();
+			if(GameMasterEnable)
+				GameMasterUpdate();
 		}
 		//Drawing
 		//Push our original Matrix onto the stack (save state)
@@ -255,7 +256,8 @@ int main() {
 		PushObjects.clear();
 		
 		//DrawText
-		GameMasterDraw();
+		if(GameMasterEnable)
+			GameMasterDraw();
 		swiWaitForVBlank();
 
 		oamUpdate(&oamSub);

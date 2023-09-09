@@ -77,6 +77,8 @@ typedef struct tagQUADSECTOR {
 
 extern QSECTOR Rsector;
 
+extern bool GameMasterEnable;
+
 extern int SpriteAssetIndex;
 
 extern u16* Text_sprite_mem[];
