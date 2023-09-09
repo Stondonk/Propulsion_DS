@@ -29,6 +29,8 @@ struct controller {
 	bool Str = false, Slt = false;
 	//touch position
 	int TpX = 0, TpY = 0;
+	//is touching , I know what your thinking dont follow this variable title up with an inapropriate comment you knob
+	bool Touching = false;
 };
 
 struct HexTile{

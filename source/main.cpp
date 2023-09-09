@@ -91,7 +91,7 @@ void KeyDown(int KeyDown){
 void InitTextAssets(){
 	int i;
 	u8* gfx = (u8*)AtlasTiles;
-	for(i = 0; i < 12; i++)
+	for(i = 0; i < 22; i++)
 	{
 		Text_sprite_mem[i] = oamAllocateGfx(&oamSub, SpriteSize_16x16, SpriteColorFormat_256Color);
 		dmaCopy(gfx, Text_sprite_mem[i], 16*16);
@@ -191,13 +191,13 @@ int main() {
 
 		if (held & KEY_START) break;
 		// Camera rotation by touch screen
-
+		Controls.Touching = false;
 		if (held & KEY_TOUCH)
 		{
 			touchRead(&thisXY);
 			Controls.TpX = thisXY.px;
 			Controls.TpY = thisXY.py;
-
+			Controls.Touching = true;
 		}
 
 		//Pausing
@@ -234,6 +234,7 @@ int main() {
 			for (GameObject* OBJ : gameObjects)
 			{
 				OBJ->Draw2DTop();
+				OBJ->Draw2DBottom();
 			}
 		glEnd2D();
 

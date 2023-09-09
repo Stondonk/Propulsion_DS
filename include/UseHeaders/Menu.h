@@ -6,6 +6,14 @@
 #include <list>
 #include<iostream>
 
+struct MenuButton
+{
+    float x;
+    float y;
+    int image = 0;
+};
+
+
 class MainMenu : public GameObject
 {
 private:
@@ -22,10 +30,15 @@ private:
 
     float FakeIslandRot = 0;
     Vector3 FakeIslandPos = {0,0,0};
+
+    int Screen = 0;
+
+    bool Tapped = false;
 public:
     float RotY = 0;
     float RotX = 0;
     bool isGrounded = false;
+    MenuButton Buttons[1] = {{2,2,2}};
         virtual void Start();
         virtual void Update();
         virtual void Damage(float Px, float Py, float Pz);

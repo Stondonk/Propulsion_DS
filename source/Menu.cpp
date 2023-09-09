@@ -13,7 +13,9 @@ void MainMenu::Start(){
     this->RotX = 30;
 }
 void MainMenu::ColCheck(){
-    if(Controls.TpY > 0)
+    if(Controls.TpY > 0 && this->Screen == 0)
+        this->Screen = 1;
+    else if(Controls.TpY > 0 && this->Screen == 1)
         LoadLevel("World.txt");
 }
 void MainMenu::Update(){
@@ -24,8 +26,10 @@ void MainMenu::Update(){
     if(this->FakeIslandRot >= 360)
         this->FakeIslandRot -= 360;
 
-    if(Controls.A)
-        this->ColCheck();
+    if(Controls.Touching && !this->Tapped){
+        this->ColCheck();this->Tapped = true;}
+    if(!Controls.Touching)
+        this->Tapped = false;
 
     SetCamera(this->plx, this->ply, this->plz, this->RotX, this->RotY);
 }
@@ -64,7 +68,23 @@ void MainMenu::Draw(){
 void MainMenu::Draw2DTop(){
 
 }void MainMenu::Draw2DBottom(){
-    
+    switch (this->Screen)
+    {
+        case 0:{
+            float Xset = 72;
+            DrawSprite16(13,0+Xset,88);
+            DrawSprite16(14,16+Xset,88);
+            DrawSprite16(15,32+Xset,88);
+            DrawSprite16(16,48+Xset,88);
+            DrawSprite16(17,64+Xset,88);
+            DrawSprite16(18,80+Xset,88);
+            DrawSprite16(19,96+Xset,88);
+        }break;
+        case 1:{
+            DrawSprite16(3,2,2);
+            DrawSprite16(20,18,2);
+        }break;
+    }
 }
 void MainMenu::Damage(float Px, float Py, float Pz){
     if(this->TimeBtwHit <= 0){
