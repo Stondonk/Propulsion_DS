@@ -24,7 +24,12 @@ void LoadLevel(std::string file){
 		Hexs.push_back(TempTile);
 	}
 	*/
-	
+	//resetVariables
+	CanPause = false;
+	Hexs.clear();
+	gameObjects.clear();
+	RemoveObjects.clear();
+
     if (nitroFSInit(NULL)) {
 		//dirlist("/");
 		
@@ -94,6 +99,14 @@ void LoadLevel(std::string file){
 							gameObjects.push_back(TempPL);
 						} break;
 						//extra
+						case string2int("Menu") : {
+							MainMenu* TempMen = new MainMenu();
+							TempMen->plx = 0;
+							TempMen->ply = 0;
+							TempMen->plz = 0;
+							TempMen->RotY = 0;
+							gameObjects.push_back(TempMen);
+						} break;
 					};
 							
 				}

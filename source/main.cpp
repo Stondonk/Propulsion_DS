@@ -165,7 +165,7 @@ int main() {
 	
 	//consoleEnable
 	//consoleDemoInit();
-	LoadLevel("World.txt");
+	LoadLevel("MenuWorld.txt");
 
 	InitTextAssets();
 

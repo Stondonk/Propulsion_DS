@@ -66,7 +66,9 @@ LevelLoader.o: G:/Ds-rom-homebrew/TestGame/source/LevelLoader.cpp \
  G:/Ds-rom-homebrew/TestGame/include/UseHeaders/Player.h \
  G:/Ds-rom-homebrew/TestGame/include/UseHeaders/rocket.h \
  G:/Ds-rom-homebrew/TestGame/build/Atlas.h \
- G:/Ds-rom-homebrew/TestGame/include/UseHeaders/gameMaster.h
+ G:/Ds-rom-homebrew/TestGame/include/UseHeaders/gameMaster.h \
+ G:/Ds-rom-homebrew/TestGame/include/UseHeaders/Menu.h \
+ G:/Ds-rom-homebrew/TestGame/include/UseHeaders/VectorFunctions.h
 G:/Ds-rom-homebrew/TestGame/include/UseHeaders/LevelLoader.h:
 G:/Ds-rom-homebrew/TestGame/include/UseHeaders/globals.h:
 G:/Ds-rom-homebrew/TestGame/include/nds.h:
@@ -135,3 +137,5 @@ G:/Ds-rom-homebrew/TestGame/include/UseHeaders/Player.h:
 G:/Ds-rom-homebrew/TestGame/include/UseHeaders/rocket.h:
 G:/Ds-rom-homebrew/TestGame/build/Atlas.h:
 G:/Ds-rom-homebrew/TestGame/include/UseHeaders/gameMaster.h:
+G:/Ds-rom-homebrew/TestGame/include/UseHeaders/Menu.h:
+G:/Ds-rom-homebrew/TestGame/include/UseHeaders/VectorFunctions.h:
