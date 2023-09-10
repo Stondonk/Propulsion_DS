@@ -321,7 +321,10 @@ int DrawGLScene()
 	for (int loop_m = 0; loop_m < numQuads; loop_m++)
 	{
 			//glNormal3f(0,1,0);
-			glColor3f((float)Rsector.Quad[loop_m].color.r/255.0f,(float)Rsector.Quad[loop_m].color.g/255.0f,(float)Rsector.Quad[loop_m].color.b/255.0f);	
+			//float camMag = clip(distance3(xtrans, ytrans ,ztrans, Rsector.Quad[loop_m].vertex[0].x, Rsector.Quad[loop_m].vertex[0].y, Rsector.Quad[loop_m].vertex[0].z) / 2, 0, 1);
+			float colorDif = 0;
+			//glPolyFmt(POLY_ALPHA((31 * ((1 - camMag)))) | POLY_CULL_NONE | POLY_ID(2));
+			glColor3f(clip(((float)Rsector.Quad[loop_m].color.r/255.0f) + colorDif, 0, 1),clip(((float)Rsector.Quad[loop_m].color.g/255.0f) + colorDif, 0, 1),clip(((float)Rsector.Quad[loop_m].color.b/255.0f) + colorDif, 0, 1));	
 			x_m = Rsector.Quad[loop_m].vertex[0].x;
 			y_m = Rsector.Quad[loop_m].vertex[0].y;
 			z_m = Rsector.Quad[loop_m].vertex[0].z;
@@ -356,6 +359,7 @@ int DrawGLScene()
 	}
 	//glTranslatef(-xtrans, -ytrans, -ztrans);
 	glEnd();
+	glPolyFmt(POLY_ALPHA((31)) | POLY_CULL_NONE | POLY_ID(2));
 	return TRUE;												// Everything Went OK
 
 }
