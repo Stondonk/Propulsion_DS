@@ -1,5 +1,6 @@
 #include "UseHeaders/LevelLoader.h"
 #include "UseHeaders/globals.h"
+#include "UseHeaders/gameMaster.h"
 #include "nds.h"
 #include <malloc.h>
 
@@ -35,6 +36,7 @@ void LoadLevel(std::string file){
 	CanPause = false;
 	GameMasterEnable = false;
 	Hexs.clear();
+	PauseTimer = false;
 	//gameObjects.clear();
 	RemoveObjects.clear();
 	RemoveObjects = gameObjects;
@@ -164,8 +166,10 @@ void GenerateLevel(){
 	//int NumOfTris = 4;
 	//sector1.Triangle = (TRIANGLE*)malloc(NumOfTris*sizeof(TRIANGLE));
 	//sector1.numTriangles = NumOfTris;
-
-	int NumOfQuads = (int)sizeof(Hexs) - 1;
+	int offSetHex = 0;
+	if(sizeof(Hexs) < 5)
+		offSetHex = 1;
+	int NumOfQuads = (int)sizeof(Hexs) - offSetHex;
 	Rsector.Quad = (QUAD*)malloc((NumOfQuads)*sizeof(QUAD));
 	Rsector.numQuads = NumOfQuads;
 

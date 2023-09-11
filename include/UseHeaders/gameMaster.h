@@ -18,3 +18,5 @@
 void GameMasterDraw();
 void GameMasterUpdate();
 void GameMasterReset();
+
+extern bool PauseTimer;

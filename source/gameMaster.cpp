@@ -5,6 +5,9 @@
 using namespace std;
 
 float Time = 0;
+bool PauseTimer = false;
+Vector2 milliPoint = {0,0};
+float MilGrav = 0;
 
 void GameMasterDraw(){
     if(!PauseGame){
@@ -16,7 +19,15 @@ void GameMasterDraw(){
             buffer0 = "0";
         if(milliSecs <= 9)
             buffer1 = "0";
-        DrawSprite16(0, (int)(256 * ((float)milliSecs / 100.0)) + 128, 82 + (sin((float)milliSecs / 4) * 16));
+        if(!PauseTimer){
+            milliPoint.x = (256 * ((float)milliSecs / 100.0)) + 128;
+            milliPoint.y = 82 + (sin((float)milliSecs / 4) * 16);
+            MilGrav = 0;
+        }else{
+            milliPoint.y = clip(milliPoint.y + MilGrav, -16,208);
+            MilGrav += 0.013*7;
+        }
+        DrawSprite16(0, (int)milliPoint.x, (int)milliPoint.y);
         DrawText(std::to_string(mintues) + "." + buffer0 + std::to_string(seconds), 0, 128,88);
     }else{
         DrawSprite16(21,120,80);
@@ -24,7 +35,7 @@ void GameMasterDraw(){
     }
 }
 void GameMasterUpdate(){
-    if(!PauseGame)
+    if(!PauseGame && !PauseTimer)
         Time+=0.013;
     else{
         if(Controls.Touching){

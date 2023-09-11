@@ -191,6 +191,10 @@ void Player::Attack(){
 
 }
 void Player::Death(){
+    PauseTimer = true;
+    //Show red on bottom screen
+    SetSubBgColorf({0.9,0.2,0.1});
+    glClearColor(27,6,3,31);
     LoadLevelTransition(CurrentStage, 1);
     RemoveObjects.push_back(this);
 }
