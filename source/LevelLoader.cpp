@@ -140,6 +140,8 @@ void LoadLevel(std::string file){
 				}
 				//delete CurrentLine.c_str();
 			}
+			//Sub screen color reset
+			SetSubBgColorf({0,0,0});
 			
 
 		printf("here is the dirlist once more:\n");

@@ -13,10 +13,17 @@ void MainMenu::Start(){
     this->RotX = 30;
 }
 void MainMenu::ColCheck(){
-    if(Controls.TpY > 0 && this->Screen == 0)
+    if(Controls.TpY > 0 && this->Screen == 0){
         this->Screen = 1;
-    else if(Controls.TpY > 0 && this->Screen == 1)
-        LoadLevelTransition("World.txt", 0);
+        this->BgColor1[0] = 0.48;
+        this->BgColor1[1] = 0.65;
+        this->BgColor1[2] = 0.95;
+        
+        glClearColor((int)(this->BgColor1[0] * 31),(int)(this->BgColor1[1] * 31),(int)(this->BgColor1[2] * 31),31);
+        SetSubBgColorf({this->BgColor1[0],this->BgColor1[1],this->BgColor1[2]});
+    }
+    else if(Controls.TpY > 0 && this->Screen == 1){
+        LoadLevelTransition("World.txt", 0);}
 }
 void MainMenu::Update(){
     if(!this->started)
@@ -83,10 +90,7 @@ void MainMenu::Draw2DTop(){
                 this->BgColor1[1] = lerp(this->BgColor1[1], 0.65,0.05);
                 this->BgColor1[2] = lerp(this->BgColor1[2], 0.95,0.05);
                 glClearColor((int)(this->BgColor1[0] * 31),(int)(this->BgColor1[1] * 31),(int)(this->BgColor1[2] * 31),31);
-                BgSubPalette[0] = RGB15((int)(this->BgColor1[0] * 31),(int)(this->BgColor1[1] * 31),(int)(this->BgColor1[2] * 31));
-                BgSubPalette[1] = RGB15((int)(this->BgColor1[0] * 31),(int)(this->BgColor1[1] * 31),(int)(this->BgColor1[2] * 31));
-                BgSubPalette[2] = RGB15((int)(this->BgColor1[0] * 31),(int)(this->BgColor1[1] * 31),(int)(this->BgColor1[2] * 31));
-                dmaCopy(BgSubPalette, BG_PALETTE_SUB, sizeof(BgSubPalette));
+                SetSubBgColorf({this->BgColor1[0],this->BgColor1[1],this->BgColor1[2]});
             }
             //DS logo
             //DrawSprite16(18,80+Xset,((1 - this->DsSlideS) * 88));

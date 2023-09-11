@@ -41,6 +41,13 @@ void DrawSprite16(int Car, int x, int y){
   SpriteAssetIndex++;
 }
 
+void SetSubBgColorf(Colorf Color){
+  BgSubPalette[0] = RGB15((int)(Color.r * 31),(int)(Color.g * 31),(int)(Color.b * 31));
+  BgSubPalette[1] = RGB15((int)(Color.r * 31),(int)(Color.g * 31),(int)(Color.b * 31));
+  BgSubPalette[2] = RGB15((int)(Color.r * 31),(int)(Color.g * 31),(int)(Color.b * 31));
+  dmaCopy(BgSubPalette, BG_PALETTE_SUB, sizeof(BgSubPalette));
+}
+
 QSECTOR Rsector;
 
 bool GameMasterEnable = false;
