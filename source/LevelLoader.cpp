@@ -150,8 +150,12 @@ void LoadLevel(std::string file){
 	} else {
 		printf("nitroFSInit failure: terminating\n");
 	}
-
-	GenerateLevel();
+	if(Hexs.size() > 0)
+		GenerateLevel();
+	else{
+		Rsector.Quad = 0;
+		Rsector.numQuads = 0;
+	}
 }
 
 void GenerateLevel(){
@@ -161,7 +165,7 @@ void GenerateLevel(){
 	//sector1.Triangle = (TRIANGLE*)malloc(NumOfTris*sizeof(TRIANGLE));
 	//sector1.numTriangles = NumOfTris;
 
-	int NumOfQuads = (int)sizeof(Hexs);
+	int NumOfQuads = (int)sizeof(Hexs) - 1;
 	Rsector.Quad = (QUAD*)malloc((NumOfQuads)*sizeof(QUAD));
 	Rsector.numQuads = NumOfQuads;
 

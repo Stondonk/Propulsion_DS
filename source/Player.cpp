@@ -40,7 +40,8 @@ void Player::ColCheck(){
     this->floorPosition = ClosestFloor;
     this->CeilingPosition = ClosestCeil;
     this->ply = clip(this->ply, this->floorPosition + (this->pHeight / 2) + 0.0001, this->CeilingPosition - (this->pHeight / 2) - 0.0001);
-    
+    if(this->ply - this->pHeight + this->pvy <= -4)
+        this->Death();
 }
 void Player::Update(){
     if(!this->started)
@@ -190,5 +191,6 @@ void Player::Attack(){
 
 }
 void Player::Death(){
+    LoadLevelTransition(CurrentStage, 1);
     RemoveObjects.push_back(this);
 }
