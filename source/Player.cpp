@@ -57,8 +57,19 @@ void Player::Update(){
             this->pvy = 0;
 
         //Movement
-        this->fz = cos(M_PI / 180.0 *(this->RotY));
-        this->fx = sin(M_PI / 180.0 *(this->RotY));
+        //this->fz = cos(M_PI / 180.0 *(this->RotY));
+        //this->fx = sin(M_PI / 180.0 *(this->RotY));
+
+        //Movement
+
+        //Forward
+        this->fy = -sin(M_PI / 180.0 *(this->RotX));
+        this->fz = -cos(M_PI / 180.0 * this->RotX) * cos(M_PI / 180.0 *(this->RotY));
+        this->fx = -cos(M_PI / 180.0 * this->RotX) * sin(M_PI / 180.0 *(this->RotY));
+        //Up
+        this->uy = -sin(M_PI / 180.0 *(this->RotX -90));
+        this->uz = -cos(M_PI / 180.0 * this->RotX-90) * cos(M_PI / 180.0 *(this->RotY));
+        this->ux = -cos(M_PI / 180.0 * this->RotX-90) * sin(M_PI / 180.0 *(this->RotY));
 
         float forRot = sin(M_PI / 180.0 *(this->RotX));
 
@@ -79,7 +90,7 @@ void Player::Update(){
         else
             this->y = 0;
 
-        if((Controls.L || Controls.R) && !this->Jumped){
+        if((Controls.L || Controls.R) && !this->Jumped && this->TimebtwShot <= 0){
             Rocket* TempRocket = new Rocket();
             TempRocket->plx = this->plx;
             TempRocket->ply = this->ply - 0.1;
@@ -91,6 +102,9 @@ void Player::Update(){
             TempRocket->RotX = this->RotX + 180;
             TempRocket->RotY = this->RotY + 180;
             PushObjects.push_back(TempRocket);
+
+            this->DrawBackShot = -0.2;
+            this->TimebtwShot = 0.5;
             /*
             //Jumping
             if(this->isGrounded){
@@ -103,16 +117,20 @@ void Player::Update(){
         }else if(!Controls.L && !Controls.R && this->Jumped){
             this->Jumped = false;
         }
+
+        if(this->TimebtwShot > 0)
+            this->TimebtwShot -= 0.013;
+
         //if(Controls.Slt)
         //this->Death();
             float TargetSpeed = 0.075;
 
             float TempZ = this->pvz;
-            TempZ -= ((this->fz * this->Speed * -y) + (this->rz * this->Speed * -x)) * 0.013;
+            TempZ -= ((this->fz * this->Speed * y) + (this->rz * this->Speed * -x)) * 0.013;
             TempZ *= pow(1.0 - (0.65), TargetSpeed);
 
             float TempX = this->pvx;
-            TempX -= ((this->fx * this->Speed * -y) + (this->rx * this->Speed * -x)) * 0.013;
+            TempX -= ((this->fx * this->Speed * y) + (this->rx * this->Speed * -x)) * 0.013;
             TempX *= pow(1.0 - (0.65), TargetSpeed);
 
         this->pvx = TempX;
@@ -156,6 +174,44 @@ void Player::Update(){
     //this->fx
 }
 void Player::Draw(){
+    this->DrawBackShot = lerp(this->DrawBackShot, 0, 0.05);
+	Vector3 lookPoint = {this->plx + (this->fx * (0.2 + this->DrawBackShot)) - (this->ux * 0.125), this->ply + (this->fy * (0.2 + this->DrawBackShot)) - (this->uy * 0.125), this->plz + (this->fz * (0.2 + this->DrawBackShot)) - (this->uz * 0.125)};
+    glTranslatef(((lookPoint.x) * worldScale), ((lookPoint.y) * worldScale), ((lookPoint.z) * worldScale));
+
+    glRotatef(this->RotY, 0, 1, 0);
+    glRotatef(-this->RotX, 1, 0, 0);
+    //glRotatef(360.0f - this->RotY, 0, 1, 0);
+
+    glBegin(GL_QUAD);
+        glColor3f(0.729f, 0.459f, 0.086f);
+        glVertex3f((-0.02 )* worldScale,0,(0.1)* worldScale);
+        glVertex3f((0.02 )* worldScale,0,(0.1)* worldScale);
+        glVertex3f((0.02 )* worldScale,0,(-0.1)* worldScale);
+        glVertex3f((-0.02 )* worldScale,0,(-0.1)* worldScale);
+
+        //Rocket Tip
+        if((this->TimebtwShot) > 0)
+            glPolyFmt(POLY_ALPHA((int)(31.0f * (1 - (this->TimebtwShot * 2)))) | POLY_CULL_NONE | POLY_ID(2));
+        glColor3f(0.259f, 0.871f, 0.388f);
+        glVertex3f((-0.05 )* worldScale,0,(-0.15)* worldScale);
+        glVertex3f((0.05 )* worldScale,0,(-0.15)* worldScale);
+        glVertex3f((0.02 )* worldScale,0,(-0.1)* worldScale);
+        glVertex3f((-0.02 )* worldScale,0,(-0.1)* worldScale);
+        
+        glVertex3f((-0.02 )* worldScale,0,(-0.25)* worldScale);
+        glVertex3f((0.02 )* worldScale,0,(-0.25)* worldScale);
+        glVertex3f((0.05 )* worldScale,0,(-0.15)* worldScale);
+        glVertex3f((-0.05 )* worldScale,0,(-0.15)* worldScale);
+        
+    //glPolyFmt(POLY_ALPHA(31) | POLY_CULL_NONE | POLY_FORMAT_LIGHT0);
+    glEnd();
+
+    glRotatef(this->RotX, 1, 0, 0);
+    glRotatef(-this->RotY, 0, 1, 0);
+
+    glTranslatef((-(lookPoint.x) * worldScale), (-(lookPoint.y) * worldScale), (-(lookPoint.z) * worldScale));
+
+    glPolyFmt(POLY_ALPHA(31) | POLY_CULL_NONE | POLY_FORMAT_LIGHT0 | POLY_FOG | POLY_ID(2));
     
 }
 void Player::Draw2DTop(){

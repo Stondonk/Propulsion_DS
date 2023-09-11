@@ -188,7 +188,7 @@ int main() {
 	glLoadIdentity();
 	gluPerspective(70, 256.0 / 192.0, 0.01, 100);
 	
-	glLight(0, RGB15(31,31,31) , 0,	floattov10(-1.0), 0);
+	glLight(0, RGB15(31,31,31) , xpos,	ypos, zpos);
 	
 	//need to set up some material properties since DS does not have them set by default
 	glMaterialf(GL_AMBIENT, RGB15(16,16,16));
@@ -200,7 +200,8 @@ int main() {
 	glMaterialShinyness();
 	
 	//ds specific, several attributes can be set here
-	glPolyFmt(POLY_ALPHA(31) | POLY_CULL_NONE | POLY_FORMAT_LIGHT0);
+	//glLight(0, RGB15(31,31,31) , floattov10(xpos),	floattov10(ypos), floattov10(zpos));
+	glPolyFmt(POLY_ALPHA(31) | POLY_CULL_NONE | POLY_FORMAT_LIGHT0 | POLY_FOG);
 	
 	// Set the current matrix to be the model matrix
 	glMatrixMode(GL_MODELVIEW);
@@ -283,6 +284,9 @@ int main() {
 			GameMasterUpdate();
 		//Drawing
 		//Push our original Matrix onto the stack (save state)
+		//glLight(0, RGB15(31,31,31) , floattov10(xpos * worldScale),	floattov10(ypos* worldScale), floattov10(zpos* worldScale));
+		glPolyFmt(POLY_ALPHA(31) | POLY_CULL_NONE | POLY_FORMAT_LIGHT0 | POLY_FOG);
+		
 		glPushMatrix();
 		DrawGLScene();
 		// Pop our Matrix from the stack (restore state)
@@ -374,7 +378,6 @@ int DrawGLScene()
 
 	glTranslatef(xtrans, ytrans, ztrans);
 	//glBindTexture(GL_TEXTURE_2D, texture[0]);
-
 	numQuads = Rsector.numQuads;
 	// Process Each Triangle
 	glBegin(GL_QUAD);
@@ -416,10 +419,12 @@ int DrawGLScene()
 			//v_m = sector1.triangle[loop_m].vertex[3].v;
 			//glTexCoord2t16(u_m,v_m); 
 			glVertex3f(x_m,y_m,z_m);
+			//UpNormals
+			glNormal3f(0,1,0);
 	}
 	//glTranslatef(-xtrans, -ytrans, -ztrans);
 	glEnd();
-	glPolyFmt(POLY_ALPHA((31)) | POLY_CULL_NONE | POLY_ID(2));
+	//glPolyFmt(POLY_ALPHA((31)) | POLY_CULL_NONE | POLY_ID(2));
 	return TRUE;												// Everything Went OK
 
 }

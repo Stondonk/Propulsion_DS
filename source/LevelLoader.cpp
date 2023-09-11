@@ -40,6 +40,16 @@ void LoadLevel(std::string file){
 	//gameObjects.clear();
 	RemoveObjects.clear();
 	RemoveObjects = gameObjects;
+
+	//Fog Reset
+	glEnable(GL_FOG);
+	glFogShift(2);
+	glFogColor(0,0,0,10);
+	for(int i=0;i<32;i++)
+		glFogDensity(i,i*2);
+	glFogDensity(31,127);
+	glFogOffset(0x6000);
+	
 	GameMasterReset();
 
     if (nitroFSInit(NULL)) {
@@ -128,6 +138,10 @@ void LoadLevel(std::string file){
 						case string2int("BGC") : {
 							glClearColor(stoi(SequenceString[1]),stoi(SequenceString[2]),stoi(SequenceString[3]),31);
 						}break;
+						case string2int("NoFog") : {
+							//FOG RESET
+							glDisable(GL_FOG);
+						}break;
 					};
 							
 				}
@@ -158,6 +172,7 @@ void LoadLevel(std::string file){
 		Rsector.Quad = 0;
 		Rsector.numQuads = 0;
 	}
+
 }
 
 void GenerateLevel(){
@@ -169,7 +184,7 @@ void GenerateLevel(){
 	int offSetHex = 0;
 	if(sizeof(Hexs) < 5)
 		offSetHex = 1;
-	int NumOfQuads = (int)sizeof(Hexs) - offSetHex;
+	int NumOfQuads = (int)(sizeof(Hexs) * 2) - offSetHex;
 	Rsector.Quad = (QUAD*)malloc((NumOfQuads)*sizeof(QUAD));
 	Rsector.numQuads = NumOfQuads;
 

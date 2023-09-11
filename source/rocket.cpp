@@ -79,11 +79,28 @@ void Rocket::Draw(){
     //glRotatef(360.0f - this->RotY, 0, 1, 0);
 
     glBegin(GL_QUAD);
+        /*
         glColor3f(0.5f,0.1f,0.1f);
         glVertex3f((-0.02 )* worldScale,(0.02)* worldScale,0);
         glVertex3f((0.02 )* worldScale,(0.02)* worldScale,0);
         glVertex3f((0.02 )* worldScale,(-0.02)* worldScale,0);
         glVertex3f((-0.02 )* worldScale,(-0.02)* worldScale,0);
+        */
+        glColor3f(0.259f, 0.871f, 0.388f);
+        glVertex3f((-0.05 )* worldScale,0,(-0.15)* worldScale);
+        glVertex3f((0.05 )* worldScale,0,(-0.15)* worldScale);
+        glVertex3f((0.02 )* worldScale,0,(-0.1)* worldScale);
+        glVertex3f((-0.02 )* worldScale,0,(-0.1)* worldScale);
+        
+        glVertex3f((-0.02 )* worldScale,0,(-0.25)* worldScale);
+        glVertex3f((0.02 )* worldScale,0,(-0.25)* worldScale);
+        glVertex3f((0.05 )* worldScale,0,(-0.15)* worldScale);
+        glVertex3f((-0.05 )* worldScale,0,(-0.15)* worldScale);
+
+        glVertex3f((-0.02 )* worldScale,0,(-0.1)* worldScale);
+        glVertex3f((0.02 )* worldScale,0,(-0.1)* worldScale);
+        glVertex3f((0.015 )* worldScale,0,(-0)* worldScale);
+        glVertex3f((-0.015 )* worldScale,0,(-0)* worldScale);
     //glPolyFmt(POLY_ALPHA(31) | POLY_CULL_NONE | POLY_FORMAT_LIGHT0);
     glEnd();
 

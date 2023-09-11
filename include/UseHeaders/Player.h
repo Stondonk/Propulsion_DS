@@ -27,6 +27,13 @@ private:
 
     int CurrentTile = 0;
     int ProjectileType = 0;
+
+    float RocketMoveTweakX = 0;
+    float RocketMoveTweakY = 0;
+
+    float DrawBackShot = 0;
+
+    float TimebtwShot = 0;
 public:
     float RotY = 0;
     float RotX = 0;

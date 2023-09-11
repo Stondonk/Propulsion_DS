@@ -21,7 +21,7 @@ class GameObject
         float TimeBtwHit = 0;
         float TimeForHit = 0.5;
         float Angle = 0;
-        float plx = 0, ply = 1, plz = 0, pvx = 0, pvy = 0, pvz = 0, pWidth = 16, pHeight = 16, pLength = 16, fx = 1, fy = 0, fz = 0, rx, ry, rz;
+        float plx = 0, ply = 1, plz = 0, pvx = 0, pvy = 0, pvz = 0, pWidth = 16, pHeight = 16, pLength = 16, fx = 1, fy = 0, fz = 0,ux,uy,uz, rx, ry, rz;
         ~GameObject(void) = default;
 };
 
