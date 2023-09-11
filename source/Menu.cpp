@@ -78,6 +78,15 @@ void MainMenu::Draw2DTop(){
                 DrawSprite16(15,32+this->LogoSlide,88);
                 DrawSprite16(16,48+this->LogoSlide,88);
                 DrawSprite16(17,64+this->LogoSlide,88);
+
+                this->BgColor1[0] = lerp(this->BgColor1[0], 0.48,0.05);
+                this->BgColor1[1] = lerp(this->BgColor1[1], 0.65,0.05);
+                this->BgColor1[2] = lerp(this->BgColor1[2], 0.95,0.05);
+                glClearColor((int)(this->BgColor1[0] * 31),(int)(this->BgColor1[1] * 31),(int)(this->BgColor1[2] * 31),31);
+                BgSubPalette[0] = RGB15((int)(this->BgColor1[0] * 31),(int)(this->BgColor1[1] * 31),(int)(this->BgColor1[2] * 31));
+                BgSubPalette[1] = RGB15((int)(this->BgColor1[0] * 31),(int)(this->BgColor1[1] * 31),(int)(this->BgColor1[2] * 31));
+                BgSubPalette[2] = RGB15((int)(this->BgColor1[0] * 31),(int)(this->BgColor1[1] * 31),(int)(this->BgColor1[2] * 31));
+                dmaCopy(BgSubPalette, BG_PALETTE_SUB, sizeof(BgSubPalette));
             }
             //DS logo
             //DrawSprite16(18,80+Xset,((1 - this->DsSlideS) * 88));

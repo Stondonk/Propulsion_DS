@@ -49,6 +49,12 @@ struct Color
 {
 	int r,g,b,a;
 };
+struct Colorf
+{
+	float r,g,b,a;
+};
+
+extern u16 BgSubPalette[3];
 
 extern Color HexColors[];
 

@@ -3,6 +3,7 @@
 #include "gameObject.h"
 #include "VectorFunctions.h"
 #include "Vector"
+#include "globals.h"
 #include <list>
 #include<iostream>
 
@@ -38,6 +39,9 @@ private:
     //LOGO stuff
     float DsSlideDA = 720, DsSlideDDist = 128, DsSlideSA = 720, DsSlideSDist = 128;
     float LogoSlide = -80;
+
+    //BG
+    float BgColor1[3] = {0,0,0};
 public:
     float RotY = 0;
     float RotX = 0;

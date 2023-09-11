@@ -2,6 +2,13 @@
 #include<iostream>
 #include "UseHeaders/globals.h"
 
+u16 BgSubPalette[3] = 
+{
+	RGB15(0,0,0),
+	RGB15(31,31,0),
+	RGB15(0,31,0)
+};
+
 float clip(float n, float lower, float upper) {
   return std::max(lower, std::min(n, upper));
 }
