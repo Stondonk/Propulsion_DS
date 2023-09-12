@@ -57,9 +57,10 @@ void Player::Update(){
             this->pvy = 0;
 
         //Movement
-        //this->fz = cos(M_PI / 180.0 *(this->RotY));
-        //this->fx = sin(M_PI / 180.0 *(this->RotY));
-
+        this->mfz = -cos(M_PI / 180.0 *(this->RotY));
+        this->mfx = -sin(M_PI / 180.0 *(this->RotY));
+        this->mrz = cos(M_PI / 180.0 *(this->RotY + 90));
+        this->mrx = sin(M_PI / 180.0 *(this->RotY + 90));
         //Movement
 
         //Forward
@@ -123,14 +124,16 @@ void Player::Update(){
 
         //if(Controls.Slt)
         //this->Death();
+
+        //PlayerMovement
             float TargetSpeed = 0.075;
 
             float TempZ = this->pvz;
-            TempZ -= ((this->fz * this->Speed * y) + (this->rz * this->Speed * -x)) * 0.013;
+            TempZ -= ((this->mfz * this->Speed * y) + (this->mrz * this->Speed * -x)) * 0.013;
             TempZ *= pow(1.0 - (0.65), TargetSpeed);
 
             float TempX = this->pvx;
-            TempX -= ((this->fx * this->Speed * y) + (this->rx * this->Speed * -x)) * 0.013;
+            TempX -= ((this->mfx * this->Speed * y) + (this->mrx * this->Speed * -x)) * 0.013;
             TempX *= pow(1.0 - (0.65), TargetSpeed);
 
         this->pvx = TempX;

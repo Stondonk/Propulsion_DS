@@ -34,6 +34,8 @@ private:
     float DrawBackShot = 0;
 
     float TimebtwShot = 0;
+
+    float mfx,mfy,mfz,mrx,mry,mrz;
 public:
     float RotY = 0;
     float RotX = 0;

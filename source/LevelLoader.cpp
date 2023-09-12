@@ -148,10 +148,11 @@ void LoadLevel(std::string file){
 				else if(CurrentLine[0] == 'H'){
 					
 					HexTile* TempHex = new HexTile();
-					TempHex->scale = 1;
 					TempHex->x = stof(SequenceString[0]);
 					TempHex->y = stof(SequenceString[1]);
 					TempHex->z = stof(SequenceString[2]);
+					TempHex->scale = stof(SequenceString[3]);
+					TempHex->Type = stoi(SequenceString[4]);
 					Hexs.push_back(TempHex);
 				}
 				//delete CurrentLine.c_str();
