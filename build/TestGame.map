@@ -6011,7 +6011,7 @@ Linker script and memory map
                 0x02000b40                LoadLevelTransition(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, float)
                 0x02000b6c                GenerateLevel()
                 0x02000d48                LoadLevel(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)
- .text          0x020016e4      0xbc4 Menu.o
+ .text          0x020016e4      0xbe4 Menu.o
                 0x020016e4                MainMenu::Start()
                 0x02001704                MainMenu::Draw2DTop()
                 0x02001704                MainMenu::Animation()
@@ -6022,64 +6022,64 @@ Linker script and memory map
                 0x02001d2c                MainMenu::Death()
                 0x02001d4c                MainMenu::Update()
                 0x02001e2c                MainMenu::ColCheck()
-                0x02002004                MainMenu::Draw()
- .text          0x020022a8      0xf04 Player.o
-                0x020022a8                Player::Start()
-                0x020022c8                Player::Attack()
-                0x020022c8                Player::Animation()
-                0x020022c8                Player::Draw2DBottom()
-                0x020022c8                Player::Draw2DTop()
-                0x020022cc                Player::ColCheck()
-                0x02002520                Player::Draw()
-                0x02002978                Player::Damage(float, float, float)
-                0x02002aa0                Player::Death()
-                0x02002b84                Player::Update()
- .text          0x020031ac      0x94c VectorFunctions.o
-                0x020031ac                lineLine(float, float, float, float, float, float, float, float)
-                0x020032ac                VeclineLine(float, float, float, float, float, float, float, float)
-                0x020033cc                linePoint(float, float, float, float, float, float)
-                0x0200353c                PointBox(float, float, float, float, float, float)
-                0x02003584                BoxBox(float, float, float, float, float, float, float, float)
-                0x020035d0                distance(float, float, float, float)
-                0x0200362c                distance3(float, float, float, float, float, float)
-                0x020036b8                Magnitude(float, float)
-                0x020036dc                VectLerpAngle(float, float, float)
-                0x020037a0                Normilize2D(float, float)
-                0x020037fc                repeat(float, float)
-                0x02003824                lerpAngle(float, float, float)
-                0x0200388c                PointOnLine(float, float, float, float, float, float)
-                0x0200398c                polyPoint(Vector2*, float, float)
-                0x02003a50                polyLine(Vector2*, float, float, float, float)
-                0x02003aac                polyPoly(Vector2*, Vector2*)
- .text          0x02003af8      0x6d8 gameMaster.o
-                0x02003af8                GameMasterDraw()
-                0x02004134                GameMasterUpdate()
-                0x020041c4                GameMasterReset()
- .text          0x020041d0      0x1a0 globals.o
-                0x020041d0                clip(float, float, float)
-                0x020041f8                lerp(float, float, float)
-                0x02004224                SetCamera(float, float, float, float, float)
-                0x02004240                DrawSprite16(int, int, int, bool, bool)
-                0x02004298                DrawText(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int, int, int)
-                0x020042f4                SetSubBgColorf(Colorf)
- .text          0x02004370      0x538 main.o
-                0x020043ac                KeyUp(int)
-                0x0200442c                KeyDown(int)
-                0x020044ac                InitTextAssets()
-                0x02004518                DrawGLScene()
-                0x02004810                DrawFileTextTemp()
- .text          0x020048a8      0x66c rocket.o
-                0x020048a8                Rocket::Update()
-                0x0200495c                Rocket::Draw2DBottom()
-                0x0200495c                Rocket::Animation()
-                0x0200495c                Rocket::Attack()
-                0x0200495c                Rocket::Draw2DTop()
-                0x02004960                Rocket::Damage(float, float, float)
-                0x02004964                Rocket::Start()
-                0x02004a24                Rocket::ColCheck()
-                0x02004bb4                Rocket::Draw()
-                0x02004e88                Rocket::Death()
- *fill*         0x02004f14       0x2c ff
+                0x02002024                MainMenu::Draw()
+ .text          0x020022c8      0xf04 Player.o
+                0x020022c8                Player::Start()
+                0x020022e8                Player::Attack()
+                0x020022e8                Player::Animation()
+                0x020022e8                Player::Draw2DBottom()
+                0x020022e8                Player::Draw2DTop()
+                0x020022ec                Player::ColCheck()
+                0x02002540                Player::Draw()
+                0x02002998                Player::Damage(float, float, float)
+                0x02002ac0                Player::Death()
+                0x02002ba4                Player::Update()
+ .text          0x020031cc      0x94c VectorFunctions.o
+                0x020031cc                lineLine(float, float, float, float, float, float, float, float)
+                0x020032cc                VeclineLine(float, float, float, float, float, float, float, float)
+                0x020033ec                linePoint(float, float, float, float, float, float)
+                0x0200355c                PointBox(float, float, float, float, float, float)
+                0x020035a4                BoxBox(float, float, float, float, float, float, float, float)
+                0x020035f0                distance(float, float, float, float)
+                0x0200364c                distance3(float, float, float, float, float, float)
+                0x020036d8                Magnitude(float, float)
+                0x020036fc                VectLerpAngle(float, float, float)
+                0x020037c0                Normilize2D(float, float)
+                0x0200381c                repeat(float, float)
+                0x02003844                lerpAngle(float, float, float)
+                0x020038ac                PointOnLine(float, float, float, float, float, float)
+                0x020039ac                polyPoint(Vector2*, float, float)
+                0x02003a70                polyLine(Vector2*, float, float, float, float)
+                0x02003acc                polyPoly(Vector2*, Vector2*)
+ .text          0x02003b18      0x6d8 gameMaster.o
+                0x02003b18                GameMasterDraw()
+                0x02004154                GameMasterUpdate()
+                0x020041e4                GameMasterReset()
+ .text          0x020041f0      0x1a0 globals.o
+                0x020041f0                clip(float, float, float)
+                0x02004218                lerp(float, float, float)
+                0x02004244                SetCamera(float, float, float, float, float)
+                0x02004260                DrawSprite16(int, int, int, bool, bool)
+                0x020042b8                DrawText(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int, int, int)
+                0x02004314                SetSubBgColorf(Colorf)
+ .text          0x02004390      0x538 main.o
+                0x020043cc                KeyUp(int)
+                0x0200444c                KeyDown(int)
+                0x020044cc                InitTextAssets()
+                0x02004538                DrawGLScene()
+                0x02004830                DrawFileTextTemp()
+ .text          0x020048c8      0x66c rocket.o
+                0x020048c8                Rocket::Update()
+                0x0200497c                Rocket::Draw2DBottom()
+                0x0200497c                Rocket::Animation()
+                0x0200497c                Rocket::Attack()
+                0x0200497c                Rocket::Draw2DTop()
+                0x02004980                Rocket::Damage(float, float, float)
+                0x02004984                Rocket::Start()
+                0x02004a44                Rocket::ColCheck()
+                0x02004bd4                Rocket::Draw()
+                0x02004ea8                Rocket::Death()
+ *fill*         0x02004f34        0xc ff
  .text          0x02004f40     0x4000 C:/devkitPro/libnds/lib\libnds9.a(dldi_stub.o)
                 0x02004f40                _io_dldi_stub
  .text          0x02008f40      0x11c C:/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/13.2.0/thumb\libgcc.a(_udivsi3.o)
@@ -9888,54 +9888,54 @@ ARM.exidx       0x0202e7f4      0x2c0
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000    0x8e949
+.debug_info     0x00000000    0x8e979
  *(.debug_info)
  .debug_info    0x00000000    0x1b777 LevelLoader.o
- .debug_info    0x0001b777     0xaf42 Menu.o
- .debug_info    0x000266b9     0xdd31 Player.o
- .debug_info    0x000343ea     0x3c71 VectorFunctions.o
- .debug_info    0x0003805b     0xb1fc gameMaster.o
- .debug_info    0x00043257     0xbf8f globals.o
- .debug_info    0x0004f1e6     0xe09e main.o
- .debug_info    0x0005d284     0xb459 rocket.o
- .debug_info    0x000686dd     0x2897 C:/devkitPro/libnds/lib\libfilesystem.a(nitrofs.o)
- .debug_info    0x0006af74     0x204d C:/devkitPro/libnds/lib\libfat.a(libfat.o)
- .debug_info    0x0006cfc1      0x260 C:/devkitPro/libnds/lib\libfat.a(disc.o)
- .debug_info    0x0006d221     0x3783 C:/devkitPro/libnds/lib\libfat.a(fatfile.o)
- .debug_info    0x000709a4     0x12da C:/devkitPro/libnds/lib\libfat.a(cache.o)
- .debug_info    0x00071c7e     0x2833 C:/devkitPro/libnds/lib\libfat.a(fatdir.o)
- .debug_info    0x000744b1     0x2fcb C:/devkitPro/libnds/lib\libfat.a(directory.o)
- .debug_info    0x0007747c     0x2c74 C:/devkitPro/libnds/lib\libfat.a(partition.o)
- .debug_info    0x0007a0f0      0x11d C:/devkitPro/libnds/lib\libfat.a(lock.o)
- .debug_info    0x0007a20d      0x289 C:/devkitPro/libnds/lib\libfat.a(filetime.o)
- .debug_info    0x0007a496      0xf1c C:/devkitPro/libnds/lib\libfat.a(file_allocation_table.o)
- .debug_info    0x0007b3b2      0xa9c C:/devkitPro/libnds/lib\libnds9.a(background.o)
- .debug_info    0x0007be4e      0x793 C:/devkitPro/libnds/lib\libnds9.a(trig.o)
- .debug_info    0x0007c5e1      0x790 C:/devkitPro/libnds/lib\libnds9.a(video.o)
- .debug_info    0x0007cd71      0x329 C:/devkitPro/libnds/lib\libnds9.a(touch.o)
- .debug_info    0x0007d09a     0x1cb1 C:/devkitPro/libnds/lib\libnds9.a(sprite_alloc.o)
- .debug_info    0x0007ed4b     0x52ea C:/devkitPro/libnds/lib\libnds9.a(gl2d.o)
- .debug_info    0x00084035     0x3895 C:/devkitPro/libnds/lib\libnds9.a(videoGL.o)
- .debug_info    0x000878ca      0xd00 C:/devkitPro/libnds/lib\libnds9.a(sprite.o)
- .debug_info    0x000885ca      0x43b C:/devkitPro/libnds/lib\libnds9.a(keys.o)
- .debug_info    0x00088a05      0xb9a C:/devkitPro/libnds/lib\libnds9.a(dldi.o)
- .debug_info    0x0008959f     0x113e C:/devkitPro/libnds/lib\libnds9.a(initSystem.o)
- .debug_info    0x0008a6dd       0x5a C:/devkitPro/libnds/lib\libnds9.a(securearea.o)
- .debug_info    0x0008a737      0x68d C:/devkitPro/libnds/lib\libnds9.a(interrupts.o)
- .debug_info    0x0008adc4      0x367 C:/devkitPro/libnds/lib\libnds9.a(libnds_exit.arm.o)
- .debug_info    0x0008b12b      0x687 C:/devkitPro/libnds/lib\libnds9.a(card.o)
- .debug_info    0x0008b7b2     0x183f C:/devkitPro/libnds/lib\libnds9.a(fifosystem.o)
- .debug_info    0x0008cff1       0x23 C:/devkitPro/libnds/lib\libnds9.a(dcache.o)
- .debug_info    0x0008d014       0x26 C:/devkitPro/libnds/lib\libnds9.a(dldi_stub.o)
- .debug_info    0x0008d03a       0x23 C:/devkitPro/libnds/lib\libnds9.a(mpu_setup.o)
- .debug_info    0x0008d05d       0x23 C:/devkitPro/libnds/lib\libnds9.a(IntrWait.o)
- .debug_info    0x0008d080       0x24 C:/devkitPro/libnds/lib\libnds9.a(cpu_clock.o)
- .debug_info    0x0008d0a4       0x25 C:/devkitPro/libnds/lib\libnds9.a(interruptDispatcher.o)
- .debug_info    0x0008d0c9       0x23 C:/devkitPro/libnds/lib\libnds9.a(biosCalls.o)
- .debug_info    0x0008d0ec       0x24 C:/devkitPro/libnds/lib\libnds9.a(swiSoftReset.o)
- .debug_info    0x0008d110      0x2ae C:/devkitPro/libnds/lib\libnds9.a(dynamicArray.o)
- .debug_info    0x0008d3be      0xa76 C:/devkitPro/libnds/lib\libnds9.a(system.o)
- .debug_info    0x0008de34      0xb15 C:/devkitPro/libnds/lib\libnds9.a(sd.twl.o)
+ .debug_info    0x0001b777     0xaf72 Menu.o
+ .debug_info    0x000266e9     0xdd31 Player.o
+ .debug_info    0x0003441a     0x3c71 VectorFunctions.o
+ .debug_info    0x0003808b     0xb1fc gameMaster.o
+ .debug_info    0x00043287     0xbf8f globals.o
+ .debug_info    0x0004f216     0xe09e main.o
+ .debug_info    0x0005d2b4     0xb459 rocket.o
+ .debug_info    0x0006870d     0x2897 C:/devkitPro/libnds/lib\libfilesystem.a(nitrofs.o)
+ .debug_info    0x0006afa4     0x204d C:/devkitPro/libnds/lib\libfat.a(libfat.o)
+ .debug_info    0x0006cff1      0x260 C:/devkitPro/libnds/lib\libfat.a(disc.o)
+ .debug_info    0x0006d251     0x3783 C:/devkitPro/libnds/lib\libfat.a(fatfile.o)
+ .debug_info    0x000709d4     0x12da C:/devkitPro/libnds/lib\libfat.a(cache.o)
+ .debug_info    0x00071cae     0x2833 C:/devkitPro/libnds/lib\libfat.a(fatdir.o)
+ .debug_info    0x000744e1     0x2fcb C:/devkitPro/libnds/lib\libfat.a(directory.o)
+ .debug_info    0x000774ac     0x2c74 C:/devkitPro/libnds/lib\libfat.a(partition.o)
+ .debug_info    0x0007a120      0x11d C:/devkitPro/libnds/lib\libfat.a(lock.o)
+ .debug_info    0x0007a23d      0x289 C:/devkitPro/libnds/lib\libfat.a(filetime.o)
+ .debug_info    0x0007a4c6      0xf1c C:/devkitPro/libnds/lib\libfat.a(file_allocation_table.o)
+ .debug_info    0x0007b3e2      0xa9c C:/devkitPro/libnds/lib\libnds9.a(background.o)
+ .debug_info    0x0007be7e      0x793 C:/devkitPro/libnds/lib\libnds9.a(trig.o)
+ .debug_info    0x0007c611      0x790 C:/devkitPro/libnds/lib\libnds9.a(video.o)
+ .debug_info    0x0007cda1      0x329 C:/devkitPro/libnds/lib\libnds9.a(touch.o)
+ .debug_info    0x0007d0ca     0x1cb1 C:/devkitPro/libnds/lib\libnds9.a(sprite_alloc.o)
+ .debug_info    0x0007ed7b     0x52ea C:/devkitPro/libnds/lib\libnds9.a(gl2d.o)
+ .debug_info    0x00084065     0x3895 C:/devkitPro/libnds/lib\libnds9.a(videoGL.o)
+ .debug_info    0x000878fa      0xd00 C:/devkitPro/libnds/lib\libnds9.a(sprite.o)
+ .debug_info    0x000885fa      0x43b C:/devkitPro/libnds/lib\libnds9.a(keys.o)
+ .debug_info    0x00088a35      0xb9a C:/devkitPro/libnds/lib\libnds9.a(dldi.o)
+ .debug_info    0x000895cf     0x113e C:/devkitPro/libnds/lib\libnds9.a(initSystem.o)
+ .debug_info    0x0008a70d       0x5a C:/devkitPro/libnds/lib\libnds9.a(securearea.o)
+ .debug_info    0x0008a767      0x68d C:/devkitPro/libnds/lib\libnds9.a(interrupts.o)
+ .debug_info    0x0008adf4      0x367 C:/devkitPro/libnds/lib\libnds9.a(libnds_exit.arm.o)
+ .debug_info    0x0008b15b      0x687 C:/devkitPro/libnds/lib\libnds9.a(card.o)
+ .debug_info    0x0008b7e2     0x183f C:/devkitPro/libnds/lib\libnds9.a(fifosystem.o)
+ .debug_info    0x0008d021       0x23 C:/devkitPro/libnds/lib\libnds9.a(dcache.o)
+ .debug_info    0x0008d044       0x26 C:/devkitPro/libnds/lib\libnds9.a(dldi_stub.o)
+ .debug_info    0x0008d06a       0x23 C:/devkitPro/libnds/lib\libnds9.a(mpu_setup.o)
+ .debug_info    0x0008d08d       0x23 C:/devkitPro/libnds/lib\libnds9.a(IntrWait.o)
+ .debug_info    0x0008d0b0       0x24 C:/devkitPro/libnds/lib\libnds9.a(cpu_clock.o)
+ .debug_info    0x0008d0d4       0x25 C:/devkitPro/libnds/lib\libnds9.a(interruptDispatcher.o)
+ .debug_info    0x0008d0f9       0x23 C:/devkitPro/libnds/lib\libnds9.a(biosCalls.o)
+ .debug_info    0x0008d11c       0x24 C:/devkitPro/libnds/lib\libnds9.a(swiSoftReset.o)
+ .debug_info    0x0008d140      0x2ae C:/devkitPro/libnds/lib\libnds9.a(dynamicArray.o)
+ .debug_info    0x0008d3ee      0xa76 C:/devkitPro/libnds/lib\libnds9.a(system.o)
+ .debug_info    0x0008de64      0xb15 C:/devkitPro/libnds/lib\libnds9.a(sd.twl.o)
 
 .debug_abbrev   0x00000000     0xbf0d
  *(.debug_abbrev)
@@ -9986,54 +9986,54 @@ ARM.exidx       0x0202e7f4      0x2c0
  .debug_abbrev  0x0000b8e3      0x31f C:/devkitPro/libnds/lib\libnds9.a(system.o)
  .debug_abbrev  0x0000bc02      0x30b C:/devkitPro/libnds/lib\libnds9.a(sd.twl.o)
 
-.debug_line     0x00000000    0x243f9
+.debug_line     0x00000000    0x24425
  *(.debug_line)
  .debug_line    0x00000000     0x364b LevelLoader.o
- .debug_line    0x0000364b     0x17aa Menu.o
- .debug_line    0x00004df5     0x1c7d Player.o
- .debug_line    0x00006a72      0xf37 VectorFunctions.o
- .debug_line    0x000079a9     0x1b72 gameMaster.o
- .debug_line    0x0000951b      0xd80 globals.o
- .debug_line    0x0000a29b     0x229f main.o
- .debug_line    0x0000c53a     0x1119 rocket.o
- .debug_line    0x0000d653     0x101a C:/devkitPro/libnds/lib\libfilesystem.a(nitrofs.o)
- .debug_line    0x0000e66d      0x784 C:/devkitPro/libnds/lib\libfat.a(libfat.o)
- .debug_line    0x0000edf1      0x141 C:/devkitPro/libnds/lib\libfat.a(disc.o)
- .debug_line    0x0000ef32     0x2050 C:/devkitPro/libnds/lib\libfat.a(fatfile.o)
- .debug_line    0x00010f82      0xb85 C:/devkitPro/libnds/lib\libfat.a(cache.o)
- .debug_line    0x00011b07     0x1043 C:/devkitPro/libnds/lib\libfat.a(fatdir.o)
- .debug_line    0x00012b4a     0x2028 C:/devkitPro/libnds/lib\libfat.a(directory.o)
- .debug_line    0x00014b72      0xec2 C:/devkitPro/libnds/lib\libfat.a(partition.o)
- .debug_line    0x00015a34       0x87 C:/devkitPro/libnds/lib\libfat.a(lock.o)
- .debug_line    0x00015abb      0x276 C:/devkitPro/libnds/lib\libfat.a(filetime.o)
- .debug_line    0x00015d31      0x895 C:/devkitPro/libnds/lib\libfat.a(file_allocation_table.o)
- .debug_line    0x000165c6      0x725 C:/devkitPro/libnds/lib\libnds9.a(background.o)
- .debug_line    0x00016ceb      0x837 C:/devkitPro/libnds/lib\libnds9.a(trig.o)
- .debug_line    0x00017522      0x4b5 C:/devkitPro/libnds/lib\libnds9.a(video.o)
- .debug_line    0x000179d7      0x2d4 C:/devkitPro/libnds/lib\libnds9.a(touch.o)
- .debug_line    0x00017cab     0x1736 C:/devkitPro/libnds/lib\libnds9.a(sprite_alloc.o)
- .debug_line    0x000193e1     0x38f7 C:/devkitPro/libnds/lib\libnds9.a(gl2d.o)
- .debug_line    0x0001ccd8     0x2b2f C:/devkitPro/libnds/lib\libnds9.a(videoGL.o)
- .debug_line    0x0001f807      0x74e C:/devkitPro/libnds/lib\libnds9.a(sprite.o)
- .debug_line    0x0001ff55      0x399 C:/devkitPro/libnds/lib\libnds9.a(keys.o)
- .debug_line    0x000202ee      0x72f C:/devkitPro/libnds/lib\libnds9.a(dldi.o)
- .debug_line    0x00020a1d      0x597 C:/devkitPro/libnds/lib\libnds9.a(initSystem.o)
- .debug_line    0x00020fb4       0x8f C:/devkitPro/libnds/lib\libnds9.a(securearea.o)
- .debug_line    0x00021043      0x54c C:/devkitPro/libnds/lib\libnds9.a(interrupts.o)
- .debug_line    0x0002158f      0x23b C:/devkitPro/libnds/lib\libnds9.a(libnds_exit.arm.o)
- .debug_line    0x000217ca      0x645 C:/devkitPro/libnds/lib\libnds9.a(card.o)
- .debug_line    0x00021e0f     0x14f5 C:/devkitPro/libnds/lib\libnds9.a(fifosystem.o)
- .debug_line    0x00023304       0x96 C:/devkitPro/libnds/lib\libnds9.a(dcache.o)
- .debug_line    0x0002339a       0x4c C:/devkitPro/libnds/lib\libnds9.a(dldi_stub.o)
- .debug_line    0x000233e6       0xe8 C:/devkitPro/libnds/lib\libnds9.a(mpu_setup.o)
- .debug_line    0x000234ce       0x74 C:/devkitPro/libnds/lib\libnds9.a(IntrWait.o)
- .debug_line    0x00023542       0x5c C:/devkitPro/libnds/lib\libnds9.a(cpu_clock.o)
- .debug_line    0x0002359e       0x80 C:/devkitPro/libnds/lib\libnds9.a(interruptDispatcher.o)
- .debug_line    0x0002361e      0x1b0 C:/devkitPro/libnds/lib\libnds9.a(biosCalls.o)
- .debug_line    0x000237ce       0x57 C:/devkitPro/libnds/lib\libnds9.a(swiSoftReset.o)
- .debug_line    0x00023825      0x2db C:/devkitPro/libnds/lib\libnds9.a(dynamicArray.o)
- .debug_line    0x00023b00      0x4dc C:/devkitPro/libnds/lib\libnds9.a(system.o)
- .debug_line    0x00023fdc      0x41d C:/devkitPro/libnds/lib\libnds9.a(sd.twl.o)
+ .debug_line    0x0000364b     0x17d6 Menu.o
+ .debug_line    0x00004e21     0x1c7d Player.o
+ .debug_line    0x00006a9e      0xf37 VectorFunctions.o
+ .debug_line    0x000079d5     0x1b72 gameMaster.o
+ .debug_line    0x00009547      0xd80 globals.o
+ .debug_line    0x0000a2c7     0x229f main.o
+ .debug_line    0x0000c566     0x1119 rocket.o
+ .debug_line    0x0000d67f     0x101a C:/devkitPro/libnds/lib\libfilesystem.a(nitrofs.o)
+ .debug_line    0x0000e699      0x784 C:/devkitPro/libnds/lib\libfat.a(libfat.o)
+ .debug_line    0x0000ee1d      0x141 C:/devkitPro/libnds/lib\libfat.a(disc.o)
+ .debug_line    0x0000ef5e     0x2050 C:/devkitPro/libnds/lib\libfat.a(fatfile.o)
+ .debug_line    0x00010fae      0xb85 C:/devkitPro/libnds/lib\libfat.a(cache.o)
+ .debug_line    0x00011b33     0x1043 C:/devkitPro/libnds/lib\libfat.a(fatdir.o)
+ .debug_line    0x00012b76     0x2028 C:/devkitPro/libnds/lib\libfat.a(directory.o)
+ .debug_line    0x00014b9e      0xec2 C:/devkitPro/libnds/lib\libfat.a(partition.o)
+ .debug_line    0x00015a60       0x87 C:/devkitPro/libnds/lib\libfat.a(lock.o)
+ .debug_line    0x00015ae7      0x276 C:/devkitPro/libnds/lib\libfat.a(filetime.o)
+ .debug_line    0x00015d5d      0x895 C:/devkitPro/libnds/lib\libfat.a(file_allocation_table.o)
+ .debug_line    0x000165f2      0x725 C:/devkitPro/libnds/lib\libnds9.a(background.o)
+ .debug_line    0x00016d17      0x837 C:/devkitPro/libnds/lib\libnds9.a(trig.o)
+ .debug_line    0x0001754e      0x4b5 C:/devkitPro/libnds/lib\libnds9.a(video.o)
+ .debug_line    0x00017a03      0x2d4 C:/devkitPro/libnds/lib\libnds9.a(touch.o)
+ .debug_line    0x00017cd7     0x1736 C:/devkitPro/libnds/lib\libnds9.a(sprite_alloc.o)
+ .debug_line    0x0001940d     0x38f7 C:/devkitPro/libnds/lib\libnds9.a(gl2d.o)
+ .debug_line    0x0001cd04     0x2b2f C:/devkitPro/libnds/lib\libnds9.a(videoGL.o)
+ .debug_line    0x0001f833      0x74e C:/devkitPro/libnds/lib\libnds9.a(sprite.o)
+ .debug_line    0x0001ff81      0x399 C:/devkitPro/libnds/lib\libnds9.a(keys.o)
+ .debug_line    0x0002031a      0x72f C:/devkitPro/libnds/lib\libnds9.a(dldi.o)
+ .debug_line    0x00020a49      0x597 C:/devkitPro/libnds/lib\libnds9.a(initSystem.o)
+ .debug_line    0x00020fe0       0x8f C:/devkitPro/libnds/lib\libnds9.a(securearea.o)
+ .debug_line    0x0002106f      0x54c C:/devkitPro/libnds/lib\libnds9.a(interrupts.o)
+ .debug_line    0x000215bb      0x23b C:/devkitPro/libnds/lib\libnds9.a(libnds_exit.arm.o)
+ .debug_line    0x000217f6      0x645 C:/devkitPro/libnds/lib\libnds9.a(card.o)
+ .debug_line    0x00021e3b     0x14f5 C:/devkitPro/libnds/lib\libnds9.a(fifosystem.o)
+ .debug_line    0x00023330       0x96 C:/devkitPro/libnds/lib\libnds9.a(dcache.o)
+ .debug_line    0x000233c6       0x4c C:/devkitPro/libnds/lib\libnds9.a(dldi_stub.o)
+ .debug_line    0x00023412       0xe8 C:/devkitPro/libnds/lib\libnds9.a(mpu_setup.o)
+ .debug_line    0x000234fa       0x74 C:/devkitPro/libnds/lib\libnds9.a(IntrWait.o)
+ .debug_line    0x0002356e       0x5c C:/devkitPro/libnds/lib\libnds9.a(cpu_clock.o)
+ .debug_line    0x000235ca       0x80 C:/devkitPro/libnds/lib\libnds9.a(interruptDispatcher.o)
+ .debug_line    0x0002364a      0x1b0 C:/devkitPro/libnds/lib\libnds9.a(biosCalls.o)
+ .debug_line    0x000237fa       0x57 C:/devkitPro/libnds/lib\libnds9.a(swiSoftReset.o)
+ .debug_line    0x00023851      0x2db C:/devkitPro/libnds/lib\libnds9.a(dynamicArray.o)
+ .debug_line    0x00023b2c      0x4dc C:/devkitPro/libnds/lib\libnds9.a(system.o)
+ .debug_line    0x00024008      0x41d C:/devkitPro/libnds/lib\libnds9.a(sd.twl.o)
 
 .debug_frame    0x00000000     0x2afc
  *(.debug_frame)
@@ -10186,122 +10186,122 @@ OUTPUT(C:/Users/jasti/Documents/Ds-rom-homebrew/TestGame/TestGame.elf elf32-litt
 LOAD linker stubs
 
 .debug_loclists
-                0x00000000    0x14d3a
+                0x00000000    0x14d0d
  .debug_loclists
                 0x00000000     0x46f9 LevelLoader.o
  .debug_loclists
-                0x000046f9     0x11e2 Menu.o
+                0x000046f9     0x11b5 Menu.o
  .debug_loclists
-                0x000058db     0x138f Player.o
+                0x000058ae     0x138f Player.o
  .debug_loclists
-                0x00006c6a      0xe60 VectorFunctions.o
+                0x00006c3d      0xe60 VectorFunctions.o
  .debug_loclists
-                0x00007aca     0x1e2d gameMaster.o
+                0x00007a9d     0x1e2d gameMaster.o
  .debug_loclists
-                0x000098f7      0xa0a globals.o
+                0x000098ca      0xa0a globals.o
  .debug_loclists
-                0x0000a301     0x15ef main.o
+                0x0000a2d4     0x15ef main.o
  .debug_loclists
-                0x0000b8f0      0x9a9 rocket.o
+                0x0000b8c3      0x9a9 rocket.o
  .debug_loclists
-                0x0000c299      0x2a3 C:/devkitPro/libnds/lib\libnds9.a(background.o)
+                0x0000c26c      0x2a3 C:/devkitPro/libnds/lib\libnds9.a(background.o)
  .debug_loclists
-                0x0000c53c      0x779 C:/devkitPro/libnds/lib\libnds9.a(trig.o)
+                0x0000c50f      0x779 C:/devkitPro/libnds/lib\libnds9.a(trig.o)
  .debug_loclists
-                0x0000ccb5      0x1da C:/devkitPro/libnds/lib\libnds9.a(video.o)
+                0x0000cc88      0x1da C:/devkitPro/libnds/lib\libnds9.a(video.o)
  .debug_loclists
-                0x0000ce8f       0x8f C:/devkitPro/libnds/lib\libnds9.a(touch.o)
+                0x0000ce62       0x8f C:/devkitPro/libnds/lib\libnds9.a(touch.o)
  .debug_loclists
-                0x0000cf1e     0x121a C:/devkitPro/libnds/lib\libnds9.a(sprite_alloc.o)
+                0x0000cef1     0x121a C:/devkitPro/libnds/lib\libnds9.a(sprite_alloc.o)
  .debug_loclists
-                0x0000e138     0x24f9 C:/devkitPro/libnds/lib\libnds9.a(gl2d.o)
+                0x0000e10b     0x24f9 C:/devkitPro/libnds/lib\libnds9.a(gl2d.o)
  .debug_loclists
-                0x00010631     0x25a2 C:/devkitPro/libnds/lib\libnds9.a(videoGL.o)
+                0x00010604     0x25a2 C:/devkitPro/libnds/lib\libnds9.a(videoGL.o)
  .debug_loclists
-                0x00012bd3      0x5a6 C:/devkitPro/libnds/lib\libnds9.a(sprite.o)
+                0x00012ba6      0x5a6 C:/devkitPro/libnds/lib\libnds9.a(sprite.o)
  .debug_loclists
-                0x00013179       0x17 C:/devkitPro/libnds/lib\libnds9.a(keys.o)
+                0x0001314c       0x17 C:/devkitPro/libnds/lib\libnds9.a(keys.o)
  .debug_loclists
-                0x00013190      0x26e C:/devkitPro/libnds/lib\libnds9.a(dldi.o)
+                0x00013163      0x26e C:/devkitPro/libnds/lib\libnds9.a(dldi.o)
  .debug_loclists
-                0x000133fe       0xc5 C:/devkitPro/libnds/lib\libnds9.a(initSystem.o)
+                0x000133d1       0xc5 C:/devkitPro/libnds/lib\libnds9.a(initSystem.o)
  .debug_loclists
-                0x000134c3      0x1a5 C:/devkitPro/libnds/lib\libnds9.a(interrupts.o)
+                0x00013496      0x1a5 C:/devkitPro/libnds/lib\libnds9.a(interrupts.o)
  .debug_loclists
-                0x00013668       0x48 C:/devkitPro/libnds/lib\libnds9.a(libnds_exit.arm.o)
+                0x0001363b       0x48 C:/devkitPro/libnds/lib\libnds9.a(libnds_exit.arm.o)
  .debug_loclists
-                0x000136b0      0x4ac C:/devkitPro/libnds/lib\libnds9.a(card.o)
+                0x00013683      0x4ac C:/devkitPro/libnds/lib\libnds9.a(card.o)
  .debug_loclists
-                0x00013b5c      0xe1a C:/devkitPro/libnds/lib\libnds9.a(fifosystem.o)
+                0x00013b2f      0xe1a C:/devkitPro/libnds/lib\libnds9.a(fifosystem.o)
  .debug_loclists
-                0x00014976      0x142 C:/devkitPro/libnds/lib\libnds9.a(dynamicArray.o)
+                0x00014949      0x142 C:/devkitPro/libnds/lib\libnds9.a(dynamicArray.o)
  .debug_loclists
-                0x00014ab8      0x140 C:/devkitPro/libnds/lib\libnds9.a(system.o)
+                0x00014a8b      0x140 C:/devkitPro/libnds/lib\libnds9.a(system.o)
  .debug_loclists
-                0x00014bf8      0x142 C:/devkitPro/libnds/lib\libnds9.a(sd.twl.o)
+                0x00014bcb      0x142 C:/devkitPro/libnds/lib\libnds9.a(sd.twl.o)
 
 .debug_rnglists
-                0x00000000     0x4a5f
+                0x00000000     0x4a39
  .debug_rnglists
                 0x00000000      0xf34 LevelLoader.o
  .debug_rnglists
-                0x00000f34      0x35f Menu.o
+                0x00000f34      0x339 Menu.o
  .debug_rnglists
-                0x00001293      0x3fa Player.o
+                0x0000126d      0x3fa Player.o
  .debug_rnglists
-                0x0000168d      0x20b VectorFunctions.o
+                0x00001667      0x20b VectorFunctions.o
  .debug_rnglists
-                0x00001898      0x725 gameMaster.o
+                0x00001872      0x725 gameMaster.o
  .debug_rnglists
-                0x00001fbd      0x258 globals.o
+                0x00001f97      0x258 globals.o
  .debug_rnglists
-                0x00002215      0x514 main.o
+                0x000021ef      0x514 main.o
  .debug_rnglists
-                0x00002729      0x278 rocket.o
+                0x00002703      0x278 rocket.o
  .debug_rnglists
-                0x000029a1       0x7c C:/devkitPro/libnds/lib\libnds9.a(background.o)
+                0x0000297b       0x7c C:/devkitPro/libnds/lib\libnds9.a(background.o)
  .debug_rnglists
-                0x00002a1d       0x9d C:/devkitPro/libnds/lib\libnds9.a(trig.o)
+                0x000029f7       0x9d C:/devkitPro/libnds/lib\libnds9.a(trig.o)
  .debug_rnglists
-                0x00002aba       0x3e C:/devkitPro/libnds/lib\libnds9.a(video.o)
+                0x00002a94       0x3e C:/devkitPro/libnds/lib\libnds9.a(video.o)
  .debug_rnglists
-                0x00002af8       0x28 C:/devkitPro/libnds/lib\libnds9.a(touch.o)
+                0x00002ad2       0x28 C:/devkitPro/libnds/lib\libnds9.a(touch.o)
  .debug_rnglists
-                0x00002b20      0x788 C:/devkitPro/libnds/lib\libnds9.a(sprite_alloc.o)
+                0x00002afa      0x788 C:/devkitPro/libnds/lib\libnds9.a(sprite_alloc.o)
  .debug_rnglists
-                0x000032a8      0xc73 C:/devkitPro/libnds/lib\libnds9.a(gl2d.o)
+                0x00003282      0xc73 C:/devkitPro/libnds/lib\libnds9.a(gl2d.o)
  .debug_rnglists
-                0x00003f1b      0x4d9 C:/devkitPro/libnds/lib\libnds9.a(videoGL.o)
+                0x00003ef5      0x4d9 C:/devkitPro/libnds/lib\libnds9.a(videoGL.o)
  .debug_rnglists
-                0x000043f4       0x7b C:/devkitPro/libnds/lib\libnds9.a(sprite.o)
+                0x000043ce       0x7b C:/devkitPro/libnds/lib\libnds9.a(sprite.o)
  .debug_rnglists
-                0x0000446f       0x44 C:/devkitPro/libnds/lib\libnds9.a(keys.o)
+                0x00004449       0x44 C:/devkitPro/libnds/lib\libnds9.a(keys.o)
  .debug_rnglists
-                0x000044b3       0x33 C:/devkitPro/libnds/lib\libnds9.a(dldi.o)
+                0x0000448d       0x33 C:/devkitPro/libnds/lib\libnds9.a(dldi.o)
  .debug_rnglists
-                0x000044e6       0x20 C:/devkitPro/libnds/lib\libnds9.a(initSystem.o)
+                0x000044c0       0x20 C:/devkitPro/libnds/lib\libnds9.a(initSystem.o)
  .debug_rnglists
-                0x00004506       0x8b C:/devkitPro/libnds/lib\libnds9.a(interrupts.o)
+                0x000044e0       0x8b C:/devkitPro/libnds/lib\libnds9.a(interrupts.o)
  .debug_rnglists
-                0x00004591       0x19 C:/devkitPro/libnds/lib\libnds9.a(libnds_exit.arm.o)
+                0x0000456b       0x19 C:/devkitPro/libnds/lib\libnds9.a(libnds_exit.arm.o)
  .debug_rnglists
-                0x000045aa       0x89 C:/devkitPro/libnds/lib\libnds9.a(card.o)
+                0x00004584       0x89 C:/devkitPro/libnds/lib\libnds9.a(card.o)
  .debug_rnglists
-                0x00004633      0x2a4 C:/devkitPro/libnds/lib\libnds9.a(fifosystem.o)
+                0x0000460d      0x2a4 C:/devkitPro/libnds/lib\libnds9.a(fifosystem.o)
  .debug_rnglists
-                0x000048d7       0x25 C:/devkitPro/libnds/lib\libnds9.a(dcache.o)
+                0x000048b1       0x25 C:/devkitPro/libnds/lib\libnds9.a(dcache.o)
  .debug_rnglists
-                0x000048fc       0x20 C:/devkitPro/libnds/lib\libnds9.a(mpu_setup.o)
+                0x000048d6       0x20 C:/devkitPro/libnds/lib\libnds9.a(mpu_setup.o)
  .debug_rnglists
-                0x0000491c       0x19 C:/devkitPro/libnds/lib\libnds9.a(IntrWait.o)
+                0x000048f6       0x19 C:/devkitPro/libnds/lib\libnds9.a(IntrWait.o)
  .debug_rnglists
-                0x00004935       0x91 C:/devkitPro/libnds/lib\libnds9.a(biosCalls.o)
+                0x0000490f       0x91 C:/devkitPro/libnds/lib\libnds9.a(biosCalls.o)
  .debug_rnglists
-                0x000049c6       0x25 C:/devkitPro/libnds/lib\libnds9.a(dynamicArray.o)
+                0x000049a0       0x25 C:/devkitPro/libnds/lib\libnds9.a(dynamicArray.o)
  .debug_rnglists
-                0x000049eb       0x49 C:/devkitPro/libnds/lib\libnds9.a(system.o)
+                0x000049c5       0x49 C:/devkitPro/libnds/lib\libnds9.a(system.o)
  .debug_rnglists
-                0x00004a34       0x2b C:/devkitPro/libnds/lib\libnds9.a(sd.twl.o)
+                0x00004a0e       0x2b C:/devkitPro/libnds/lib\libnds9.a(sd.twl.o)
 
 .debug_ranges   0x00000000     0x1230
  .debug_ranges  0x00000000      0x258 C:/devkitPro/libnds/lib\libfilesystem.a(nitrofs.o)

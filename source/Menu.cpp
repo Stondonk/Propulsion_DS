@@ -41,13 +41,16 @@ void MainMenu::ColCheck(){
         float TapY = (Controls.TpY) + this->TargetMapOffsetY;
         for (mp = 0; mp < (sizeof(this->MapPoints) / 8); mp++)
         {
-            if(Magnitude(this->MapPoints[mp].x - TapX + 8, this->MapPoints[mp].y - TapY + 8) < 12){
+            if(Magnitude(this->MapPoints[mp].x - TapX + 8, this->MapPoints[mp].y - TapY + 8) < 32){
                 this->TargetMapOffsetX = clip(this->MapPoints[mp].x - 128, -256, 0);
                 this->TargetMapOffsetY = clip(this->MapPoints[mp].y - 96, -192,0);
                 if(this->SelectStage == mp)
                     LoadLevelTransition(this->WorldNames[mp], 0);
                 else
                     this->SelectStage = mp;
+            }else{
+                this->TargetMapOffsetX = clip(TapX - 128, -256, 0);
+                this->TargetMapOffsetY = clip(TapY - 96, -192,0);
             }
         }
         DrawSprite16(0,TapX, TapY,false,false);
