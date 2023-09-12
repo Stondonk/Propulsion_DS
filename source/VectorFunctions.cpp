@@ -108,6 +108,13 @@ float VectLerpAngle(float A, float B, float T){
     float x = atan2(lerp(Cx, Tx, T),-lerp(Cy, Ty, T)) * 180.0 / M_PI;
     return x;
 }
+Vector2 Normilize2D(float x, float y){
+    float length = sqrt((x * x) + (y * y));
+    if (length != 0)
+        return {(x / length), (y / length)};
+    else
+        return {x,y};
+}
 float repeat(float t, float m) {
     return clip(t - floor(t / m) * m, 0, m);
 }

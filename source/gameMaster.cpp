@@ -27,11 +27,11 @@ void GameMasterDraw(){
             milliPoint.y = clip(milliPoint.y + MilGrav, -16,208);
             MilGrav += 0.013*7;
         }
-        DrawSprite16(0, (int)milliPoint.x, (int)milliPoint.y);
+        DrawSprite16(0, (int)milliPoint.x, (int)milliPoint.y,false,false);
         DrawText(std::to_string(mintues) + "." + buffer0 + std::to_string(seconds), 0, 128,88);
     }else{
-        DrawSprite16(21,120,80);
-        DrawSprite16(22,8,168);
+        DrawSprite16(21,120,80,false,false);
+        DrawSprite16(22,8,168,false,false);
     }
 }
 void GameMasterUpdate(){

@@ -42,6 +42,19 @@ private:
 
     //BG
     float BgColor1[3] = {0,0,0};
+
+    //Map Sutff
+    int linePointDis = 12;
+
+    float MapOffsetX = -128;
+    float MapOffsetY = -96;
+    float TargetMapOffsetX = -128;
+    float TargetMapOffsetY = -96;
+
+    Vector2 MapPoints[3] = {{-64,-64},{24,-48},{16,38}};
+    std::string WorldNames[3] = {"World1.txt","World2.txt","World3.txt"};
+    int SelectStage = -1;
+    
 public:
     float RotY = 0;
     float RotX = 0;
@@ -57,5 +70,7 @@ public:
         virtual void ColCheck();
         virtual void Attack();
         virtual void Death();
+
+        virtual void DrawDotLine(float x1, float y1, float x2, float y2);
 };
 

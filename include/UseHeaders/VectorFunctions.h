@@ -37,6 +37,8 @@ bool polyPoint(Vector2 vertices[], float px, float py);
 bool polyLine(Vector2 vertices[], float x1, float y1, float x2, float y2);
 bool polyPoly(Vector2 p1[], Vector2 p2[]);
 
+Vector2 Normilize2D(float x, float y);
+
 float repeat(float t, float m);
 float lerpAngle(float A,float B,float T);
 

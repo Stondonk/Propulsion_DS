@@ -30,13 +30,13 @@ void DrawText(std::string Text, int side, int x, int y){
   int offsetX = side * ((Text.size() * 16) / 2);
   for (i = 0; i < Text.size(); i++)
   {
-    DrawSprite16(((int)Text[i]-46),x + (i * 16) - (((Text.size() * 16) / 2) + offsetX),y);
+    DrawSprite16(((int)Text[i]-46),x + (i * 16) - (((Text.size() * 16) / 2) + offsetX),y,false,false);
   }
   
 }
 
-void DrawSprite16(int Car, int x, int y){
-  oamSet(&oamSub, SpriteAssetIndex, x, y, 0, 0, SpriteSize_16x16, SpriteColorFormat_256Color,Text_sprite_mem[Car], -1, false, false, false, false, false);
+void DrawSprite16(int Car, int x, int y, bool flipX = false, bool flipY = false){
+  oamSet(&oamSub, SpriteAssetIndex, x, y, 0, 0, SpriteSize_16x16, SpriteColorFormat_256Color,Text_sprite_mem[Car], -1, false, false, flipX, flipY, false);
   //oamSetAlpha(&oamSub,SpriteAssetIndex,(15 * TransitionVal));
   SpriteAssetIndex++;
 }
