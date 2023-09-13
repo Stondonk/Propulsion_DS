@@ -14,6 +14,7 @@ private:
     bool Collected = false;
 public:
     float RotY = 0;
+    std::string FileLocation = "MenuWorld.txt";
         virtual void Start();
         virtual void Update();
         virtual void Damage(float Px, float Py, float Pz);

@@ -54,6 +54,9 @@ private:
     Vector2 MapPoints[3] = {{-64,-64},{24,-48},{16,38}};
     std::string WorldNames[3] = {"World1.txt","World2.txt","World3.txt"};
     int SelectStage = -1;
+
+    float TapTime = 0;
+    bool TapShow = false;
     
 public:
     float RotY = 0;

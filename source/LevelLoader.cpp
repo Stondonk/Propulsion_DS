@@ -148,6 +148,7 @@ void LoadLevel(std::string file){
 							TempGol->ply = stof(SequenceString[2]);
 							TempGol->plz = stof(SequenceString[3]);
 							TempGol->RotY = stof(SequenceString[4]);
+							TempGol->FileLocation = (SequenceString[5]);
 							gameObjects.push_back(TempGol);
 						} break;
 					};

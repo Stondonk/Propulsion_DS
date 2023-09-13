@@ -124,6 +124,9 @@ void MainMenu::Draw2DTop(){
                 DrawSprite16(16,48+this->LogoSlide,88,false,false);
                 DrawSprite16(17,64+this->LogoSlide,88,false,false);
 
+                DrawSprite16(24,0,178,false,false);
+                DrawSprite16(25,240,174,false,false);
+
                 this->BgColor1[0] = lerp(this->BgColor1[0], 0.48,0.05);
                 this->BgColor1[1] = lerp(this->BgColor1[1], 0.65,0.05);
                 this->BgColor1[2] = lerp(this->BgColor1[2], 0.95,0.05);
@@ -140,7 +143,6 @@ void MainMenu::Draw2DTop(){
             if(this->DsSlideSA > 0)
                 this->DsSlideSA -= 2;
             this->DsSlideSDist= clip(this->DsSlideSDist - 0.5, 0, 255);
-                
         }break;
         case 1:{
             //Level Select
@@ -158,6 +160,15 @@ void MainMenu::Draw2DTop(){
                 DrawSprite16(20,this->MapPoints[mp].x- this->MapOffsetX,this->MapPoints[mp].y- this->MapOffsetY,false,false);
                 this->DrawDotLine(0,0,this->MapPoints[mp].x,this->MapPoints[mp].y);
 
+            }
+
+            this->TapTime += 0.013;
+            if(this->TapTime >= 0.5){
+                this->TapShow = !this->TapShow; this->TapTime = 0;}
+            
+            if(this->TapShow){
+                DrawSprite16(26,112,2,false,false);
+                DrawSprite16(27,128,2,false,false);
             }
         }break;
     }

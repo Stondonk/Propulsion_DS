@@ -144,7 +144,7 @@ void KeyDown(int KeyDown){
 void InitTextAssets(){
 	int i;
 	u8* gfx = (u8*)AtlasTiles;
-	for(i = 0; i < 24; i++)
+	for(i = 0; i < 28; i++)
 	{
 		Text_sprite_mem[i] = oamAllocateGfx(&oamSub, SpriteSize_16x16, SpriteColorFormat_256Color);
 		dmaCopy(gfx, Text_sprite_mem[i], 16*16);
