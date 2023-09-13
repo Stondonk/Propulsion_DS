@@ -1,5 +1,4 @@
-rocket.o: \
- C:/Users/jasti/Documents/Ds-rom-homebrew/TestGame/source/rocket.cpp \
+Goal.o: C:/Users/jasti/Documents/Ds-rom-homebrew/TestGame/source/Goal.cpp \
  C:/Users/jasti/Documents/Ds-rom-homebrew/TestGame/include/UseHeaders/globals.h \
  C:/Users/jasti/Documents/Ds-rom-homebrew/TestGame/include/nds.h \
  C:/Users/jasti/Documents/Ds-rom-homebrew/TestGame/include/nds/libversion.h \

@@ -70,7 +70,8 @@ main.o: C:/Users/jasti/Documents/Ds-rom-homebrew/TestGame/source/main.cpp \
  C:/Users/jasti/Documents/Ds-rom-homebrew/TestGame/include/UseHeaders/gameMaster.h \
  C:/Users/jasti/Documents/Ds-rom-homebrew/TestGame/include/UseHeaders/LevelLoader.h \
  C:/Users/jasti/Documents/Ds-rom-homebrew/TestGame/include/UseHeaders/Menu.h \
- C:/Users/jasti/Documents/Ds-rom-homebrew/TestGame/include/UseHeaders/VectorFunctions.h
+ C:/Users/jasti/Documents/Ds-rom-homebrew/TestGame/include/UseHeaders/VectorFunctions.h \
+ C:/Users/jasti/Documents/Ds-rom-homebrew/TestGame/include/UseHeaders/Goal.h
 C:/Users/jasti/Documents/Ds-rom-homebrew/TestGame/include/nds.h:
 C:/Users/jasti/Documents/Ds-rom-homebrew/TestGame/include/nds/libversion.h:
 C:/Users/jasti/Documents/Ds-rom-homebrew/TestGame/include/nds/ndstypes.h:
@@ -143,3 +144,4 @@ C:/Users/jasti/Documents/Ds-rom-homebrew/TestGame/include/UseHeaders/gameMaster.
 C:/Users/jasti/Documents/Ds-rom-homebrew/TestGame/include/UseHeaders/LevelLoader.h:
 C:/Users/jasti/Documents/Ds-rom-homebrew/TestGame/include/UseHeaders/Menu.h:
 C:/Users/jasti/Documents/Ds-rom-homebrew/TestGame/include/UseHeaders/VectorFunctions.h:
+C:/Users/jasti/Documents/Ds-rom-homebrew/TestGame/include/UseHeaders/Goal.h:

@@ -142,6 +142,14 @@ void LoadLevel(std::string file){
 							//FOG RESET
 							glDisable(GL_FOG);
 						}break;
+						case string2int("Goal") : {
+							GoalOBJ* TempGol = new GoalOBJ();
+							TempGol->plx = stof(SequenceString[1]);
+							TempGol->ply = stof(SequenceString[2]);
+							TempGol->plz = stof(SequenceString[3]);
+							TempGol->RotY = stof(SequenceString[4]);
+							gameObjects.push_back(TempGol);
+						} break;
 					};
 							
 				}

@@ -17,6 +17,7 @@
 #include "gameMaster.h"
 #include "LevelLoader.h"
 #include "Menu.h"
+#include "Goal.h"
 
 struct controller {
 	//Dpad

@@ -12,6 +12,7 @@ void Player::Start(){
     this->pHeight = 0.5;
     this->pWidth = 0.15;
     this->TimeForHit = 0.05;
+    this->Type = "Player";
 }
 void Player::ColCheck(){
     float ClosestFloor = -4, ClosestCeil = 128;
