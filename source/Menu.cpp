@@ -148,7 +148,7 @@ void MainMenu::Draw2DTop(){
             //Level Select
             this->MapOffsetX = lerp(this->MapOffsetX, this->TargetMapOffsetX, 0.075);
             this->MapOffsetY = lerp(this->MapOffsetY, this->TargetMapOffsetY, 0.075);
-            DrawSprite16(3,0 - this->MapOffsetX,0 - this->MapOffsetY,false,false);
+            DrawSprite16(2,0 - this->MapOffsetX,0 - this->MapOffsetY,false,false);
             int mp = 0;
             for (mp = 0; mp < (sizeof(this->MapPoints) / 8); mp++)
             {
@@ -158,6 +158,7 @@ void MainMenu::Draw2DTop(){
                     DrawSprite16(23,this->MapPoints[mp].x- this->MapOffsetX + 16,this->MapPoints[mp].y- this->MapOffsetY,true,false);    
                 }
                 DrawSprite16(20,this->MapPoints[mp].x- this->MapOffsetX,this->MapPoints[mp].y- this->MapOffsetY,false,false);
+                DrawText(std::to_string(mp + 1), 0, this->MapPoints[mp].x- this->MapOffsetX + 8,this->MapPoints[mp].y- this->MapOffsetY - 24);
                 this->DrawDotLine(0,0,this->MapPoints[mp].x,this->MapPoints[mp].y);
 
             }

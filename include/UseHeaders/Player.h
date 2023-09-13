@@ -21,7 +21,7 @@ private:
     float floorPosition = 0;
     float CeilingPosition = 128;
 
-    bool Jumped = false;
+    bool Jumped = false, canJump = false;
 
     float DeathTime = 0;
 

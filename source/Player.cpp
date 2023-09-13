@@ -29,11 +29,26 @@ void Player::ColCheck(){
                 if(this->ply > Tile->y){
                     ClosestFloor = Tile->y;
                     this->isGrounded = true;
+
+                    //Platform abilities
+                    switch (Tile->Type)
+                    {
+                        default:
+                            this->canJump = false;
+                        break;
+                        case 2:
+                            this->pvy = 0.1;
+                            this->isGrounded = false;
+                        break;
+                        case 3:
+                            this->TimebtwShot = 0;
+                            this->canJump = true;
+                        break;
+                    }
                 }else{
                     ClosestCeil = Tile->y;
                 }
                 this->CurrentTile = Tile->Type;
-                
             }
         }
     }
@@ -54,7 +69,7 @@ void Player::Update(){
         //Gravity
         if(!this->isGrounded)
             this->pvy -= Gravity;
-        else
+        else if(this->isGrounded)
             this->pvy = 0;
 
         //Movement
@@ -93,20 +108,29 @@ void Player::Update(){
             this->y = 0;
 
         if((Controls.L || Controls.R) && !this->Jumped && this->TimebtwShot <= 0){
-            Rocket* TempRocket = new Rocket();
-            TempRocket->plx = this->plx;
-            TempRocket->ply = this->ply - 0.1;
-            TempRocket->plz = this->plz;
+            if(!this->canJump){
+                Rocket* TempRocket = new Rocket();
+                TempRocket->plx = this->plx;
+                TempRocket->ply = this->ply - 0.1;
+                TempRocket->plz = this->plz;
 
-            if(this->ProjectileType == 1)
-                TempRocket->Gravity = this->Gravity;
+                if(this->ProjectileType == 1)
+                    TempRocket->Gravity = this->Gravity;
 
-            TempRocket->RotX = this->RotX + 180;
-            TempRocket->RotY = this->RotY + 180;
-            PushObjects.push_back(TempRocket);
+                TempRocket->RotX = this->RotX + 180;
+                TempRocket->RotY = this->RotY + 180;
+                PushObjects.push_back(TempRocket);
 
-            this->DrawBackShot = -0.2;
-            this->TimebtwShot = 0.5;
+                this->DrawBackShot = -0.2;
+                this->TimebtwShot = 0.5;
+                this->Jumped = true;
+            }else{
+                if(this->isGrounded){
+                    this->pvy = 0.075;
+                    this->Jumped = true;
+                    this->isGrounded = false;
+                }
+            }
             /*
             //Jumping
             if(this->isGrounded){
@@ -115,7 +139,6 @@ void Player::Update(){
                 this->isGrounded = false;
             }
             */
-           this->Jumped = true;
         }else if(!Controls.L && !Controls.R && this->Jumped){
             this->Jumped = false;
         }
@@ -178,7 +201,10 @@ void Player::Update(){
     //this->fx
 }
 void Player::Draw(){
-    this->DrawBackShot = lerp(this->DrawBackShot, 0, 0.05);
+    if(this->canJump)
+        this->DrawBackShot = lerp(this->DrawBackShot, -0.5, 0.05);
+    else
+        this->DrawBackShot = lerp(this->DrawBackShot, 0, 0.05);
 	Vector3 lookPoint = {this->plx + (this->fx * (0.2 + this->DrawBackShot)) - (this->ux * 0.125), this->ply + (this->fy * (0.2 + this->DrawBackShot)) - (this->uy * 0.125), this->plz + (this->fz * (0.2 + this->DrawBackShot)) - (this->uz * 0.125)};
     glTranslatef(((lookPoint.x) * worldScale), ((lookPoint.y) * worldScale), ((lookPoint.z) * worldScale));
 

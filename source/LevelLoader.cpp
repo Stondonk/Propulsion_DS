@@ -213,7 +213,7 @@ void GenerateLevel(){
 		float x = Hex->x, y = Hex->y, z = Hex->z;
 		float Scale = Hex->scale;
 		int Point = ((i) * 2);
-		Color color = HexColors[0];
+		Color color = HexColors[Hex->Type];
 
 		Rsector.Quad[Point].vertex[0] = {((-1 * Scale) + x) * worldScale,(y) * worldScale,(0 + z) * worldScale};
 		Rsector.Quad[Point].vertex[1] = {((-0.5f * Scale) + x) * worldScale,(y) * worldScale,((0.75f * Scale) + z) * worldScale};
