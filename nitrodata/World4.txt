@@ -1,0 +1,4 @@
+OPlayer,0,0,0,0,
+OGamemaster,
+H0,-1,0,2,0,
+OBGC,15,20,30,

@@ -16,8 +16,8 @@ void GoalOBJ::ColCheck(){
     for (GameObject* OBJ : gameObjects)
     {
         if(OBJ->Type == "Player" && !this->Collected){
-            float sx = sin(M_PI / 180 * (this->RotY)) * (this->pWidth/2),sz = cos(M_PI / 180 * (this->RotY)) * (this->pWidth/2);
-            float ex = sin(M_PI / 180 * (this->RotY)) * -(this->pWidth/2),ez = cos(M_PI / 180 * (this->RotY)) * -(this->pWidth/2);
+            float sx = sin(M_PI / 180 * (this->RotY+90)) * (this->pWidth/2),sz = cos(M_PI / 180 * (this->RotY+90)) * (this->pWidth/2);
+            float ex = sin(M_PI / 180 * (this->RotY+90)) * -(this->pWidth/2),ez = cos(M_PI / 180 * (this->RotY+90)) * -(this->pWidth/2);
             Vector2 linePoint = PointOnLine(OBJ->plx, OBJ->plz,sx + this->plx,sz + this->plz,ex + this->plx,ez + this->plz);
             if(Magnitude(OBJ->plx - linePoint.x,OBJ->plz - linePoint.y) < (OBJ->pWidth/2)  && OBJ->ply > this->ply - (OBJ->pHeight/2) && OBJ->ply < this->ply + (OBJ->pHeight/2))
                 {LoadLevelTransition(this->FileLocation, 0.5);this->Collected = true; PauseTimer = true;}
