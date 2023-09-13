@@ -11,6 +11,7 @@ private:
     //float Gravity = 0.002;
     //float Speed = 0.05;
     float WaveRot = 0;
+    bool Collected = false;
 public:
     float RotY = 0;
         virtual void Start();
