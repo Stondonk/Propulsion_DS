@@ -49,8 +49,8 @@ void MainMenu::ColCheck(){
                 else
                     this->SelectStage = mp;
             }else{
-                this->TargetMapOffsetX = clip(TapX - 128, -256, 0);
-                this->TargetMapOffsetY = clip(TapY - 96, -192,0);
+                this->TargetMapOffsetX = clip(TapX - 128, -172, -64);
+                this->TargetMapOffsetY = clip(TapY - 96, -140,-32);
             }
         }
         DrawSprite16(0,TapX, TapY,false,false);

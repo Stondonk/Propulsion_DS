@@ -51,8 +51,8 @@ private:
     float TargetMapOffsetX = -128;
     float TargetMapOffsetY = -96;
 
-    Vector2 MapPoints[3] = {{-64,-64},{24,-48},{32,24}};
-    std::string WorldNames[3] = {"World1.txt","World2.txt","World3.txt"};
+    Vector2 MapPoints[5] = {{-64,-64},{24,-48},{32,24}, {-48,16}, {-16,64}};
+    std::string WorldNames[5] = {"World1.txt","World2.txt","World3.txt","World4.txt","WorldV.txt"};
     int SelectStage = -1;
 
     float TapTime = 0;
