@@ -16,6 +16,7 @@ void GoalOBJ::ColCheck(){
     for (GameObject* OBJ : gameObjects)
     {
         if(OBJ->Type == "Player"){
+            float sx = sin(M_PI / 180 * (this->RotY)),sy = cos(M_PI / 180 * (this->RotY));
             
         }
     }
