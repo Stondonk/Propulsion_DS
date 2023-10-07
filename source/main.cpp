@@ -155,7 +155,7 @@ void InitTextAssets(){
 int main() {
 
 	// Setup the Main screen for 3D
-	//consoleDemoInit();
+	consoleDemoInit();
 	//DrawFileTextTemp();
 
 	videoSetMode(MODE_5_3D);
@@ -197,7 +197,7 @@ int main() {
 	glMaterialf(GL_EMISSION, RGB15(16,16,16));
 	
 	//ds uses a table for shinyness..this generates a half-ass one
-	glMaterialShinyness();
+	//glMaterialShinyness();
 	
 	//ds specific, several attributes can be set here
 	//glLight(0, RGB15(31,31,31) , floattov10(xpos),	floattov10(ypos), floattov10(zpos));

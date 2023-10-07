@@ -10336,7 +10336,7 @@ LOAD C:/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/13.2.0/../../../../arm-
 END GROUP
 LOAD C:/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/13.2.0/thumb/crtend.o
 LOAD C:/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/13.2.0/thumb/crtn.o
-OUTPUT(G:/Ds-rom-homebrew/TestGame/TestGame.elf elf32-littlearm)
+OUTPUT(G:/Ds-rom-homebrew/TestGame/.elf elf32-littlearm)
 LOAD linker stubs
 
 .debug_loclists
