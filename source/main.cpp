@@ -161,7 +161,7 @@ int main() {
 	videoSetMode(MODE_5_3D);
 	videoSetModeSub(MODE_0_2D);
 	vramSetBankA(VRAM_A_TEXTURE);                        //NEW  must set up some memory for textures
-	vramSetBankA(VRAM_A_MAIN_BG);
+	//vramSetBankA(VRAM_A_MAIN_BG);
 	vramSetBankD(VRAM_D_SUB_SPRITE);
 	
 	// initialize the 3D engine
@@ -225,7 +225,7 @@ int main() {
 	InitTextAssets();
 
 	//DrawFileTextTemp();
-	printf("\x1b[1;1HPropulsion Demo");
+	//printf("\x1b[1;1HPropulsion Demo");
 
 	//bgInitSub(3, BgType_Bmp16, BgSize_B8_256x256, 0,0);
 	//decompress(drunkenlogoBitmap, BG_GFX_SUB,  LZ77Vram);
