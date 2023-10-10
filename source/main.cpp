@@ -156,6 +156,9 @@ int main() {
 
 	// Setup the Main screen for 3D
 	consoleDemoInit();
+	char *FSpath = "nitro:/MenuWorld.txt";
+	char **brin = &FSpath;
+	nitroFSInit(NULL);
 	//DrawFileTextTemp();
 
 	videoSetMode(MODE_5_3D);
@@ -188,27 +191,27 @@ int main() {
 	glLoadIdentity();
 	gluPerspective(70, 256.0 / 192.0, 0.01, 100);
 	
-	glLight(0, RGB15(31,31,31) , xpos,	ypos, zpos);
+	//glLight(0, RGB15(31,31,31) , xpos,	ypos, zpos);
 	
 	//need to set up some material properties since DS does not have them set by default
-	glMaterialf(GL_AMBIENT, RGB15(16,16,16));
-	glMaterialf(GL_DIFFUSE, RGB15(16,16,16));
-	glMaterialf(GL_SPECULAR, BIT(15) | RGB15(8,8,8));
-	glMaterialf(GL_EMISSION, RGB15(16,16,16));
+	//glMaterialf(GL_AMBIENT, RGB15(16,16,16));
+	//glMaterialf(GL_DIFFUSE, RGB15(16,16,16));
+	//glMaterialf(GL_SPECULAR, BIT(15) | RGB15(8,8,8));
+	//glMaterialf(GL_EMISSION, RGB15(16,16,16));
 	
 	//ds uses a table for shinyness..this generates a half-ass one
 	//glMaterialShinyness();
 	
 	//ds specific, several attributes can be set here
 	//glLight(0, RGB15(31,31,31) , floattov10(xpos),	floattov10(ypos), floattov10(zpos));
-	glPolyFmt(POLY_ALPHA(31) | POLY_CULL_NONE | POLY_FORMAT_LIGHT0 | POLY_FOG);
+	glPolyFmt(POLY_ALPHA(31) | POLY_CULL_NONE | POLY_FOG);
 	
 	// Set the current matrix to be the model matrix
 	glMatrixMode(GL_MODELVIEW);
 	
 	// Specify the Clear Color and Depth
 	//glClearColor(15, 20, 30,31);
-	glClearColor(15,20,30,31); // BG must be opaque for AA to work
+	glClearColor(29,30,12,31); // BG must be opaque for AA to work
 	glClearPolyID(63); // BG must have a unique polygon ID for AA to work
 	glClearDepth(0x7FFF);
 	
@@ -220,7 +223,8 @@ int main() {
 	
 	//consoleEnable
 	//consoleDemoInit();
-	LoadLevel("MenuWorld.txt");
+	LoadLevel("nitro:/MenuWorld.txt");
+	//gameObjects.push_back(new MainMenu());
 
 	InitTextAssets();
 
@@ -285,7 +289,7 @@ int main() {
 		//Drawing
 		//Push our original Matrix onto the stack (save state)
 		//glLight(0, RGB15(31,31,31) , floattov10(xpos * worldScale),	floattov10(ypos* worldScale), floattov10(zpos* worldScale));
-		glPolyFmt(POLY_ALPHA(31) | POLY_CULL_NONE | POLY_FORMAT_LIGHT0 | POLY_FOG);
+		glPolyFmt(POLY_ALPHA(31) | POLY_CULL_NONE | POLY_FOG);
 		
 		glPushMatrix();
 		DrawGLScene();
