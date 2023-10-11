@@ -1,4 +1,12 @@
 LevelLoader.o: G:/Ds-rom-homebrew/TestGame/source/LevelLoader.cpp \
+ G:/Ds-rom-homebrew/TestGame/include/nds/memory.h \
+ G:/Ds-rom-homebrew/TestGame/include/nds/ndstypes.h \
+ G:/Ds-rom-homebrew/TestGame/include/nds/system.h \
+ G:/Ds-rom-homebrew/TestGame/include/nds/card.h \
+ G:/Ds-rom-homebrew/TestGame/include/fat.h \
+ G:/Ds-rom-homebrew/TestGame/include/libfatversion.h \
+ G:/Ds-rom-homebrew/TestGame/include/nds/disc_io.h \
+ G:/Ds-rom-homebrew/TestGame/include/filesystem.h \
  G:/Ds-rom-homebrew/TestGame/include/UseHeaders/LevelLoader.h \
  G:/Ds-rom-homebrew/TestGame/include/UseHeaders/globals.h \
  G:/Ds-rom-homebrew/TestGame/include/nds.h \
@@ -7,7 +15,6 @@ LevelLoader.o: G:/Ds-rom-homebrew/TestGame/source/LevelLoader.cpp \
  G:/Ds-rom-homebrew/TestGame/include/nds/bios.h \
  G:/Ds-rom-homebrew/TestGame/include/nds/ndstypes.h \
  G:/Ds-rom-homebrew/TestGame/include/nds/card.h \
- G:/Ds-rom-homebrew/TestGame/include/nds/ndstypes.h \
  G:/Ds-rom-homebrew/TestGame/include/nds/debug.h \
  G:/Ds-rom-homebrew/TestGame/include/nds/dma.h \
  G:/Ds-rom-homebrew/TestGame/include/nds/interrupts.h \
@@ -25,7 +32,6 @@ LevelLoader.o: G:/Ds-rom-homebrew/TestGame/source/LevelLoader.cpp \
  G:/Ds-rom-homebrew/TestGame/include/nds/arm9/background.h \
  G:/Ds-rom-homebrew/TestGame/include/nds/arm9/video.h \
  G:/Ds-rom-homebrew/TestGame/include/nds/arm9/sassert.h \
- G:/Ds-rom-homebrew/TestGame/include/nds/memory.h \
  G:/Ds-rom-homebrew/TestGame/include/nds/dma.h \
  G:/Ds-rom-homebrew/TestGame/include/nds/arm9/boxtest.h \
  G:/Ds-rom-homebrew/TestGame/include/nds/arm9/videoGL.h \
@@ -54,14 +60,12 @@ LevelLoader.o: G:/Ds-rom-homebrew/TestGame/source/LevelLoader.cpp \
  G:/Ds-rom-homebrew/TestGame/include/nds/arm9/sassert.h \
  G:/Ds-rom-homebrew/TestGame/include/nds/arm9/sound.h \
  G:/Ds-rom-homebrew/TestGame/include/nds/arm9/sprite.h \
- G:/Ds-rom-homebrew/TestGame/include/nds/system.h \
  G:/Ds-rom-homebrew/TestGame/include/nds/arm9/window.h \
  G:/Ds-rom-homebrew/TestGame/include/nds/arm9/sprite.h \
  G:/Ds-rom-homebrew/TestGame/include/nds/arm9/trig_lut.h \
  G:/Ds-rom-homebrew/TestGame/include/nds/arm9/video.h \
  G:/Ds-rom-homebrew/TestGame/include/nds/arm9/videoGL.h \
  G:/Ds-rom-homebrew/TestGame/include/nds/arm9/nand.h \
- G:/Ds-rom-homebrew/TestGame/include/filesystem.h \
  G:/Ds-rom-homebrew/TestGame/include/UseHeaders/gameObject.h \
  G:/Ds-rom-homebrew/TestGame/include/UseHeaders/Player.h \
  G:/Ds-rom-homebrew/TestGame/include/UseHeaders/rocket.h \
@@ -70,6 +74,14 @@ LevelLoader.o: G:/Ds-rom-homebrew/TestGame/source/LevelLoader.cpp \
  G:/Ds-rom-homebrew/TestGame/include/UseHeaders/Menu.h \
  G:/Ds-rom-homebrew/TestGame/include/UseHeaders/VectorFunctions.h \
  G:/Ds-rom-homebrew/TestGame/include/UseHeaders/Goal.h
+G:/Ds-rom-homebrew/TestGame/include/nds/memory.h:
+G:/Ds-rom-homebrew/TestGame/include/nds/ndstypes.h:
+G:/Ds-rom-homebrew/TestGame/include/nds/system.h:
+G:/Ds-rom-homebrew/TestGame/include/nds/card.h:
+G:/Ds-rom-homebrew/TestGame/include/fat.h:
+G:/Ds-rom-homebrew/TestGame/include/libfatversion.h:
+G:/Ds-rom-homebrew/TestGame/include/nds/disc_io.h:
+G:/Ds-rom-homebrew/TestGame/include/filesystem.h:
 G:/Ds-rom-homebrew/TestGame/include/UseHeaders/LevelLoader.h:
 G:/Ds-rom-homebrew/TestGame/include/UseHeaders/globals.h:
 G:/Ds-rom-homebrew/TestGame/include/nds.h:
@@ -78,7 +90,6 @@ G:/Ds-rom-homebrew/TestGame/include/nds/ndstypes.h:
 G:/Ds-rom-homebrew/TestGame/include/nds/bios.h:
 G:/Ds-rom-homebrew/TestGame/include/nds/ndstypes.h:
 G:/Ds-rom-homebrew/TestGame/include/nds/card.h:
-G:/Ds-rom-homebrew/TestGame/include/nds/ndstypes.h:
 G:/Ds-rom-homebrew/TestGame/include/nds/debug.h:
 G:/Ds-rom-homebrew/TestGame/include/nds/dma.h:
 G:/Ds-rom-homebrew/TestGame/include/nds/interrupts.h:
@@ -96,7 +107,6 @@ G:/Ds-rom-homebrew/TestGame/include/nds/arm9/linkedlist.h:
 G:/Ds-rom-homebrew/TestGame/include/nds/arm9/background.h:
 G:/Ds-rom-homebrew/TestGame/include/nds/arm9/video.h:
 G:/Ds-rom-homebrew/TestGame/include/nds/arm9/sassert.h:
-G:/Ds-rom-homebrew/TestGame/include/nds/memory.h:
 G:/Ds-rom-homebrew/TestGame/include/nds/dma.h:
 G:/Ds-rom-homebrew/TestGame/include/nds/arm9/boxtest.h:
 G:/Ds-rom-homebrew/TestGame/include/nds/arm9/videoGL.h:
@@ -125,14 +135,12 @@ G:/Ds-rom-homebrew/TestGame/include/nds/arm9/rumble.h:
 G:/Ds-rom-homebrew/TestGame/include/nds/arm9/sassert.h:
 G:/Ds-rom-homebrew/TestGame/include/nds/arm9/sound.h:
 G:/Ds-rom-homebrew/TestGame/include/nds/arm9/sprite.h:
-G:/Ds-rom-homebrew/TestGame/include/nds/system.h:
 G:/Ds-rom-homebrew/TestGame/include/nds/arm9/window.h:
 G:/Ds-rom-homebrew/TestGame/include/nds/arm9/sprite.h:
 G:/Ds-rom-homebrew/TestGame/include/nds/arm9/trig_lut.h:
 G:/Ds-rom-homebrew/TestGame/include/nds/arm9/video.h:
 G:/Ds-rom-homebrew/TestGame/include/nds/arm9/videoGL.h:
 G:/Ds-rom-homebrew/TestGame/include/nds/arm9/nand.h:
-G:/Ds-rom-homebrew/TestGame/include/filesystem.h:
 G:/Ds-rom-homebrew/TestGame/include/UseHeaders/gameObject.h:
 G:/Ds-rom-homebrew/TestGame/include/UseHeaders/Player.h:
 G:/Ds-rom-homebrew/TestGame/include/UseHeaders/rocket.h:

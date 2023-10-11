@@ -1,3 +1,10 @@
+#include <nds/memory.h>
+#include <nds/system.h>
+#include <nds/card.h>
+
+#include <fat.h>
+#include <filesystem.h>
+
 #include "UseHeaders/LevelLoader.h"
 #include "UseHeaders/globals.h"
 #include "UseHeaders/gameMaster.h"

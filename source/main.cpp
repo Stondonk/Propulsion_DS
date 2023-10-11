@@ -1,3 +1,9 @@
+#include <nds/memory.h>
+#include <nds/system.h>
+#include <nds/card.h>
+
+#include <fat.h>
+
 #include <nds.h>
 #include <malloc.h>
 #include <stdio.h>
@@ -10,6 +16,7 @@
 #include <algorithm>
 #include <gl2d.h>
 #include "drunkenlogo.h"
+#include "UseHeaders/LevelLoader.h"
 
 #include "UseHeaders/globals.h"
 //#include "Mud_pcx.h"
@@ -156,9 +163,9 @@ int main() {
 
 	// Setup the Main screen for 3D
 	consoleDemoInit();
-	char *FSpath = "nitro:/MenuWorld.txt";
+	char *FSpath = "nitro:/";
 	char **brin = &FSpath;
-	nitroFSInit(NULL);
+	nitroFSInit(brin);
 	//DrawFileTextTemp();
 
 	videoSetMode(MODE_5_3D);
@@ -212,6 +219,8 @@ int main() {
 	// Specify the Clear Color and Depth
 	//glClearColor(15, 20, 30,31);
 	glClearColor(29,30,12,31); // BG must be opaque for AA to work
+	if(!nitroFSInit(brin))
+		SetSubBgColorf({0.48,0.65,0.95, 1});
 	glClearPolyID(63); // BG must have a unique polygon ID for AA to work
 	glClearDepth(0x7FFF);
 	
@@ -222,8 +231,8 @@ int main() {
 	touchPosition	lastXY = { 0,0,0,0 };	
 	
 	//consoleEnable
-	//consoleDemoInit();
-	LoadLevel("nitro:/MenuWorld.txt");
+	//consoleDemoInit();	
+	LoadLevel("MenuWorld.txt");
 	//gameObjects.push_back(new MainMenu());
 
 	InitTextAssets();
