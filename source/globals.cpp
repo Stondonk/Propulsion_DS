@@ -55,7 +55,7 @@ bool GameMasterEnable = false;
 
 int SpriteAssetIndex = 0;
 
-u16* Text_sprite_mem[28];
+u16* Text_sprite_mem[39];
 
 std::string CurrentStage = "MenuWorld.txt";
 
@@ -65,6 +65,8 @@ std::string Trasnitionlocation;
 
 bool PauseGame = false;
 bool CanPause = true;
+
+bool InvertLook = false;
 
 Color HexColors[] = {{56,183,100,255}, {65,166,246,255}, {177,62,83,255}, {244,244,244,255}};
 

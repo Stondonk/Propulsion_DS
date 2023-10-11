@@ -164,6 +164,9 @@ void Player::Update(){
         this->pvz = TempZ;
 
         //Camera
+            float InvertVec = 1;
+            if(InvertLook)
+                InvertVec = -1;
             float dx = Controls.TpX - this->LastTx;
 			float dy = Controls.TpY - this->LastTy;
 
@@ -175,9 +178,9 @@ void Player::Update(){
 
 				if(dy>-0.2&&dy<0.2) dy=0;
 
-					this->RotX = clip(lookupdown - dy, -89, 89);
+					this->RotX = clip(lookupdown - (dy * InvertVec), -89, 89);
 
-					this->RotY += (dx);
+					this->RotY += (dx * InvertVec);
 					if(this->RotY < 0)
 						this->RotY += 360;
 					else if(this->RotY > 359.9)

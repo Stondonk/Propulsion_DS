@@ -111,6 +111,8 @@ extern float lookupdown;
 extern float CeilCap;
 extern float FloorCap;
 
+extern bool InvertLook;
+
 extern float clip(float n, float lower, float upper);
 extern float lerp (float start, float end, float amt);
 extern void SetCamera(float x, float y, float z, float pitch, float yaw);

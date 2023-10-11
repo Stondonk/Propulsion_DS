@@ -9,6 +9,9 @@ bool PauseTimer = false;
 Vector2 milliPoint = {0,0};
 float MilGrav = 0;
 
+bool Settings =false;
+bool Tapped = false;
+
 void GameMasterDraw(){
     if(!PauseGame){
         int mintues = (round(Time) / 60);
@@ -30,20 +33,39 @@ void GameMasterDraw(){
         DrawSprite16(0, (int)milliPoint.x, (int)milliPoint.y,false,false);
         DrawText(std::to_string(mintues) + "." + buffer0 + std::to_string(seconds), 0, 128,88);
     }else{
-        DrawSprite16(21,120,80,false,false);
+        if(!Settings)
+            DrawSprite16(21,120,80,false,false);
+        else{
+            DrawSprite16(29+((int)InvertLook),112,8,false,false);
+            DrawSprite16(31,128,8,false,false);
+        }
         DrawSprite16(22,8,168,false,false);
+        DrawSprite16(28,SCREEN_WIDTH - 24,168,false,false);
     }
 }
 void GameMasterUpdate(){
-    if(!PauseGame && !PauseTimer)
+    if(!PauseGame && !PauseTimer){
         Time+=0.013;
-    else{
-        if(Controls.Touching){
-            if(Controls.TpX < 32 && Controls.TpY > 160) //exit
-                LoadLevelTransition("MenuWorld.txt",0);
-            else //resume
-                PauseGame = false;
+        Settings = false;
+    }else{
+        if(Controls.Touching && !Tapped){
+            if(Controls.TpX < 32 && Controls.TpY > 160){ //exit
+                LoadLevelTransition("MenuWorld.txt",0);Settings=false;}
+            else if(Controls.TpX > SCREEN_WIDTH - 32 && Controls.TpY > 160){
+                Settings = !Settings; Tapped = true;}
+            else{ //resume
+                if(Settings == false)
+                    PauseGame = false;
+                else{
+                    //SettingsMenu
+                    if(Controls.TpY > 0 && Controls.TpY < 32){
+                        InvertLook = !InvertLook; Tapped = true;}
+
+                }
+            }
         }
+        if(!Controls.Touching)
+            Tapped = false;
     }
 }
 
