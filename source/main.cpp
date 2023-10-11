@@ -159,7 +159,7 @@ void InitTextAssets(){
 	}
 }
 
-int main() {
+int main(int argc, char **argv) {
 
 	// Setup the Main screen for 3D
 	consoleDemoInit();
@@ -232,7 +232,7 @@ int main() {
 	
 	//consoleEnable
 	//consoleDemoInit();	
-	LoadLevel("MenuWorld.txt");
+	LoadHeaderLevel("MenuWorld.txt");
 	//gameObjects.push_back(new MainMenu());
 
 	InitTextAssets();
@@ -343,7 +343,7 @@ int main() {
                         OpenTransition = false;
                     }
                 } if(TransitionTime <= 0 && Trasnitionlocation != ""){
-                    LoadLevel(Trasnitionlocation.c_str());
+                    LoadHeaderLevel(Trasnitionlocation.c_str());
                     Trasnitionlocation = "";
                     OpenTransition = true;
 					TransitionVal = 1;

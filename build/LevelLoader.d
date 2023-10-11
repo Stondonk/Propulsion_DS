@@ -7,8 +7,7 @@ LevelLoader.o: G:/Ds-rom-homebrew/TestGame/source/LevelLoader.cpp \
  G:/Ds-rom-homebrew/TestGame/include/libfatversion.h \
  G:/Ds-rom-homebrew/TestGame/include/nds/disc_io.h \
  G:/Ds-rom-homebrew/TestGame/include/filesystem.h \
- G:/Ds-rom-homebrew/TestGame/include/UseHeaders/LevelLoader.h \
- G:/Ds-rom-homebrew/TestGame/include/UseHeaders/globals.h \
+ G:/Ds-rom-homebrew/TestGame/include/UseHeaders/levelFile.h \
  G:/Ds-rom-homebrew/TestGame/include/nds.h \
  G:/Ds-rom-homebrew/TestGame/include/nds/libversion.h \
  G:/Ds-rom-homebrew/TestGame/include/nds/ndstypes.h \
@@ -66,11 +65,13 @@ LevelLoader.o: G:/Ds-rom-homebrew/TestGame/source/LevelLoader.cpp \
  G:/Ds-rom-homebrew/TestGame/include/nds/arm9/video.h \
  G:/Ds-rom-homebrew/TestGame/include/nds/arm9/videoGL.h \
  G:/Ds-rom-homebrew/TestGame/include/nds/arm9/nand.h \
+ G:/Ds-rom-homebrew/TestGame/include/UseHeaders/globals.h \
  G:/Ds-rom-homebrew/TestGame/include/UseHeaders/gameObject.h \
  G:/Ds-rom-homebrew/TestGame/include/UseHeaders/Player.h \
  G:/Ds-rom-homebrew/TestGame/include/UseHeaders/rocket.h \
  G:/Ds-rom-homebrew/TestGame/build/Atlas.h \
  G:/Ds-rom-homebrew/TestGame/include/UseHeaders/gameMaster.h \
+ G:/Ds-rom-homebrew/TestGame/include/UseHeaders/LevelLoader.h \
  G:/Ds-rom-homebrew/TestGame/include/UseHeaders/Menu.h \
  G:/Ds-rom-homebrew/TestGame/include/UseHeaders/VectorFunctions.h \
  G:/Ds-rom-homebrew/TestGame/include/UseHeaders/Goal.h
@@ -82,8 +83,7 @@ G:/Ds-rom-homebrew/TestGame/include/fat.h:
 G:/Ds-rom-homebrew/TestGame/include/libfatversion.h:
 G:/Ds-rom-homebrew/TestGame/include/nds/disc_io.h:
 G:/Ds-rom-homebrew/TestGame/include/filesystem.h:
-G:/Ds-rom-homebrew/TestGame/include/UseHeaders/LevelLoader.h:
-G:/Ds-rom-homebrew/TestGame/include/UseHeaders/globals.h:
+G:/Ds-rom-homebrew/TestGame/include/UseHeaders/levelFile.h:
 G:/Ds-rom-homebrew/TestGame/include/nds.h:
 G:/Ds-rom-homebrew/TestGame/include/nds/libversion.h:
 G:/Ds-rom-homebrew/TestGame/include/nds/ndstypes.h:
@@ -141,11 +141,13 @@ G:/Ds-rom-homebrew/TestGame/include/nds/arm9/trig_lut.h:
 G:/Ds-rom-homebrew/TestGame/include/nds/arm9/video.h:
 G:/Ds-rom-homebrew/TestGame/include/nds/arm9/videoGL.h:
 G:/Ds-rom-homebrew/TestGame/include/nds/arm9/nand.h:
+G:/Ds-rom-homebrew/TestGame/include/UseHeaders/globals.h:
 G:/Ds-rom-homebrew/TestGame/include/UseHeaders/gameObject.h:
 G:/Ds-rom-homebrew/TestGame/include/UseHeaders/Player.h:
 G:/Ds-rom-homebrew/TestGame/include/UseHeaders/rocket.h:
 G:/Ds-rom-homebrew/TestGame/build/Atlas.h:
 G:/Ds-rom-homebrew/TestGame/include/UseHeaders/gameMaster.h:
+G:/Ds-rom-homebrew/TestGame/include/UseHeaders/LevelLoader.h:
 G:/Ds-rom-homebrew/TestGame/include/UseHeaders/Menu.h:
 G:/Ds-rom-homebrew/TestGame/include/UseHeaders/VectorFunctions.h:
 G:/Ds-rom-homebrew/TestGame/include/UseHeaders/Goal.h:
