@@ -93,19 +93,56 @@ void Player::Update(){
         this->rz = cos(M_PI / 180.0 *(this->RotY + 90));
         this->rx = sin(M_PI / 180.0 *(this->RotY + 90));
 
-	    if (Controls.Left || Controls.Y)
-           this->x = -1;
-		else if (Controls.Right || Controls.A)
-            this->x = 1;
-        else
-            this->x = 0;
-		
-		if (Controls.Down || Controls.B)
-		    this->y = 1;
-		else if (Controls.Up || Controls.X)
-            this->y = -1;
-        else
-            this->y = 0;
+        if(!LookButtons){
+            if (Controls.Left || Controls.Y)
+            this->x = -1;
+            else if (Controls.Right || Controls.A)
+                this->x = 1;
+            else
+                this->x = 0;
+            
+            if (Controls.Down || Controls.B)
+                this->y = 1;
+            else if (Controls.Up || Controls.X)
+                this->y = -1;
+            else
+                this->y = 0;
+        }else{
+            if (Controls.Left)
+            this->x = -1;
+            else if (Controls.Right)
+                this->x = 1;
+            else
+                this->x = 0;
+            
+            if (Controls.Down)
+                this->y = 1;
+            else if (Controls.Up)
+                this->y = -1;
+            else
+                this->y = 0;
+
+            //Camera
+            float UpDown = 0;
+            float RightLeft = 0;
+            if (Controls.Y)
+                RightLeft = -1;
+            if (Controls.A)
+                RightLeft = 1;
+            
+            if (Controls.B)
+                UpDown = 1;
+            if (Controls.X)
+                UpDown = -1;
+
+            float InvertVec = ((1-(int)(InvertLook)) * 2) - 1;
+            this->RotX = clip(lookupdown - (UpDown * InvertVec), -89, 89);
+            this->RotY += (RightLeft * InvertVec);
+			if(this->RotY < 0)
+				this->RotY += 360;
+			else if(this->RotY > 359.9)
+				this->RotY -= 360;
+        }
 
         if((Controls.L || Controls.R) && !this->Jumped && this->TimebtwShot <= 0){
             if(!this->canJump){
@@ -164,14 +201,12 @@ void Player::Update(){
         this->pvz = TempZ;
 
         //Camera
-            float InvertVec = 1;
-            if(InvertLook)
-                InvertVec = -1;
+            float InvertVec = ((1-(int)(InvertLook)) * 2) - 1;
             float dx = Controls.TpX - this->LastTx;
 			float dy = Controls.TpY - this->LastTy;
 
 			// filtering measurement errors
-			if (dx<20 && dx>-20 && dy<20 && dy>-20)
+			if (dx<20 && dx>-20 && dy<20 && dy>-20 && !LookButtons)
 			{
 				if(dx>-0.3&&dx<0.3)
 					dx=0;

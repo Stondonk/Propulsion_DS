@@ -66,7 +66,7 @@ std::string Trasnitionlocation;
 bool PauseGame = false;
 bool CanPause = true;
 
-bool InvertLook = false;
+bool InvertLook = false, LookButtons = false;
 
 Color HexColors[] = {{56,183,100,255}, {65,166,246,255}, {177,62,83,255}, {244,244,244,255}};
 

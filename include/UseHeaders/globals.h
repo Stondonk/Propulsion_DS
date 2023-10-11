@@ -111,7 +111,7 @@ extern float lookupdown;
 extern float CeilCap;
 extern float FloorCap;
 
-extern bool InvertLook;
+extern bool InvertLook,LookButtons;
 
 extern float clip(float n, float lower, float upper);
 extern float lerp (float start, float end, float amt);

@@ -38,6 +38,8 @@ void GameMasterDraw(){
         else{
             DrawSprite16(29+((int)InvertLook),112,8,false,false);
             DrawSprite16(31,128,8,false,false);
+            DrawSprite16(29+((int)LookButtons),112,24,false,false);
+            DrawSprite16(32,128,24,false,false);
         }
         DrawSprite16(22,8,168,false,false);
         DrawSprite16(28,SCREEN_WIDTH - 24,168,false,false);
@@ -58,8 +60,10 @@ void GameMasterUpdate(){
                     PauseGame = false;
                 else{
                     //SettingsMenu
-                    if(Controls.TpY > 0 && Controls.TpY < 32){
+                    if(Controls.TpY > 8 && Controls.TpY < 24){
                         InvertLook = !InvertLook; Tapped = true;}
+                    if(Controls.TpY > 24 && Controls.TpY < 40){
+                        LookButtons = !LookButtons; Tapped = true;}
 
                 }
             }
